@@ -12,8 +12,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <div>
+      <div className="w-full h-screen dark:bg-gray-800 bg-white">
         <Navbar />
+
+        <div className="mt-96">
+        </div>
       </div>
     </>
   );

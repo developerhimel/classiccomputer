@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
+    "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^2.0.13",
     "@next/font": "13.0.7",
     "@types/node": "^18.11.18",
@@ -19,6 +20,8 @@
     "axios": "^1.2.2",
     "eslint": "8.30.0",
     "eslint-config-next": "13.0.7",
+    "flowbite": "^1.5.5",
+    "flowbite-react": "^0.3.7",
     "mongodb": "^4.13.0",
     "next": "13.0.7",
     "next-auth": "^4.18.7",

@@ -1,0 +1,319 @@
+[
+  {
+    "name": "Desktop",
+    "items": [
+      {
+        "name": "Desktop Offers"
+      },
+      {
+        "name": "Gaming PC",
+        "items": [
+          {
+            "name": "Intel PC"
+          },
+          {
+            "name": "Ryzen PC"
+          }
+        ]
+      },
+      {
+        "name": "Brand PC",
+        "items": [
+          {
+            "name": "MSI"
+          },
+          {
+            "name": "Acer"
+          },
+          {
+            "name": "Asus"
+          },
+          {
+            "name": "Dell"
+          },
+          {
+            "name": "HP"
+          },
+          {
+            "name": "Lenovo"
+          },
+          {
+            "name": "Walton"
+          }
+        ]
+      },
+      {
+        "name": "All-in-one PC",
+        "items": [
+          {
+            "name": "i-Mice"
+          },
+          {
+            "name": "MSI"
+          },
+
+          {
+            "name": "Dell"
+          },
+          {
+            "name": "HP"
+          },
+          {
+            "name": "Lenovo"
+          },
+          {
+            "name": "Asus"
+          }
+        ]
+      },
+      {
+        "name": "Apple Mac Mini"
+      },
+      {
+        "name": "Portable Mini PC",
+        "items": [
+          {
+            "name": "Asus"
+          },
+
+          {
+            "name": "Intel"
+          },
+          {
+            "name": "Gigabyte"
+          },
+          {
+            "name": "Zotac"
+          },
+          {
+            "name": "MSI"
+          }
+        ]
+      },
+      {
+        "name": "Budget PC"
+      },
+      {
+        "name": "Apple iMac"
+      },
+      {
+        "name": "Apple Mac Studio"
+      },
+      {
+        "name": "Show All Desktop"
+      }
+    ]
+  },
+  {
+    "name": "Laptop",
+    "items": [
+      {
+        "name": "All Laptop",
+        "items": [
+          {
+            "name": "Razer"
+          },
+          {
+            "name": "MacBook"
+          },
+          {
+            "name": "Microsoft"
+          },
+          {
+            "name": "HP"
+          },
+          {
+            "name": "Dell"
+          },
+          {
+            "name": "Lenovo"
+          },
+          {
+            "name": "Asus"
+          },
+          {
+            "name": "Acer"
+          },
+          {
+            "name": "MSI"
+          },
+          {
+            "name": "Gigabyte"
+          },
+          {
+            "name": "Toshiba"
+          },
+          {
+            "name": "HUAWEI"
+          },
+          {
+            "name": "AVITA_Laptop"
+          },
+          {
+            "name": "Redmi"
+          },
+          {
+            "name": "Realme"
+          }
+        ]
+      },
+      {
+        "name": "Gaming Laptop",
+        "items": [
+          {
+            "name": "MSI"
+          },
+          {
+            "name": "Razer"
+          },
+          {
+            "name": "HP"
+          },
+          {
+            "name": "Asus"
+          },
+          {
+            "name": "Lenovo"
+          },
+          {
+            "name": "Acer"
+          },
+          {
+            "name": "Gigabyte"
+          }
+        ]
+      },
+      {
+        "name": "Premium Ultrabook",
+        "items": [
+          {
+            "name": "MSI"
+          },
+          {
+            "name": "Razer"
+          },
+          {
+            "name": "Asus"
+          },
+          {
+            "name": "Lenovo"
+          },
+          {
+            "name": "HP"
+          },
+          {
+            "name": "Samsung"
+          },
+          {
+            "name": "Dell"
+          }
+        ]
+      },
+      {
+        "name": "Laptop Bag",
+        "items": [
+          {
+            "name": "MaxGreen"
+          },
+          {
+            "name": "Razer"
+          },
+          {
+            "name": "Targus"
+          },
+          {
+            "name": "Fantech"
+          },
+          {
+            "name": "Tucano"
+          },
+          {
+            "name": "WiWU"
+          },
+          {
+            "name": "Xiaomi"
+          },
+          {
+            "name": "Asus"
+          },
+          {
+            "name": "Redragon"
+          },
+          {
+            "name": "Cougar"
+          }
+        ]
+      },
+      {
+        "name": "External Graphics Enclosure"
+      },
+      {
+        "name": "Laptop Accessories"
+      },
+      {
+        "name": "Show All Laptop"
+      }
+    ]
+  },
+  {
+    "name": "Pc Components",
+    "items": [
+      {
+        "name": "Proccesor",
+        "items": [
+          {
+            "name": "AMD"
+          },
+          {
+            "name": "Intel"
+          }
+        ]
+      },
+      {
+        "name": "CPU Cooler"
+      },
+      {
+        "name": "Water / Liquid Cooling"
+      },
+      {
+        "name": "Motherboard"
+      }
+    ]
+  },
+  {
+    "name": "Monitor"
+  },
+  {
+    "name": "Ups"
+  },
+  {
+    "name": "Tablet"
+  },
+  {
+    "name": "Gaming Gears"
+  },
+  {
+    "name": "Accessories"
+  },
+  {
+    "name": "Camera"
+  },
+  {
+    "name": "Security"
+  },
+  {
+    "name": "Network Accessories"
+  },
+  {
+    "name": "Gadget"
+  },
+  {
+    "name": "Combo"
+  },
+  {
+    "name": "TV"
+  },
+  {
+    "name": "AC"
+  }
+]

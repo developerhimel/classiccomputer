@@ -7,7 +7,7 @@ function Searchbar() {
       <div className="relative mt-1 rounded-md">
         <input
           type="text"
-          className="block w-full rounded-md px-3 py-[10px] md:text-base sm:text-sm"
+          className="block w-full rounded-md px-3 py-[10px] md:text-base sm:text-sm bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-transparent focus:border-none ring-transparent border-none"
           placeholder="Search for products"
         />
         <Link href={"/"}>
@@ -18,7 +18,7 @@ function Searchbar() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-6 h-6 text-gray-800 dark:text-white"
             >
               <path
                 strokeLinecap="round"
