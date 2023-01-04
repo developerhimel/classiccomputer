@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
+// eslint-disable-next-line
+import "swiper/css/bundle";
 import "../styles/globals.css";
+import 'swiper/css';
+import "swiper/css/pagination";
 import type { AppProps } from "next/app";
 import { ConfigProvider, theme } from "antd";
 

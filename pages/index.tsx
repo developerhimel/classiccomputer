@@ -1,5 +1,10 @@
 import Head from "next/head";
 import Navbar from "../components/reusable/NavBar/Navbar";
+import SwiperCore, { Autoplay, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Image from 'next/image'
+
+SwiperCore.use([Autoplay]);
 
 export default function Home() {
   return (
@@ -14,8 +19,29 @@ export default function Home() {
       </Head>
       <div className="w-full h-screen dark:bg-gray-800 bg-white">
         <Navbar />
-
-        <div className="mt-96">
+        <div className="container m-auto mt-10">
+          <Swiper
+            pagination={{
+              dynamicBullets: true,
+            }}
+            modules={[Pagination]}
+            className="mySwiper"
+            autoplay={{ delay: 3000 }}
+            loop={true}
+            speed={300}
+            direction="horizontal"
+            draggable={true}
+          >
+            <SwiperSlide>
+              <Image src={'/assets/Slider/1.png'} alt={"Slider"} width={500} height={250} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image src={'/assets/Slider/2.jpg'} alt={"Slider"}  width={500} height={250} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Image src={'/assets/Slider/3.jpg'} alt={"Slider"} width={500} height={250} />
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
     </>

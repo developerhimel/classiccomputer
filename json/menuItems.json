@@ -270,24 +270,905 @@
         ]
       },
       {
-        "name": "CPU Cooler"
+        "name": "CPU Cooler",
+        "items": [
+          {
+            "name": "Lian LI"
+          },
+          {
+            "name": "EKWB"
+          },
+          {
+            "name": "Antec"
+          },
+          {
+            "name": "Zadak"
+          },
+          {
+            "name": "Noctua"
+          },
+          {
+            "name": "TEAM"
+          },
+          {
+            "name": "Gamdias"
+          },
+          {
+            "name": "Corsair"
+          },
+          {
+            "name": "MSI"
+          },
+          {
+            "name": "Gigabyte"
+          },
+          {
+            "name": "NZXT"
+          },
+          {
+            "name": "Phanteks"
+          },
+          {
+            "name": "Thermaltake"
+          },
+          {
+            "name": "Cooler Master"
+          },
+          {
+            "name": "Couger"
+          },
+          {
+            "name": "Cryorig"
+          },
+          {
+            "name": "Asus"
+          },
+          {
+            "name": "Redragon"
+          },
+          {
+            "name": "Deepcool"
+          },
+          {
+            "name": "Deepcool"
+          },
+          {
+            "name": "Aigo"
+          },
+          {
+            "name": "Suphire"
+          },
+          {
+            "name": "1ST PLAYER"
+          },
+          {
+            "name": "Xigmatak"
+          },
+          {
+            "name": "AMD"
+          },
+          {
+            "name": "Montech"
+          }
+        ]
       },
       {
-        "name": "Water / Liquid Cooling"
+        "name": "Motherboard",
+        "items": [
+          {
+            "name": "Intel Motherboard"
+          },
+          {
+            "name": "AMD Motherboard"
+          },
+          {
+            "name": "ASRock (Intel)"
+          },
+          {
+            "name": "AsRock (RYZEN)"
+          },
+          {
+            "name": "ASUS (Intel)"
+          },
+          {
+            "name": "ASUS (AMD)"
+          },
+          {
+            "name": "Gigabyte (Intel)"
+          },
+          {
+            "name": "Gigabyte (AMD)"
+          },
+          {
+            "name": "MSI (Intel)"
+          },
+          {
+            "name": "MSI (RYZEN)"
+          }
+        ]
+      },
+
+      {
+        "name": "Graphics Card",
+        "items": [
+          {
+            "name": "XFX"
+          },
+          {
+            "name": "PNY"
+          },
+          {
+            "name": "PALIT"
+          },
+          {
+            "name": "MSI"
+          },
+          {
+            "name": "AsRock"
+          },
+          {
+            "name": "Galax"
+          },
+          {
+            "name": "Asus"
+          },
+          {
+            "name": "ZOTAC"
+          },
+          {
+            "name": "Colorful"
+          },
+          {
+            "name": "Gigabyte"
+          },
+          {
+            "name": "Saphire"
+          },
+          {
+            "name": "Biostar"
+          },
+          {
+            "name": "NVIDIA"
+          },
+          {
+            "name": "ACER"
+          },
+          {
+            "name": "AFOX"
+          },
+          {
+            "name": "Intel ARC"
+          }
+        ]
       },
       {
-        "name": "Motherboard"
+        "name": "Ram(Desktop)",
+        "items": [
+          {
+            "name": "TEAM"
+          },
+          {
+            "name": "ZADAK"
+          },
+          {
+            "name": "GEIL"
+          },
+          {
+            "name": "Corsair"
+          },
+          {
+            "name": "Gigabyte"
+          },
+          {
+            "name": "G.Skill"
+          },
+          {
+            "name": "PNY"
+          },
+          {
+            "name": "TWINMOS"
+          },
+          {
+            "name": "Kingston"
+          },
+          {
+            "name": "ADATA"
+          },
+          {
+            "name": "Patriot"
+          },
+          {
+            "name": "Transcend"
+          },
+          {
+            "name": "Thermaltake"
+          },
+          {
+            "name": "HP"
+          },
+          {
+            "name": "Apacer"
+          },
+          {
+            "name": "Crucial"
+          },
+          {
+            "name": "AITC"
+          },
+          {
+            "name": "Silicon Powder"
+          },
+          {
+            "name": "Kingston"
+          },
+          {
+            "name": "Lexar"
+          }
+        ]
+      },
+      {
+        "name": "Ram(Laptop)",
+        "itmes": [
+          {
+            "name": "TEAM"
+          },
+          {
+            "name": "GEIL"
+          },
+          {
+            "name": "ADATA"
+          },
+          {
+            "name": "Transcend"
+          },
+          {
+            "name": "G.Skill"
+          },
+          {
+            "name": "HP"
+          },
+          {
+            "name": "Patriot"
+          },
+          {
+            "name": "Kingston"
+          },
+          {
+            "name": "Crucial"
+          },
+          {
+            "name": "Silicon Powder"
+          },
+          {
+            "name": "Lexar"
+          },
+          {
+            "name": "TRM"
+          },
+          {
+            "name": "Apacer"
+          },
+          {
+            "name": "PNY"
+          }
+        ]
+      },
+      {
+        "name": "Power Supply",
+        "items": [
+          {
+            "name": "Antec"
+          },
+          {
+            "name": "Gamdias"
+          },
+          {
+            "name": "Lian LI"
+          },
+          {
+            "name": "MaxGreen"
+          },
+          {
+            "name": "Cooler Master"
+          },
+          {
+            "name": "Thermaltake"
+          },
+          {
+            "name": "Corsair"
+          },
+          {
+            "name": "Gigabyte"
+          },
+          {
+            "name": "1ST PLAYER"
+          },
+          {
+            "name": "MSI"
+          },
+          {
+            "name": "Asus"
+          },
+          {
+            "name": "Redragon"
+          },
+          {
+            "name": "Aigo"
+          },
+          {
+            "name": "Deepcool"
+          },
+          {
+            "name": "NZXT"
+          },
+          {
+            "name": "EVOLUR"
+          }
+        ]
+      },
+      {
+        "name": "Hard Disk Drive",
+        "items": [
+          {
+            "name": "Toshiba"
+          },
+          {
+            "name": "Western Digital"
+          },
+          {
+            "name": "Segate"
+          },
+          {
+            "name": "Apple"
+          },
+          {
+            "name": "Hitachi"
+          }
+        ]
+      },
+      {
+        "name": "SSD",
+        "items": [
+          {
+            "name": "ZADAK"
+          },
+          {
+            "name": "Galax"
+          },
+          {
+            "name": "TEAM"
+          },
+          {
+            "name": "HP"
+          },
+          {
+            "name": "Samsung"
+          },
+          {
+            "name": "Transcend"
+          },
+          {
+            "name": "GEIL"
+          },
+          {
+            "name": "PNY"
+          },
+          {
+            "name": "ADATA"
+          },
+          {
+            "name": "Corsair"
+          },
+          {
+            "name": "Western Digital"
+          },
+          {
+            "name": "Kingston"
+          },
+          {
+            "name": "Patriot"
+          },
+          {
+            "name": "Gigabyte"
+          },
+          {
+            "name": "Silicon Powder"
+          },
+          {
+            "name": "Segate"
+          },
+          {
+            "name": "Intel"
+          },
+          {
+            "name": "Walton"
+          },
+          {
+            "name": "Teutons"
+          },
+          {
+            "name": "MSI"
+          },
+          {
+            "name": "TWINMOS"
+          },
+          {
+            "name": "Lexar"
+          },
+          {
+            "name": "AITC"
+          },
+          {
+            "name": "Netac"
+          },
+          {
+            "name": "Crucial"
+          },
+          {
+            "name": "Sandisk"
+          },
+          {
+            "name": "Dahua"
+          },
+          {
+            "name": "ADDlink"
+          },
+          {
+            "name": "ROBOT"
+          },
+          {
+            "name": "ACer"
+          },
+          {
+            "name": "ANACOMDA"
+          },
+          {
+            "name": "KINGSPEC"
+          },
+          {
+            "name": "Apacer"
+          }
+        ]
+      },
+      {
+        "name": "Casing",
+        "items": [
+          {
+            "name": "Antec"
+          },
+          {
+            "name": "Gamdias"
+          },
+          {
+            "name": "Lian LI"
+          },
+          {
+            "name": "ZADAK"
+          },
+          {
+            "name": "MaxGreen"
+          },
+          {
+            "name": "Redragon"
+          },
+          {
+            "name": "Corsair"
+          },
+          {
+            "name": "Phanteks"
+          },
+          {
+            "name": "Asus"
+          },
+          {
+            "name": "MSI"
+          },
+          {
+            "name": "Cooler Master"
+          },
+          {
+            "name": "NZXT"
+          },
+          {
+            "name": "1ST PLAYER"
+          },
+          {
+            "name": "Gigabyte"
+          },
+          {
+            "name": "AIGO"
+          },
+          {
+            "name": "XTreme"
+          },
+          {
+            "name": "Value-TOP"
+          },
+          {
+            "name": "Thermaltake"
+          },
+          {
+            "name": "Xigmatek"
+          },
+          {
+            "name": "Deepcool"
+          },
+          {
+            "name": "Montech"
+          },
+          {
+            "name": "Golden Field"
+          },
+          {
+            "name": "Cougar"
+          },
+          {
+            "name": "Fantech"
+          },
+          {
+            "name": "PC COOLER"
+          },
+          {
+            "name": "Delux"
+          },
+          {
+            "name": "Revenger"
+          },
+          {
+            "name": "EVOLUR"
+          },
+          {
+            "name": "OVO"
+          },
+          {
+            "name": "View One"
+          }
+        ]
+      },
+      {
+        "name": "Portable Hard Disk Drive",
+        "items":[
+          
+          {
+            "name": "TOSHIBA"
+          },
+          {
+            "name": "G-Technology"
+          },
+          {
+            "name": "ADATA"
+          },
+          {
+            "name": "Transcend"
+          },
+          {
+            "name": "Asus"
+          },
+          {
+            "name": "Western Digital"
+          },
+          {
+            "name": "Segate"
+          },
+          {
+            "name": "HP"
+          },
+          {
+            "name": "Silicon Powder"
+          },
+          {
+            "name": "LACIE"
+          },
+          {
+            "name": "Sandisk"
+          },
+          {
+            "name": "Apacer"
+          }
+        ]
+      },
+      {
+        "name": "Portable SSD",
+        "items":[
+          
+          {
+            "name": "SAMSUNG"
+          },
+          {
+            "name": "TEAM"
+          },
+          {
+            "name": "HP"
+          },
+          {
+            "name": "Teutons"
+          },
+          {
+            "name": "G-Technology"
+          },
+          {
+            "name": "Transcend"
+          },
+          {
+            "name": "Western Digital"
+          },
+          {
+            "name": "ADATA"
+          },
+          {
+            "name": "Sandisk"
+          },
+          {
+            "name": "PNY"
+          },
+          {
+            "name": "LACIE"
+          },
+          {
+            "name": "Netac"
+          },
+          {
+            "name": "Crucial"
+          },
+          {
+            "name": "Segate"
+          },
+          {
+            "name": "Silicon Powder"
+          },
+          {
+            "name": "Kingston"
+          }
+        ]
+      },
+      {
+        "name": "Cooling Fan",
+        "items":[
+          
+          {
+            "name": "Lian LI"
+          },
+          {
+            "name": "Antec"
+          },
+          {
+            "name": "MaxGreen"
+          },
+          {
+            "name": "Noctua"
+          },
+          {
+            "name": "Gamdias"
+          },
+          {
+            "name": "Corsair"
+          },
+          {
+            "name": "KWG"
+          },
+          {
+            "name": "Fantech"
+          },
+          {
+            "name": "NZXT"
+          },
+          {
+            "name": "Asus"
+          },
+          {
+            "name": "EKWB"
+          },
+          {
+            "name": "Montech"
+          },
+          {
+            "name": "Cooler Master"
+          },
+          {
+            "name": "Thermaltake"
+          },
+          {
+            "name": "PC COOLER"
+          },
+          {
+            "name": "Deepcool"
+          },
+          {
+            "name": "Redragon"
+          },
+          {
+            "name": "ORICO"
+          }
+        ]
+      },
+      {
+        "name": "Optical Disk Drive",
+        "items":[
+          
+          {
+            "name": "Internal Disk Drive"
+          },
+          {
+            "name": "EXternal Disk Drive "
+          }
+        ]
+
+      },
+      {
+        "name": "Vertical Graphics Card"
+      },
+      {
+        "name": "Show All PC Components"
       }
     ]
   },
   {
-    "name": "Monitor"
+    "name": "Monitor",
+    "items":[
+      
+          {
+            "name": "AsRock"
+          },
+          {
+            "name": "Apple"
+          },
+          {
+            "name": "HUAWEI"
+          },
+          {
+            "name": "Lenovo"
+          },
+          {
+            "name": "GAMeMAX"
+          },
+          {
+            "name": "Fantech"
+          },
+          {
+            "name": "Corsair"
+          },
+          {
+            "name": "HuntKey"
+          },
+          {
+            "name": "Sony"
+          },
+          {
+            "name": "Enter"
+          },
+          {
+            "name": "Gaming Monitor"
+          },
+          {
+            "name": "Curved Monitor"
+          },
+          {
+            "name": "Touch Monitor"
+          },
+          {
+            "name": "4K Monitor"
+          },
+          {
+            "name": "Monitor ARM"
+          },
+          {
+            "name": "Acer"
+          },
+          {
+            "name": "LG"
+          },
+          {
+            "name": "ASUS"
+          },
+          {
+            "name": "MSI"
+          },
+          {
+            "name": "HP"
+          },
+          {
+            "name": "BENQ"
+          },
+          {
+            "name": "DELL"
+          },
+          {
+            "name": "SAMSUNG"
+          },
+          {
+            "name": "VIEWSONIC"
+          },
+          {
+            "name": "Gigabyte"
+          },
+          {
+            "name": "Redmi"
+          },
+          {
+            "name": "AOC"
+          },
+          {
+            "name": "Philips"
+          }
+          ,
+          {
+            "name": "Show All Monitor"
+          }
+    ]
   },
   {
-    "name": "Ups"
+    "name": "Ups",
+    "items":[
+      
+          {
+            "name": "Online UPS"
+          },
+          {
+            "name": "Offline UPS"
+          },
+          {
+            "name": "MINI UPS"
+          },
+          {
+            "name": "UPS Battery"
+          },
+          {
+            "name": "Voltage Stablizer"
+          },
+          {
+            "name": "IPS"
+
+          }
+          ,
+          {
+            "name": "Show All UPS"
+          }
+    ]
   },
   {
-    "name": "Tablet"
+    "name": "Tablet",
+    "items":[
+      
+          {
+            "name": "Graphics Tablet"
+          },
+          {
+            "name": "APPLE"
+          },
+          {
+            "name": "Microsoft"
+          },
+          {
+            "name": "Amazon"
+          },
+          {
+            "name": "Lenovo"
+          },
+          {
+            "name": "SAMSUNG"
+          },
+          {
+            "name": "Realme"
+          },
+          {
+            "name": "Xiaomi"
+          },
+          {
+            "name": "Walton"
+          },
+          {
+            "name": "HUAWEI"
+          },
+          {
+            "name": "DIGITAL SIGNATURE RED"
+          },
+          {
+            "name": "STYLUS"
+          },
+          {
+            "name": "Show All TABLET"
+          }
+    ]
   },
   {
     "name": "Gaming Gears"

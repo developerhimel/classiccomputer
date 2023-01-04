@@ -30,10 +30,10 @@ input:focus-visible {
 .ccprimary {
   color: #3fa9f5;
 }
-.ant-modal-content{
+.ant-modal-content {
   padding: 0px !important;
 }
-.main_menu_wrapper>li{
+.main_menu_wrapper > li {
   font-size: 14px !important;
   cursor: pointer;
 }
