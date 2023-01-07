@@ -3,6 +3,8 @@ import Navbar from "../components/reusable/NavBar/Navbar";
 import SwiperCore, { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from 'next/image'
+import Featured from "./Admin/Featured";
+import Footer from "../components/reusable/Footer/Footer";
 
 SwiperCore.use([Autoplay]);
 
@@ -19,7 +21,7 @@ export default function Home() {
       </Head>
       <div className="w-full h-screen dark:bg-gray-800 bg-white">
         <Navbar />
-        <div className="container m-auto mt-10">
+        {/* <div className="container m-auto mt-10">
           <Swiper
             pagination={{
               dynamicBullets: true,
@@ -42,7 +44,9 @@ export default function Home() {
               <Image src={'/assets/Slider/3.jpg'} alt={"Slider"} width={500} height={250} />
             </SwiperSlide>
           </Swiper>
-        </div>
+        </div> */}
+        <Featured/>
+        <Footer/>
       </div>
     </>
   );
