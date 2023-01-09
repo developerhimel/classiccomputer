@@ -1,0 +1,66 @@
+[
+  {
+    "title": "All Laptop",
+    "url": "/assets/Featured/laptop.png"
+  },
+  {
+    "title": "Desktop",
+    "url": "/assets/Featured/desktop-48x48.png"
+  },
+  {
+    "title": "Monitor",
+    "url": "/assets/Featured/monitor-48x48.png"
+  },
+  {
+    "title": "Processor",
+    "url": "/assets/Featured/cpu-48x48.png"
+  },
+  {
+    "title": "Graphics Card",
+    "url": "/assets/Featured/gpu-48x48 (1).png"
+  },
+  {
+    "title": "SSD",
+    "url": "/assets/Featured/ssd-48x48.png"
+  },
+  {
+    "title": "Laptop Adapter",
+    "url": "/assets/Featured/laptop-battery-01-48x48.png"
+  },
+  {
+    "title": "Mouse",
+    "url": "/assets/Featured/mouse.png-40x40.webp"
+  },
+  {
+    "title": "Keyboard",
+    "url": "/assets/Featured/keyboard-48x48.png"
+  },
+  {
+    "title": "Headphone",
+    "url": "/assets/Featured/headphone-48x48.png"
+  },
+  {
+    "title": "Router",
+    "url": "/assets/Featured/router-48x48.png"
+  },
+  {
+    "title": "Portable Wifi Camera",
+    "url": "/assets/Featured/portable-ip-camera-48x48.png"
+  },
+  {
+    "title": "Smart Watch",
+    "url": "/assets/Featured/smart-watch-48x48.png"
+  },
+  {
+    "title": "Gaming Console",
+    "url": "/assets/Featured/gaming-console-48x48.png"
+  },
+  {
+    "title": "Converter & Cable",
+    "url": "/assets/Featured/cableconverter.png"
+  },
+  {
+    "title": "Gamning Chair",
+    "url": "/assets/Featured/chair.png-40x40.webp"
+  }
+]

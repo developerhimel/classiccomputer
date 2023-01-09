@@ -74,7 +74,7 @@ function Navbar() {
     },
   ];
   return (
-    <Fragment>
+    <div>
       <div className="bg-gray-900 lg:py-[15px] pt-3 pb-[1px] rounded-b-md lg:rounded-none">
         <div className="container m-auto">
           {/* Codes For Mobile Mode Start*/}
@@ -87,6 +87,7 @@ function Navbar() {
                   src={"/assets/logo/logo.png"}
                   height={50}
                   width={110}
+                  priority
                 />
               </Link>
               <ShoppingCartOutlined className="text-white text-2xl" />
@@ -121,12 +122,13 @@ function Navbar() {
 
           {/* Codes For Desktop Mode Start*/}
           <div className="hidden lg:flex flex-row justify-start items-center">
-            <Link href={"/"}>
+            <Link href={"/Admin"}>
               <Image
                 alt="Logo"
                 src={"/assets/logo/logo.png"}
                 height={55}
                 width={115}
+                priority
               />
             </Link>
             <div className="w-full flex flex-row">
@@ -212,7 +214,7 @@ function Navbar() {
                 </Dropdown>
                 <Flowbite>
                   <Tooltip content="Switch Theme" style="light">
-                    <DarkThemeToggle className="focus:outline-none focus:bg-gray-800 hover:bg-none" />
+                    <DarkThemeToggle  className="focus:outline-none focus:bg-gray-800 hover:bg-none" />
                   </Tooltip>
                 </Flowbite>
                 <Link
@@ -474,11 +476,11 @@ function Navbar() {
         </div>
       </div>
       <div className="bg-white dark:bg-gray-700 shadow-sm">
-        <div className="container m-auto">
+        <div className="container m-auto relative">
           <Menu />
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 }
 
