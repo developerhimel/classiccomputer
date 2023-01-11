@@ -8,7 +8,7 @@ import Searchbar from "./Searchbar";
 import { DarkThemeToggle, Flowbite, Tooltip } from "flowbite-react";
 import Menu from "./Menu";
 
-function Navbar() {
+function Navbar(props: { categoryItems: any }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
 
@@ -214,7 +214,7 @@ function Navbar() {
                 </Dropdown>
                 <Flowbite>
                   <Tooltip content="Switch Theme" style="light">
-                    <DarkThemeToggle  className="focus:outline-none focus:bg-gray-800 hover:bg-none" />
+                    <DarkThemeToggle className="focus:outline-none focus:bg-gray-800 hover:bg-none" />
                   </Tooltip>
                 </Flowbite>
                 <Link
@@ -477,7 +477,7 @@ function Navbar() {
       </div>
       <div className="bg-white dark:bg-gray-700 shadow-sm">
         <div className="container m-auto relative">
-          <Menu />
+          <Menu mainItems={props.categoryItems} />
         </div>
       </div>
     </div>

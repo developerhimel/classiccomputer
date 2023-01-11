@@ -1,12 +1,8 @@
+import React from "react";
 import { CaretRightOutlined } from "@ant-design/icons";
-import { Transition } from "@headlessui/react";
 import Link from "next/link";
-import React, { Fragment, useState } from "react";
-import menuItems from "../../../json/menuItems.json";
 
-export default function Menu() {
-  console.log(menuItems);
-
+export default function Menu(props: { mainItems: any }) {
   const MenuItems = (props: { name: string; mainItem: any; id: number }) => {
     return (
       <>
@@ -40,7 +36,9 @@ export default function Menu() {
                   {subItem.items && (
                     <div
                       className={`absolute px-1 top-0 ${
-                        props.id < 8 ? "left-full origin-left" : "right-full origin-right"
+                        props.id < 8
+                          ? "left-full origin-left"
+                          : "right-full origin-right"
                       } w-48 z-10 scale-x-0 ease-in-out duration-200 group-hover/sub:scale-x-100`}
                     >
                       <ul className="w-full bg-white dark:bg-gray-700 shadow-md border border-gray-200 dark:border-gray-700 rounded-md">
@@ -73,7 +71,7 @@ export default function Menu() {
   };
   return (
     <ul className="main_menu_wrapper flex flow-row justify-between items-center flex-wrap">
-      {menuItems.map((item, index) => (
+      {props.mainItems.map((item: any, index: number) => (
         <li
           className="text-gray-800 relative group/main font-semibold px-2 py-3 dark:text-white hover:bg-gray-800 hover:text-white rounded-b-md ease-in-out duration-200 hover:shadow-md cursor-pointer"
           key={index}

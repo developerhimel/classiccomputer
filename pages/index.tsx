@@ -6,12 +6,16 @@ import Image from "next/image";
 import featuredItems from "../json/featuredItems.json";
 import Link from "next/link";
 import { NumericFormat } from "react-number-format";
-import products from "../json/products.json";
 import ccdetails from "../json/ccdetails.json";
+import Footer from "../components/reusable/Footer/Footer";
+import { MongoClient } from "mongodb";
+import { NextPage } from "next";
 
 SwiperCore.use([Autoplay]);
 
-export default function Home() {
+const Home: NextPage = (props: any) => {
+  console.log(props.banner);
+
   return (
     <>
       <Head>
@@ -23,29 +27,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <div className="w-full">
-        <Navbar />
+        <Navbar categoryItems={props.menu} />
         <div className="container m-auto mt-10">
           {/* Slider Section Start */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-2">
             <div className="grid grid-cols-2 md:grid-cols-1 gap-2">
-              <div className="w-full hover:scale-[0.98] ease-in-out duration-300 cursor-pointer">
-                <Image
-                  src={"/assets/Images/banner3.jpeg"}
-                  width={350}
-                  height={160}
-                  alt={"Image"}
-                  className="w-full hover:rounded-md ease-in-out duration-300"
-                />
-              </div>
-              <div className="w-full hover:scale-[0.98] ease-in-out duration-300 cursor-pointer">
-                <Image
-                  src={"/assets/Images/banner1.jpg"}
-                  width={350}
-                  height={160}
-                  alt={"Image"}
-                  className="w-full hover:rounded-md ease-in-out duration-300"
-                />
-              </div>
+              {props.banner.slice(0, 2).map((item: any, index: number) => (
+                <div
+                  key={index}
+                  className="w-full hover:scale-[0.98] ease-in-out duration-300 cursor-pointer"
+                >
+                  <Image
+                    src={item.src}
+                    width={350}
+                    height={160}
+                    alt={item.title}
+                    className="w-full hover:rounded-md ease-in-out duration-300"
+                  />
+                </div>
+              ))}
             </div>
             <div className="col-span-2 rounded-b-md shadow-md hover:cursor-pointer cursor-default">
               <Swiper
@@ -60,54 +60,36 @@ export default function Home() {
                 direction="horizontal"
                 draggable={true}
               >
-                <SwiperSlide>
-                  <Image
-                    src={"/assets/Slider/1.png"}
-                    alt={"Slider"}
-                    width={500}
-                    height={250}
-                    className="w-full"
-                  />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Image
-                    src={"/assets/Slider/2.jpg"}
-                    alt={"Slider"}
-                    width={500}
-                    height={250}
-                    className="w-full"
-                  />
-                </SwiperSlide>
-                <SwiperSlide>
-                  <Image
-                    src={"/assets/Slider/3.jpg"}
-                    alt={"Slider"}
-                    width={500}
-                    height={250}
-                    className="w-full"
-                  />
-                </SwiperSlide>
+                {props.slider.map((item: any, index: number) => (
+                  <SwiperSlide key={index}>
+                    {/* <Image
+                      src={item.src}
+                      alt={item.title}
+                      width={500}
+                      height={250}
+                      className="w-full"
+                      priority
+                    /> */}
+                    <img src={item.src} alt={item.title} />
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-1 gap-2">
-              <div className="w-full hover:scale-[0.98] ease-in-out duration-300 cursor-pointer">
-                <Image
-                  src={"/assets/Images/banner2.jpg"}
-                  width={350}
-                  height={160}
-                  alt={"Image"}
-                  className="w-full hover:rounded-md ease-in-out duration-300"
-                />
-              </div>
-              <div className="w-full hover:scale-[0.98] ease-in-out duration-300 cursor-pointer">
-                <Image
-                  src={"/assets/Images/banner4.jpg"}
-                  width={350}
-                  height={160}
-                  alt={"Image"}
-                  className="w-full hover:rounded-md ease-in-out duration-300"
-                />
-              </div>
+              {props.banner.slice(2, 4).map((item: any, index: number) => (
+                <div
+                  key={index}
+                  className="w-full hover:scale-[0.98] ease-in-out duration-300 cursor-pointer"
+                >
+                  <Image
+                    src={item.src}
+                    width={350}
+                    height={160}
+                    alt={item.title}
+                    className="w-full hover:rounded-md ease-in-out duration-300"
+                  />
+                </div>
+              ))}
             </div>
           </div>
           {/* Slider Section End */}
@@ -124,7 +106,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 items-center my-6 gap-[2px]">
               {featuredItems.map((item: any, index: number) => (
-                <div className="w-full overflow-hidden" key={index}>
+                <div className="w-full group overflow-hidden" key={index}>
                   <div className="bg-white dark:bg-gray-700 items-center hover:scale-[1.08] cursor-pointer rounded shadow-sm ease-in-out duration-200 flex flex-col p-5 overflow-hidden">
                     <Image
                       src={item.url}
@@ -132,7 +114,7 @@ export default function Home() {
                       height={48}
                       width={48}
                     />
-                    <h2 className="mt-2 truncate text-gray-800 dark:text-gray-200 text-sm">
+                    <h2 className="mt-2 truncate text-gray-800 group-hover:text-pink-600 dark:text-gray-200 text-sm">
                       {item.title}
                     </h2>
                   </div>
@@ -151,14 +133,14 @@ export default function Home() {
             </div>
             <div className="w-full mt-10">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 px-3 sm:px-0 gap-5">
-                {products.slice(0, 12).map((item: any, index: number) => (
+                {props.products.slice(0, 12).map((item: any, index: number) => (
                   <div
                     key={index}
                     className="bg-white group/main py-4 rounded-lg shadow-sm hover:shadow-md"
                   >
                     <div className="border-b-[5px] border-b-gray-50">
                       <span
-                        className={`text-xs bg-pink-500 ${
+                        className={`text-xs bg-pink-600 ${
                           !item.discountPrice && "opacity-0"
                         } pr-2 text-white p-1 rounded-r-full`}
                       >
@@ -235,7 +217,7 @@ export default function Home() {
             </div>
             <div className="w-full mt-10">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 px-3 sm:px-0 gap-5">
-                {products.slice(0, 6).map((item: any, index: number) => (
+                {props.products.slice(0, 6).map((item: any, index: number) => (
                   <div
                     key={index}
                     className="bg-white dark:bg-gray-800 group/main py-4 rounded-lg border shadow-sm hover:shadow-md"
@@ -325,7 +307,56 @@ export default function Home() {
             ))}
           </div>
         </div>
+        <div>
+          <Footer />
+        </div>
       </div>
     </>
   );
+};
+
+export async function getServerSideProps() {
+  // fetch data from an API
+  const client = await MongoClient.connect(
+    process.env.NEXT_PUBLIC_MONGODB_URL as string
+  );
+
+  const db = client.db("cc");
+
+  const menuCollections = db.collection("menu");
+  const productsCollection = db.collection("products");
+
+  const menuItems = await menuCollections.find().toArray();
+  const products = await productsCollection.find().toArray();
+  const slider = await db.collection("slider").find().toArray();
+  const banner = await db.collection("banner").find().toArray();
+
+  client.close();
+
+  return {
+    props: {
+      menu: menuItems.map((item) => ({
+        ...item,
+        id: item._id.toString(),
+        _id: null,
+      })),
+      products: products.map((item) => ({
+        ...item,
+        id: item._id.toString(),
+        _id: null,
+      })),
+      slider: slider.map((item) => ({
+        ...item,
+        id: item._id.toString(),
+        _id: null,
+      })),
+      banner: banner.map((item) => ({
+        ...item,
+        id: item._id.toString(),
+        _id: null,
+      })),
+    },
+  };
 }
+
+export default Home;
