@@ -1,0 +1,206 @@
+[
+  {
+    "title": "Display",
+    "Items": [
+      {
+        "name": "Size",
+        "Value": "6.4''"
+      },
+      {
+        "name": "Type",
+        "Value": "OLED"
+      },
+      {
+        "name": "Resolution",
+        "Value": "FHD+ (2400x1080)"
+      },
+      {
+        "name": "Refresh Rate",
+        "Value": "60 Hz"
+      },
+      {
+        "name": "Features",
+        "Value": "82.7% screen-to-body ratio 20:9 ratio (~411 ppi density)"
+      }
+    ]
+  },
+  {
+    "title": "Processor",
+    "Items": [
+      {
+        "name": "Chipset",
+        "Value": "Mediatek MT6769Z Helio G85 (12nm)"
+      },
+      {
+        "name": "CPU Type",
+        "Value": "Octa-Core"
+      },
+      {
+        "name": "CPU Speed",
+        "Value": "2x2.0 GHz Cortex-A75 & 6x1.8 GHz Cortex-A55"
+      },
+      {
+        "name": "GPU",
+        "Value": "Mali-G52 MC2"
+      }
+    ]
+  },
+  {
+    "title": "Memory",
+    "Items": [
+      {
+        "name": "RAM",
+        "Value": "6GB"
+      },
+      {
+        "name": "Internal Storage",
+        "Value": "128GB"
+      },
+      {
+        "name": "Card Slot",
+        "Value": "MicroSD (Up to 1TB)"
+      }
+    ]
+  },
+  {
+    "title": "Rear Camera",
+    "Items": [
+      {
+        "name": "Resolution",
+        "Value": "50MP f/1.8 (wide) + 8MP f/2.2 (ultrawide) + 2MP f/2.4 (macro)"
+      },
+      {
+        "name": "Features",
+        "Value": "LED flash, panorama, HDR, PDAF, 118˚ ultrawide"
+      },
+      {
+        "name": "Video Recording",
+        "Value": "1080p@30fps"
+      }
+    ]
+  },
+  {
+    "title": "Audio",
+    "Items": [
+      {
+        "name": "Speaker",
+        "Value": "Loudspeaker"
+      }
+    ]
+  },
+  {
+    "title": "Network & Connectivity",
+    "Items": [
+      {
+        "name": "SIM",
+        "Value": "Hybrid Dual Nano SIM"
+      },
+      {
+        "name": "Network",
+        "Value": "2G, 3G, 4G"
+      },
+      {
+        "name": "Wi-Fi",
+        "Value": "Wi-Fi 802.11 a/b/g/n/ac | 2.4 GHz & 5 GHz | Wi-Fi hotspot"
+      },
+      {
+        "name": "Bluetooth",
+        "Value": "Bluetooth 5.0, A2DP, LE"
+      },
+      {
+        "name": "GPS",
+        "Value": "GPS, A-GPS, LTEPP, SUPL, GLONASS, Galileo"
+      },
+      {
+        "name": "NFC",
+        "Value": "Yes"
+      },
+      {
+        "name": "USB",
+        "Value": "USB Type-C 2.0"
+      },
+      {
+        "name": "OTG",
+        "Value": "Yes"
+      },
+      {
+        "name": "Audio Jack",
+        "Value": "3.5mm Jack"
+      }
+    ]
+  },
+  {
+    "title": "OS",
+    "Items": [
+      {
+        "name": "Operating System",
+        "Value": "Android 11"
+      }
+    ]
+  },
+  {
+    "title": "Features",
+    "Items": [
+      {
+        "name": "Fingerprint",
+        "Value": "Side-mounted"
+      },
+      {
+        "name": "Sensors",
+        "Value": "Proximity sensor, Accelerometer, Ambient Light sensor, SAR sensor, Gyroscope, E-Compass"
+      },
+      {
+        "name": "IP Rating",
+        "Value": "N/A"
+      },
+      {
+        "name": "Other Features",
+        "Value": "Water-repellent design"
+      }
+    ]
+  },
+  {
+    "title": "Battery",
+    "Items": [
+      {
+        "name": "Type",
+        "Value": "Lithium-polymer 5000 mAh (non-removable)"
+      },
+      {
+        "name": "Fast Charging",
+        "Value": "20W Fast Charging"
+      }
+    ]
+  },
+  {
+    "title": "Physical specification",
+    "Items": [
+      {
+        "name": "Dimension",
+        "Value": "161.89 x 73.87 x 8.55 mm"
+      },
+      {
+        "name": "Weight",
+        "Value": "181 g"
+      },
+      {
+        "name": "Body Material",
+        "Value": "Plastic"
+      },
+      {
+        "name": "Colors",
+        "Value": "Mineral GreyBaby Blue"
+      }
+    ]
+  },{
+    "title":"Warranty Information",
+    "Items":[
+        {
+            "name":"Warranty"
+        },
+        {
+            "Value":"1 Year Official Warranty (Motorola Care)"
+        }
+    ]
+  }
+]

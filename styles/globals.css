@@ -37,3 +37,6 @@ input:focus-visible {
   font-size: 14px !important;
   cursor: pointer;
 }
+.table-flex{
+  flex: 0 0 300px;
+}

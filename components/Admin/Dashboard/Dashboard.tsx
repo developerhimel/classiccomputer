@@ -25,7 +25,9 @@ export default function Dashboard() {
               </div>
 
               <div className="mt-8">
-                <h1 className="num-1 text-2xl font-bold dark:text-white">9772</h1>
+                <h1 className="num-1 text-2xl font-bold dark:text-white">
+                  9772
+                </h1>
                 <p className="text-lg font-semibold dark:text-gray-500 text-gray-500">
                   {" "}
                   Items Sales
@@ -44,7 +46,9 @@ export default function Dashboard() {
               </div>
 
               <div className="mt-8">
-                <h1 className="num-2 text-2xl font-bold dark:text-white">9054</h1>
+                <h1 className="num-2 text-2xl font-bold dark:text-white">
+                  9054
+                </h1>
                 <p className="text-lg font-semibold dark:text-gray-500 text-gray-500">
                   New Orders
                 </p>
@@ -62,7 +66,9 @@ export default function Dashboard() {
               </div>
 
               <div className="mt-8">
-                <h1 className="num-3 text-2xl font-bold dark:text-white">8352</h1>
+                <h1 className="num-3 text-2xl font-bold dark:text-white">
+                  8352
+                </h1>
                 <p className="text-lg font-semibold dark:text-gray-500 text-gray-500">
                   Total Products
                 </p>
@@ -80,7 +86,9 @@ export default function Dashboard() {
               </div>
 
               <div className="mt-8">
-                <h1 className="num-4 text-2xl font-bold dark:text-white">9903</h1>
+                <h1 className="num-4 text-2xl font-bold dark:text-white">
+                  9903
+                </h1>
                 <p className="text-lg font-semibold dark:text-gray-500 text-gray-500">
                   New Visitor
                 </p>

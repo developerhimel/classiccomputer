@@ -1,0 +1,262 @@
+[
+  {
+    "name": "AB Bank Ltd.",
+    "status": "Offline",
+    "tenure":"6, 9, 12 months",
+    "minimum": "BDT.5,000",
+    "condition": null,
+    "src":"/assets/Emi/ab-bank.webp"
+  },
+  {
+    "name": "Bank Asia",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline), BDT. 10,000(Online)",
+    "condition": null,
+    "src":"/assets/Emi/bank-asia.webp"
+  },
+  {
+    "name": "BRAC Bank Ltd.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/brac-bank.webp"
+  },
+  
+  {
+    "name": "City Bank Ltd.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/city-bank-logo.webp"
+  },
+  {
+    "name": "Commercial Bank of Ceylon",
+    "status": "Offline",
+    "tenure":"6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/commercial-bank.webp"
+  },
+  {
+    "name": "Community Bank",
+    "status": "Offline",
+    "tenure":"6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/community-bank.webp"
+  },
+  {
+    "name": "Dutch Bangla Bank Ltd.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/dbbl.webp"
+  },
+  {
+    "name": "Eastern Bank Limited.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/ebl.webp"
+  },
+  {
+    "name": "EXIM Bank Limited",
+    "status": "Online",
+    "tenure":"3, 6 months",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/exim-bank.webp"
+  },
+  {
+    "name": "Islami Bank Bangladesh Ltd.",
+    "status": "Offline",
+    "tenure":"6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/islami-bank.webp"
+  },
+  {
+    "name": "Jamuna Bank Ltd.",
+    "status": "Offline",
+    "tenure":"6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/jamuna-bank.webp"
+  },
+  {
+    "name": "Lanka Bangla Finance.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/lb.webp"
+  },
+  {
+    "name": "Meghna Bank Limited.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/meghna.webp"
+  },
+  {
+    "name": "Mercantile Bank.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Online) & BDT. 10,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/mercantile.webp"
+  },
+  {
+    "name": "Midland Bank Limited.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/mt.webp"
+  },
+  {
+    "name": "Mutual Trust Bank.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/ncc-bank.webp"
+  },
+  {
+    "name": "NCC Bank Limited.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/nrb.webp"
+  },
+  {
+    "name": "NRB Bank.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/nrbc-bank.webp"
+  },
+  {
+    "name": "NRB Commercial Bank Ltd.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/one-bank.webp"
+  },
+  {
+    "name": "ONE Bank Ltd.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/premier-bank.webp"
+  },
+  {
+    "name": "Premier Bank Ltd.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline) & BDT. 10,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/prime-bank.webp"
+  },
+  {
+    "name": "Publai Bank Ltd.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline) & BDT. 10,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/pubali-bank.webp"
+  },
+  {
+    "name": "Shahjalal Islami Bank Limited (SJIBL).",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/sbac.webp"
+  },
+  {
+    "name": "Social Islami Bank Limited (SIBL)",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/scb.webp"
+  },
+  {
+    "name": "South Bangla Agriculture Bank (SBAC).",
+    "status": "Online",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/shahjalal-bank.webp"
+  },
+  {
+    "name": "Southeast Bank.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/sibl.webp"
+  },
+  {
+    "name": "Standard Bank Limited.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/southeast.webp"
+  },
+  {
+    "name": "Standard Chartered Bank.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/standard-bank.webp"
+  },
+  {
+    "name": "Trust Bank Ltd.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/trust-bank.webp"
+  },
+  {
+    "name": "UCB Bank.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/ucb.webp"
+  },
+  {
+    "name": "AL-ARAFAH ISLAMI BANK",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/alarafa.png"
+  },
+  {
+    "name": "Community Bank Bangladesh Limited.",
+    "status": "Online & Offline",
+    "tenure":"3, 6 months(Online) & 6, 9, 12 months(Offline)",
+    "minimum": "BDT. 5,000(Offline)",
+    "condition": null,
+    "src":"/assets/Emi/community-bank.webp"
+  }
+  
+]
+
+
