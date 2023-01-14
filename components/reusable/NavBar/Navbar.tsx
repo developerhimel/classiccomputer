@@ -122,7 +122,7 @@ function Navbar(props: { categoryItems: any }) {
 
           {/* Codes For Desktop Mode Start*/}
           <div className="hidden lg:flex flex-row justify-start items-center">
-            <Link href={"/Admin"}>
+            <Link href={"/"}>
               <Image
                 alt="Logo"
                 src={"/assets/logo/logo.png"}

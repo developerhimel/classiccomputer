@@ -10,8 +10,11 @@ import ccdetails from "../json/ccdetails.json";
 import Footer from "../components/reusable/Footer/Footer";
 import { MongoClient } from "mongodb";
 import { NextPage } from "next";
+import { Collapse } from "antd";
 
 SwiperCore.use([Autoplay]);
+
+const { Panel } = Collapse;
 
 const Home: NextPage = (props: any) => {
   console.log(props.banner);
@@ -156,7 +159,7 @@ const Home: NextPage = (props: any) => {
                       <div className="p-3 relative">
                         <Link href={"/"}>
                           <Image
-                            src={"/assets/products/1.jpg"}
+                            src={item.src}
                             width={100}
                             height={100}
                             alt={"product image"}
@@ -167,12 +170,18 @@ const Home: NextPage = (props: any) => {
                     </div>
                     <div className="px-4 pt-4">
                       <Link
-                        href={"/"}
+                        href={{
+                          pathname: `/${item.name
+                            .replace(/\s+/g, "-")
+                            .toLowerCase()}`,
+                          query: item,
+                          
+                        }}
                         className="text-sm text-ellipsis line-clamp-3 hover:underline hover:text-pink-600"
                       >
                         {item.name}
                       </Link>
-                      <div className="pt-2 flex flex-row justify-start items-end">
+                      <div className="pt-2 flex flex-row flex-wrap justify-start items-end">
                         <div className="flex flex-row justify-start text-sky-600 font-semibold">
                           <NumericFormat
                             displayType="text"
@@ -205,6 +214,7 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
         </div>
+        {/* Recent viewed products section */}
         <div className="bg-white">
           <div className="container m-auto mt-16 pt-10 pb-12">
             <div className="w-full">
@@ -252,7 +262,7 @@ const Home: NextPage = (props: any) => {
                       >
                         {item.name}
                       </Link>
-                      <div className="pt-2 flex flex-row justify-start items-end">
+                      <div className="pt-2 flex flex-row flex-wrap justify-start items-end">
                         <div className="flex flex-row justify-start text-sky-600 font-semibold">
                           <NumericFormat
                             displayType="text"
@@ -295,16 +305,27 @@ const Home: NextPage = (props: any) => {
                 Look & Get Information About Classic Computer!
               </p>
             </div>
-            {ccdetails.map((item: any, index: number) => (
-              <div key={index}>
-                <h1 className="text-gray-800 dark:text-white text-base font-semibold py-2">
-                  {item.title}
-                </h1>
-                <p className="text-justify text-gray-500 dark:text-gray-200 text-sm mb-4">
-                  {item.description}
-                </p>
-              </div>
-            ))}
+            <Collapse
+              accordion
+              className="dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+            >
+              <Panel
+                header="Expand and get information about classic computer"
+                key="1"
+                className="dark:border-gray-600 dark:text-white"
+              >
+                {ccdetails.map((item: any, index: number) => (
+                  <div className="bg-white dark:bg-gray-700" key={index}>
+                    <h1 className="text-gray-800 dark:text-white text-base font-semibold py-2">
+                      {item.title}
+                    </h1>
+                    <p className="text-justify text-gray-500 dark:text-gray-200 text-sm pb-4">
+                      {item.description}
+                    </p>
+                  </div>
+                ))}
+              </Panel>
+            </Collapse>
           </div>
         </div>
         <div>
