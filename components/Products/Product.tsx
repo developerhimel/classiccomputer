@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Footer from "../reusable/Footer/Footer";
 import Navbar from "../reusable/NavBar/Navbar";
@@ -8,8 +7,6 @@ import { NumericFormat } from "react-number-format";
 import { RadioGroup } from "@headlessui/react";
 
 function Product(props: { menu: any; product: any }) {
-  const router = useRouter();
-  const query = router.query;
   const [paymentType, setPaymentType] = useState("normal");
   const [buyQuantity, setBuyQuantity] = useState(1);
   console.log(props.product);

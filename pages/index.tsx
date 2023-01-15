@@ -174,8 +174,7 @@ const Home: NextPage = (props: any) => {
                           pathname: `/${item.name
                             .replace(/\s+/g, "-")
                             .toLowerCase()}`,
-                          query: item,
-                          
+                          query: { id: item.id },
                         }}
                         className="text-sm text-ellipsis line-clamp-3 hover:underline hover:text-pink-600"
                       >

@@ -10,6 +10,6 @@ module.exports = {
     extend: {},
   },
   plugins: [require("flowbite/plugin"), require("@tailwindcss/line-clamp")],
-  darkMode: "class",
+  // darkMode: 'class',
   important: true,
 };
