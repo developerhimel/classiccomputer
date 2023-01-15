@@ -6,7 +6,7 @@ function privacy() {
   return (
     <div className="dark:bg-gray-900">
       <Navbar />
-      <div className="container m-auto dark:bg-gray-900 dark:text-gray-200 bg-white ">
+      <div className="container m-auto dark:bg-gray-900 dark:text-gray-200 bg-white">
         <div>
           <h1 className="text-lg font-semibold mt-10 border-b ">
             Privacy Policy of Star Tech & Engineering Ltd.

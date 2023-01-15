@@ -10,7 +10,7 @@ function brands() {
             Find Your Favorite Brand
           </h1>
         </div>
-        <div className="flex flex-row w-full tracking-widest justify-center items-center m-auto gap-2">
+        <div className="flex flex-row flex-wrap w-full tracking-widest justify-center items-center m-auto gap-2">
           <p className="text-lg font-semibold  mt-3 ">Brand index:</p>{" "}
           <Link
             href={"/"}
@@ -179,7 +179,7 @@ function brands() {
           <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
             0 - 9
           </h1>
-          <div className="grid grid-cols-4 mt-3">
+          <div className="grid grid-cols-1 md:grid-cols-4 flex-wrap mt-3">
             <Link
               href={"/"}
               className="text-gray-600 hover:text-black hover:underline text-base"
@@ -199,7 +199,7 @@ function brands() {
               A
             </h1>
           </div>
-          <div className="grid grid-cols-4 mt-3 py-3 ">
+          <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
             <div className="flex flex-col">
               <Link
                 href={"/"}
@@ -504,7 +504,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               B
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+          <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -616,7 +616,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               C
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+          <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -723,7 +723,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               D
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -834,7 +834,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               E
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -945,7 +945,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               F
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -1032,7 +1032,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               G
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -1119,7 +1119,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               H
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -1230,7 +1230,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               I
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -1318,7 +1318,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               J
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -1375,7 +1375,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               K
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -1480,7 +1480,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               L
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -1585,7 +1585,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               M
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -1690,7 +1690,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               N
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -1795,7 +1795,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               O
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -1882,7 +1882,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               P
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -2017,7 +2017,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               Q
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -2055,7 +2055,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               R
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -2166,7 +2166,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               S
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -2277,7 +2277,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               T
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -2388,7 +2388,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               U
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -2433,7 +2433,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               V
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -2505,7 +2505,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               W
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -2597,7 +2597,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               X
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -2688,7 +2688,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               Y
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
@@ -2746,7 +2746,7 @@ function brands() {
             <h1 className="text-3xl font-semibold mt-10 border-b border-black w-full">
               Z
             </h1>
-            <div className="grid grid-cols-4 mt-3 py-3 ">
+            <div className="grid grid-cols-2 flex-wrap md:grid-cols-4 mt-3 py-3 ">
               <div className="flex flex-col">
                 <Link
                   href={"/"}
