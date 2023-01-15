@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import FloatBox from "../components/reusable/FloatBox";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [Theme, setTheme] = useState(undefined as any);
@@ -26,6 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <FloatBox />
       <Component {...pageProps} />
     </>
   );

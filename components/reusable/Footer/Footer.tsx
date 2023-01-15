@@ -78,7 +78,7 @@ function Footer() {
                 </Link>
                 <Link
                   className="text-sm hover:text-red-500 hover:underline my-2 px-2 md:px-0"
-                  href={"/"}
+                  href={"/privacy-policy"}
                 >
                   Privacy Policy
                 </Link>
@@ -90,7 +90,7 @@ function Footer() {
                 </Link>
                 <Link
                   className="text-sm hover:text-red-500 hover:underline my-2 px-2 md:px-0"
-                  href={"/"}
+                  href={"/brands"}
                 >
                   Brands
                 </Link>
@@ -98,7 +98,7 @@ function Footer() {
               <div className="flex flex-row lg:flex-col justify-center lg:justify-start items-center lg:items-start text-gray-400 ">
                 <Link
                   className="text-sm hover:text-red-500 hover:underline my-2 px-2 md:px-0"
-                  href={"/"}
+                  href={"/about"}
                 >
                   About us
                 </Link>

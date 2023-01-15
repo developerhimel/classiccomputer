@@ -393,18 +393,20 @@ function Product(props: { menu: any; product: any }) {
                           </button>
                         </div>
                         <div className="w-full h-full">
-                          <button
-                            disabled={paymentType === "emi" ? true : false}
-                            className={`${
-                              paymentType === "normal"
-                                ? "bg-green-500"
-                                : "bg-indigo-500"
-                            } w-44 rounded h-full text-gray-50 hover:shadow-[inset_13rem_0_0_0] hover:shadow-[#18181842] duration-[400ms,700ms] transition-[color,box-shadow]`}
-                          >
-                            {paymentType === "normal"
-                              ? "Buy Now"
-                              : "Unavailable"}
-                          </button>
+                          <Link href={"/checkout"}>
+                            <button
+                              disabled={paymentType === "emi" ? true : false}
+                              className={`${
+                                paymentType === "normal"
+                                  ? "bg-green-500"
+                                  : "bg-indigo-500"
+                              } w-44 rounded h-full text-gray-50 hover:shadow-[inset_13rem_0_0_0] hover:shadow-[#18181842] duration-[400ms,700ms] transition-[color,box-shadow]`}
+                            >
+                              {paymentType === "normal"
+                                ? "Buy Now"
+                                : "Unavailable"}
+                            </button>
+                          </Link>
                         </div>
                       </div>
                     </div>

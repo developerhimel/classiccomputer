@@ -157,7 +157,14 @@ const Home: NextPage = (props: any) => {
                         ৳
                       </span>
                       <div className="p-3 relative">
-                        <Link href={"/"}>
+                        <Link
+                          href={{
+                            pathname: `/${item.name
+                              .replace(/\s+/g, "-")
+                              .toLowerCase()}`,
+                            query: { id: item.id },
+                          }}
+                        >
                           <Image
                             src={item.src}
                             width={100}
