@@ -9,7 +9,7 @@ function Pcbuilder() {
   return (
     <div className="container m-auto mb-20">
       <div className="relative shadow mx-auto mt-10 flex max-w-screen-lg flex-col py-4 sm:flex-row sm:items-center sm:justify-between border border-b-0 rounded-t">
-        <a className="flex items-center text-xl " href="/">
+        <Link className="flex items-center text-xl " href="/">
           <span className="mr-2  text-blue-600">
             <img
               src="/assets/logo/logo.png"
@@ -19,7 +19,7 @@ function Pcbuilder() {
             />
           </span>
           <span className="text-base font-semibold">Classic Computer</span>
-        </a>
+        </Link>
         <input className="peer hidden" type="checkbox" id="navbar-open" />
         <label
           className="absolute right-0 mt-1 cursor-pointer text-xl sm:hidden"
