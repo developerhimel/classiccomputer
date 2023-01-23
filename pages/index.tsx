@@ -17,7 +17,7 @@ SwiperCore.use([Autoplay]);
 const { Panel } = Collapse;
 
 const Home: NextPage = (props: any) => {
-  console.log(props.banner);
+  // console.log(props.banner);
 
   return (
     <>

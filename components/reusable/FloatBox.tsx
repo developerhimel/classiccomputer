@@ -172,7 +172,7 @@ function FloatBox() {
           </div>
         </Dialog>
       </Transition.Root>
-      <div className="fixed bottom-5 right-4 flex flex-col gap-3">
+      <div className="fixed bottom-5 right-4 flex flex-col gap-3 z-50">
         <div
           onClick={() => setOpen(true)}
           className="bg-slate-700 relative h-16 w-16 rounded hover:bg-red-500 cursor-pointer flex justify-center items-center flex-col"
