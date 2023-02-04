@@ -56,13 +56,6 @@ Start the server
 For support, email teamdh.org@gmail.com , programmerhimel@gmail.com , suppoert.classiccomputer@gmail.com , shamimshaharear@gmail.com or join our Telegram channel https://t.me/+CHenqMeoj8kzMmY1.
 
 
-## Related
-
-Here are some related projects
-
-[Awesome README](https://github.com/matiassingers/awesome-readme)
-
-
 ## Used By
 
 This project is used by the following companies:
