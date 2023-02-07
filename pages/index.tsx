@@ -50,7 +50,7 @@ const Home: NextPage = (props: any) => {
                 </div>
               ))}
             </div>
-            <div className="col-span-2 rounded-b-md shadow-md hover:cursor-pointer cursor-default">
+            <div className="col-span-2 relative rounded-b-md shadow-md hover:cursor-pointer cursor-default">
               <Swiper
                 pagination={{
                   dynamicBullets: true,
@@ -73,6 +73,7 @@ const Home: NextPage = (props: any) => {
                       className="w-full"
                       priority
                     /> */}
+                    {/* <Image fill={true} className="object-contain" src={item.src} alt={item.title} /> */}
                     <img src={item.src} alt={item.title} />
                   </SwiperSlide>
                 ))}
@@ -139,9 +140,9 @@ const Home: NextPage = (props: any) => {
                 {props.products.slice(0, 12).map((item: any, index: number) => (
                   <div
                     key={index}
-                    className="bg-white group/main py-4 rounded-lg shadow-sm hover:shadow-md"
+                    className="bg-white dark:bg-gray-700 group/main py-4 rounded-lg shadow-sm hover:shadow-md"
                   >
-                    <div className="border-b-[5px] border-b-gray-50">
+                    <div className="border-b-[5px] border-b-gray-50 dark:border-b-gray-800">
                       <span
                         className={`text-xs bg-pink-600 ${
                           !item.discountPrice && "opacity-0"
@@ -183,7 +184,7 @@ const Home: NextPage = (props: any) => {
                             .toLowerCase()}`,
                           query: { id: item.id },
                         }}
-                        className="text-sm text-ellipsis line-clamp-3 hover:underline hover:text-pink-600"
+                        className="text-sm text-ellipsis line-clamp-3 hover:underline hover:text-pink-600 dark:text-gray-100"
                       >
                         {item.name}
                       </Link>
@@ -202,7 +203,7 @@ const Home: NextPage = (props: any) => {
                           <span className="ml-1">৳</span>
                         </div>
                         {item.discountPrice && (
-                          <div className="flex flex-row justify-start text-xs ml-3 line-through">
+                          <div className="flex flex-row justify-start text-xs dark:text-gray-300 ml-3 line-through">
                             <NumericFormat
                               displayType="text"
                               className=""
@@ -221,7 +222,7 @@ const Home: NextPage = (props: any) => {
           </div>
         </div>
         {/* Recent viewed products section */}
-        <div className="bg-white">
+        <div className="bg-white dark:bg-gray-700">
           <div className="container m-auto mt-16 pt-10 pb-12">
             <div className="w-full">
               <h1 className="text-center text-xl font-semibold text-gray-800 dark:text-white">
@@ -236,9 +237,9 @@ const Home: NextPage = (props: any) => {
                 {props.products.slice(0, 6).map((item: any, index: number) => (
                   <div
                     key={index}
-                    className="bg-white dark:bg-gray-800 group/main py-4 rounded-lg border shadow-sm hover:shadow-md"
+                    className="bg-white dark:bg-gray-800 group/main py-4 rounded-lg border dark:border-gray-800 shadow-sm hover:shadow-md"
                   >
-                    <div className="border-b-[5px] border-b-gray-50">
+                    <div className="border-b-[5px] border-b-gray-50 dark:border-b-gray-700">
                       {/* <span className="text-xs bg-pink-500 pr-2 text-white p-1 rounded-r-full">
                         Save:
                         <NumericFormat
@@ -264,7 +265,7 @@ const Home: NextPage = (props: any) => {
                     <div className="px-4 pt-4">
                       <Link
                         href={"/"}
-                        className="text-sm text-ellipsis line-clamp-3 hover:underline hover:text-pink-600"
+                        className="text-sm text-ellipsis line-clamp-3 hover:underline hover:text-pink-600 dark:text-gray-200 dark:hover:text-pink-500"
                       >
                         {item.name}
                       </Link>
@@ -283,7 +284,7 @@ const Home: NextPage = (props: any) => {
                           <span className="ml-1">৳</span>
                         </div>
                         {item.discountPrice && (
-                          <div className="flex flex-row justify-start text-xs ml-3 line-through">
+                          <div className="flex flex-row justify-start text-xs dark:text-gray-400 ml-3 line-through">
                             <NumericFormat
                               displayType="text"
                               className=""

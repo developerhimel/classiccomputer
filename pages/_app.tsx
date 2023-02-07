@@ -22,6 +22,10 @@ export default function App({ Component, pageProps }: AppProps) {
       // }
       // localStorage.theme = "light" ? setTheme("light") : setTheme("dark");
     }
+    const use = async () => {
+      (await import('tw-elements')).default;
+    };
+    use();
   }, []);
   console.log(Theme);
 

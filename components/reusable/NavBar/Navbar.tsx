@@ -212,11 +212,11 @@ function Navbar(props: { categoryItems: any }) {
                     </div>
                   </Link>
                 </Dropdown>
-                <Flowbite>
+                {/* <Flowbite>
                   <Tooltip content="Switch Theme" style="light">
                     <DarkThemeToggle className="focus:outline-none focus:bg-gray-800 hover:bg-none" />
                   </Tooltip>
-                </Flowbite>
+                </Flowbite> */}
                 <Link
                   href={"/pcbuilder"}
                   className="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-normal text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group"
