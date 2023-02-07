@@ -10,11 +10,8 @@ import ccdetails from "../json/ccdetails.json";
 import Footer from "../components/reusable/Footer/Footer";
 import { MongoClient } from "mongodb";
 import { NextPage } from "next";
-import { Collapse } from "antd";
 
 SwiperCore.use([Autoplay]);
-
-const { Panel } = Collapse;
 
 const Home: NextPage = (props: any) => {
   // console.log(props.banner);
@@ -312,27 +309,41 @@ const Home: NextPage = (props: any) => {
                 Look & Get Information About Classic Computer!
               </p>
             </div>
-            <Collapse
-              accordion
-              className="dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-            >
-              <Panel
-                header="Expand and get information about classic computer"
-                key="1"
-                className="dark:border-gray-600 dark:text-white"
-              >
-                {ccdetails.map((item: any, index: number) => (
-                  <div className="bg-white dark:bg-gray-700" key={index}>
-                    <h1 className="text-gray-800 dark:text-white text-base font-semibold py-2">
-                      {item.title}
-                    </h1>
-                    <p className="text-justify text-gray-500 dark:text-gray-200 text-sm pb-4">
-                      {item.description}
-                    </p>
+            <div className="accordion" id="accordionExample">
+              <div className="accordion-item bg-white dark:bg-gray-700 dark:border-gray-600 border border-gray-200 p-1">
+                <h2 className="accordion-header mb-0" id="headingOne">
+                  <button
+                    className="accordion-button relative flex items-center w-full py-3 px-5 text-sm font-bold text-gray-600 text-left bg-white dark:bg-gray-700 dark:text-gray-200 border-0 rounded-none transition focus:outline-none"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="true"
+                    aria-controls="collapseOne"
+                  >
+                    Expand and get information about classic computer
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  className="accordion-collapse collapse"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div className="accordion-body py-4 px-5 border-t">
+                    {ccdetails.map((item: any, index: number) => (
+                      <div className="bg-white dark:bg-gray-700" key={index}>
+                        <h1 className="text-gray-800 dark:text-white text-base font-semibold py-2">
+                          {item.title}
+                        </h1>
+                        <p className="text-justify text-gray-500 dark:text-gray-200 text-sm pb-4">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </Panel>
-            </Collapse>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div>

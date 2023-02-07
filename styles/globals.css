@@ -58,3 +58,9 @@ input:focus-visible {
 .table-flex {
   flex: 0 0 300px !important;
 }
+.collapse {
+  visibility: visible !important;
+}
+.accordion-button:not(.collapsed) {
+  box-shadow: none;
+}
