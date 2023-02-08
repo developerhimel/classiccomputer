@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Navbar from "../components/reusable/NavBar/Navbar";
-import SwiperCore, { Autoplay, Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import Image from 'next/image'
+import SwiperCore, { Autoplay } from "swiper";
 import Featured from "./Admin/Featured";
 import Footer from "../components/reusable/Footer/Footer";
 
