@@ -1,10 +1,12 @@
-import React from "react";
-import Dashboard from "../../components/Admin/Dashboard/Dashboard";
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Admin() {
-  return (
-    <div>
-      <Dashboard />
-    </div>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/Admin/dashboard");
+  }, []);
+
+  return;
 }

@@ -9,7 +9,7 @@ import { RadioGroup } from "@headlessui/react";
 function Product(props: { menu: any; product: any }) {
   const [paymentType, setPaymentType] = useState("normal");
   const [buyQuantity, setBuyQuantity] = useState(1);
-  console.log(props.product);
+  // console.log(props.product);
 
   return (
     <div className="w-full bg-white">

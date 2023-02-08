@@ -11,26 +11,26 @@ const ProductPage: NextPage = (props: any) => {
   const router = useRouter();
   const query = router.query;
   //   console.log(props.product);
-  const refreshData = () => {
-    router.replace(router.asPath);
-    setIsRefreshing(true);
-  };
-  React.useEffect(() => {
-    setIsRefreshing(false);
-  }, [props]);
+  // const refreshData = () => {
+  //   router.replace(router.asPath);
+  //   setIsRefreshing(true);
+  // };
+  // React.useEffect(() => {
+  //   setIsRefreshing(false);
+  // }, [props]);
 
-  async function handleSubmit() {
-    const userData = {}; /* create an object from the form */
-    const res = await fetch("/api/user", {
-      method: "PUT",
-      body: JSON.stringify(userData),
-    });
-    // Check that our status code is in the 200s,
-    // meaning the request was successful.
-    if (res.status < 300) {
-      refreshData();
-    }
-  }
+  // async function handleSubmit() {
+  //   const userData = {}; /* create an object from the form */
+  //   const res = await fetch("/api/user", {
+  //     method: "PUT",
+  //     body: JSON.stringify(userData),
+  //   });
+  //   // Check that our status code is in the 200s,
+  //   // meaning the request was successful.
+  //   if (res.status < 300) {
+  //     refreshData();
+  //   }
+  // }
 
   return (
     <>

@@ -1,13 +1,57 @@
-import Link from "next/link";
 import React, { useState } from "react";
+import Link from "next/link";
+import { message } from "antd";
+import { useRouter } from "next/router";
 
 export default function Login() {
+  const router = useRouter();
+  const [messageApi, contextHolder] = message.useMessage();
   const [loading, setLoading] = useState(false);
-  const handleLogin = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
     setLoading(true);
+    const res = await fetch("/api/admin/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    });
+    const data = await res.json();
+    console.log(data.message);
+    if (data.message === "success") {
+      messageApi
+        .open({
+          type: "success",
+          content: "You have successfully logged in.",
+        })
+        .then(() => {
+          localStorage.setItem("adminUser", username);
+          setLoading(false);
+          router.push("/Admin/dashboard");
+        });
+    } else if (data.message === "user not found") {
+      messageApi.open({
+        type: "error",
+        content: "user not found!",
+      });
+      setLoading(false);
+    } else if (data.message === "invalid password") {
+      messageApi.open({
+        type: "error",
+        content: "You have entered invalid password!",
+      });
+      setLoading(false);
+    }
   };
   return (
     <div>
+      {contextHolder}
       <section className="h-full gradient-form bg-gray-200 md:h-screen">
         <div className="container py-12 px-6 h-full m-auto">
           <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
@@ -34,16 +78,18 @@ export default function Login() {
                           <input
                             type="text"
                             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            id="exampleFormControlInput1"
+                            id="username"
                             placeholder="Username"
+                            onChange={(e) => setUsername(e.target.value)}
                           />
                         </div>
                         <div className="mb-4">
                           <input
                             type="password"
                             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            id="exampleFormControlInput1"
+                            id="password"
                             placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
                           />
                         </div>
                         <div className="text-center pt-1 mb-12 pb-1">
