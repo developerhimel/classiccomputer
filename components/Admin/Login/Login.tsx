@@ -24,6 +24,7 @@ export default function Login() {
     });
     const data = await res.json();
     console.log(data.message);
+
     if (data.message === "success") {
       messageApi
         .open({
@@ -45,6 +46,12 @@ export default function Login() {
       messageApi.open({
         type: "error",
         content: "You have entered invalid password!",
+      });
+      setLoading(false);
+    } else if (data.message === "unverified user") {
+      messageApi.open({
+        type: "error",
+        content: "User is not approved. Please contact Classic Computer Admin.",
       });
       setLoading(false);
     }
@@ -94,6 +101,7 @@ export default function Login() {
                         </div>
                         <div className="text-center pt-1 mb-12 pb-1">
                           <button
+                            disabled={loading}
                             onClick={() => handleLogin()}
                             className="inline-block items-center px-6 py-2.5 bg-gradient-to-r from-orange-500 via-pink-700 to-indigo-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
                             type="button"
@@ -119,6 +127,7 @@ export default function Login() {
                         <div className="flex items-center justify-between pb-6">
                           <p className="mb-0 mr-2">Dont have an account?</p>
                           <button
+                            onClick={() => router.push("/Admin/register")}
                             type="button"
                             className="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
                             data-mdb-ripple="true"

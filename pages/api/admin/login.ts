@@ -4,6 +4,7 @@ import { MongoClient } from "mongodb";
 import { serialize } from "cookie";
 import { SignJWT } from "jose";
 import { nanoid } from "nanoid";
+var CryptoJS = require("crypto-js");
 
 export default async function handler(req: NextApiRequest, res: any) {
   if (req.method === "POST") {
@@ -19,30 +20,42 @@ export default async function handler(req: NextApiRequest, res: any) {
     const foundUser = await users.findOne({
       username: username,
     });
-    const validatePass = await users.findOne({
-      password: password,
-    });
+
     if (!foundUser) {
       res.json({ message: "user not found" });
-    } else if (!validatePass) {
-      res.json({ message: "invalid password" });
-    } else if (foundUser && validatePass) {
-      const token = await new SignJWT({})
-        .setProtectedHeader({ alg: "HS256" })
-        .setJti(nanoid())
-        .setIssuedAt()
-        .setExpirationTime("24h")
-        .sign(new TextEncoder().encode(getJwtSecretKey()));
+    } else {
+      const bytes = CryptoJS.AES.decrypt(
+        foundUser?.password,
+        process.env.NEXT_PUBLIC_SECRET_KEY
+      );
+      const decryptedPass = bytes.toString(CryptoJS.enc.Utf8);
 
-      const serialised = serialize("AdminUserJwt", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV !== "development",
-        sameSite: "strict",
-        path: "/",
-      });
+      if (password !== decryptedPass) {
+        res.json({ message: "invalid password" });
+      } else if (foundUser?.verified === false) {
+        res.json({ message: "unverified user" });
+      } else if (
+        foundUser &&
+        password === decryptedPass &&
+        foundUser?.verified === true
+      ) {
+        const token = await new SignJWT({})
+          .setProtectedHeader({ alg: "HS256" })
+          .setJti(nanoid())
+          .setIssuedAt()
+          .setExpirationTime("24h")
+          .sign(new TextEncoder().encode(getJwtSecretKey()));
 
-      res.setHeader("Set-Cookie", serialised);
-      res.status(200).json({ message: "success" });
+        const serialised = serialize("AdminUserJwt", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV !== "development",
+          sameSite: "strict",
+          path: "/",
+        });
+
+        res.setHeader("Set-Cookie", serialised);
+        res.status(200).json({ message: "success" });
+      }
     }
     client.close();
   } else {

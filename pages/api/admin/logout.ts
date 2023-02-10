@@ -1,12 +1,10 @@
-import type { NextApiRequest } from "next";
+import type { NextRequest } from "next/server";
 import { serialize } from "cookie";
 
-export default async function handler(req: NextApiRequest, res: any) {
-  const { cookies } = req;
+export default async function handler(req: NextRequest, res: any) {
+  const token = req.cookies.get("AdminUserJwt")?.value;
 
-  const jwt = cookies.OursiteJWT;
-
-  if (!jwt) {
+  if (!token) {
     return res.json({ message: "you haven't logged in yet..." });
   } else {
     const serialised = serialize("AdminUserJwt", "", {

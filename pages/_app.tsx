@@ -1,37 +1,26 @@
-import { useEffect, useState } from "react";
 // eslint-disable-next-line
+import { useEffect, useState } from "react";
 import "swiper/css/bundle";
 import "swiper/css";
 import "swiper/css/pagination";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import FloatBox from "../components/reusable/FloatBox";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [Theme, setTheme] = useState(undefined as any);
+  const router = useRouter();
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // if (
-      //   localStorage.getItem("theme") === "dark" ||
-      //   (!("color-theme" in localStorage) &&
-      //     window.matchMedia("(prefers-color-scheme: dark)").matches)
-      // ) {
-      //   document.documentElement.classList.add("dark");
-      // } else {
-      //   document.documentElement.classList.remove("dark");
-      // }
-      // localStorage.theme = "light" ? setTheme("light") : setTheme("dark");
-    }
     const use = async () => {
-      (await import('tw-elements')).default;
+      (await import("tw-elements")).default;
     };
     use();
   }, []);
-  console.log(Theme);
 
   return (
     <>
-      <FloatBox />
+      {router.route.startsWith("/Admin") ? null : <FloatBox />}
       <Component {...pageProps} />
     </>
   );

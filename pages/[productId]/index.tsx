@@ -35,10 +35,10 @@ const ProductPage: NextPage = (props: any) => {
   return (
     <>
       <Head>
-        <title>{props.product[0].name}</title>
+        <title>{props.product[0]?.name}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content={`${props.product[0].description}`} />
-        <meta name="keywords" content={`${props.product[0].name}`} />
+        <meta name="description" content={`${props.product[0]?.description}`} />
+        <meta name="keywords" content={`${props.product[0]?.name}`} />
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <Product menu={props.menu} product={props.product} />
