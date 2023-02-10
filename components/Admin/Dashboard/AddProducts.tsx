@@ -286,15 +286,10 @@ function AddProducts() {
                 data-bs-parent="#accordionExample"
               >
                 <div className="accordion-body py-4 px-5">
-                  <strong>This is the third item's accordion body.</strong> It
-                  is hidden by default, until the collapse plugin adds the
-                  appropriate classes that we use to style each element. These
-                  classes control the overall appearance, as well as the showing
-                  and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It's also
-                  worth noting that just about any HTML can go within the{" "}
-                  <code>.accordion-body</code>, though the transition does limit
-                  overflow.
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Tempore aliquam accusantium itaque omnis, quia vitae
+                  perspiciatis, recusandae, impedit assumenda ea dolor vero?
+                  Libero sit velit voluptates eligendi magnam soluta inventore!
                 </div>
               </div>
             </div>
@@ -319,15 +314,10 @@ function AddProducts() {
                 data-bs-parent="#accordionExample"
               >
                 <div className="accordion-body py-4 px-5">
-                  <strong>This is the second item's accordion body.</strong> It
-                  is hidden by default, until the collapse plugin adds the
-                  appropriate classes that we use to style each element. These
-                  classes control the overall appearance, as well as the showing
-                  and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It's also
-                  worth noting that just about any HTML can go within the{" "}
-                  <code>.accordion-body</code>, though the transition does limit
-                  overflow.
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Nihil laudantium voluptatibus sapiente placeat eligendi
+                  recusandae dolore, ullam nemo provident excepturi distinctio
+                  qui animi sit itaque labore cum, assumenda doloribus ab.
                 </div>
               </div>
             </div>
