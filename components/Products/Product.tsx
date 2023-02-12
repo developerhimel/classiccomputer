@@ -9,7 +9,7 @@ import { RadioGroup } from "@headlessui/react";
 function Product(props: { menu: any; product: any }) {
   const [paymentType, setPaymentType] = useState("normal");
   const [buyQuantity, setBuyQuantity] = useState(1);
-  // console.log(props.product);
+  console.log(props.product);
 
   return (
     <div className="w-full bg-white">
@@ -160,7 +160,7 @@ function Product(props: { menu: any; product: any }) {
                           <NumericFormat
                             displayType="text"
                             className="pl-1 text-gray-500"
-                            value={Number(item.price) + 5000}
+                            value={item.price}
                             thousandSeparator=","
                           />
                           <span className="text-gray-500">৳</span>
@@ -172,7 +172,7 @@ function Product(props: { menu: any; product: any }) {
                             <span className="h-2 w-2 bg-green-500 rounded-full"></span>
                             <span>Status:</span>
                           </div>
-                          <span className="ml-1 text-gray-500">In Stock</span>
+                          <span className="ml-1 text-gray-500">{item.productStatus}</span>
                         </div>
                       </div>
                       <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full">
@@ -184,7 +184,7 @@ function Product(props: { menu: any; product: any }) {
                       <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full">
                         <div>
                           <span>Brand:</span>
-                          <span className="text-gray-500 ml-1">MSI</span>
+                          <span className="text-gray-500 ml-1">{item.brand}</span>
                         </div>
                       </div>
                     </div>
@@ -195,7 +195,6 @@ function Product(props: { menu: any; product: any }) {
                       <div className="flex flex-col gap-1 text-[15px] text-gray-700">
                         {item.keyFeatures.map((item: any, index: number) => (
                           <div key={index} className="flex flex-row gap-1">
-                            <span>{item.name}:</span>
                             <span>{item.value}</span>
                           </div>
                         ))}
@@ -437,7 +436,7 @@ function Product(props: { menu: any; product: any }) {
                                     key={index}
                                     className="border-b bg-white hover:bg-gray-100 p-3 flex"
                                   >
-                                    <td className="table-flex">{item.name}</td>
+                                    <td className="table-flex">{item.key}</td>
                                     <td className="flex-auto">{item.value}</td>
                                   </tr>
                                 ))}

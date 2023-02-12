@@ -1,12 +1,11 @@
 import React from "react";
 import AddProducts from "./AddProducts";
-import Testing from "./Testing";
 
 function Products() {
   return (
     <div className="w-full bg-white">
       <div className="container m-auto pt-5">
-        <div className="p-5 border rounded-md shadow">
+        <div className="p-5 pb-0 border rounded-md shadow">
           <h1>Add Products</h1>
           <ul
             className="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b pl-0"
@@ -61,14 +60,7 @@ function Products() {
               role="tabpanel"
               aria-labelledby="tabs-home-tab3"
             >
-              <div className="grid grid-cols-2 py-5 gap-3">
-                <div>
-                  <AddProducts />
-                </div>
-                <div>
-                  <h2>hello world</h2>
-                </div>
-              </div>
+              <AddProducts />
             </div>
             <div
               className="tab-pane fade"

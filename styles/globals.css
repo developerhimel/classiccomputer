@@ -60,6 +60,7 @@ input:focus-visible {
 }
 .collapse {
   visibility: visible !important;
+  border-bottom: 1px solid rgb(229 231 235 / var(--tw-border-opacity));
 }
 .accordion-button:not(.collapsed) {
   box-shadow: none;
@@ -67,4 +68,10 @@ input:focus-visible {
 [type="search"]:focus {
   outline: none !important;
   --tw-ring-color: "#ffffff00";
+}
+.ant-switch:not(.ant-switch-disabled){
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.ant-switch.ant-switch-checked:not(.ant-switch-disabled){
+  background-color: #4096ff;
 }
