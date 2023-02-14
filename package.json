@@ -27,6 +27,7 @@
     "crypto-js": "^4.1.1",
     "eslint": "8.30.0",
     "eslint-config-next": "13.0.7",
+    "firebase": "^9.17.1",
     "flowbite": "^1.5.5",
     "flowbite-react": "^0.3.7",
     "jose": "^4.11.4",

@@ -32,8 +32,9 @@ function ImageUploader(props: { fileList: any; setFileList: any }) {
     );
   };
 
-  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
-    props.setFileList(newFileList);
+  const handleChange: UploadProps["onChange"] = async ({
+    fileList: newFileList,
+  }) => props.setFileList(newFileList);
 
   const uploadButton = (
     <div>
@@ -55,11 +56,11 @@ function ImageUploader(props: { fileList: any; setFileList: any }) {
         <span className="text-red-500">*</span>
       </div>
       <Upload
-        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         listType="picture-card"
         fileList={props.fileList}
         onPreview={handlePreview}
         onChange={handleChange}
+        accept="image/*,.png,.jpg,.jpeg,.svg"
       >
         {props.fileList.length >= 8 ? null : uploadButton}
       </Upload>

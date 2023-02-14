@@ -9,7 +9,6 @@ import { RadioGroup } from "@headlessui/react";
 function Product(props: { menu: any; product: any }) {
   const [paymentType, setPaymentType] = useState("normal");
   const [buyQuantity, setBuyQuantity] = useState(1);
-  console.log(props.product);
 
   return (
     <div className="w-full bg-white">
@@ -172,7 +171,9 @@ function Product(props: { menu: any; product: any }) {
                             <span className="h-2 w-2 bg-green-500 rounded-full"></span>
                             <span>Status:</span>
                           </div>
-                          <span className="ml-1 text-gray-500">{item.productStatus}</span>
+                          <span className="ml-1 text-gray-500">
+                            {item.productStatus}
+                          </span>
                         </div>
                       </div>
                       <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full">
@@ -184,7 +185,9 @@ function Product(props: { menu: any; product: any }) {
                       <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full">
                         <div>
                           <span>Brand:</span>
-                          <span className="text-gray-500 ml-1">{item.brand}</span>
+                          <span className="text-gray-500 ml-1">
+                            {item.brand}
+                          </span>
                         </div>
                       </div>
                     </div>

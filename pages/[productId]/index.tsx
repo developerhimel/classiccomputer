@@ -73,6 +73,7 @@ export async function getServerSideProps(ctx: any) {
         ...item,
         id: item._id.toString(),
         _id: null,
+        createdAt: item.createdAt.toString(),
       })),
     },
   };

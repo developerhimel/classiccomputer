@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { FloatButton } from "antd";
+import Image from "next/image";
 
 const products = [
   {
@@ -34,7 +35,6 @@ function FloatBox() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <FloatButton.BackTop />
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-50" onClose={setOpen}>
           <Transition.Child
@@ -92,7 +92,7 @@ function FloatBox() {
                               {products.map((product) => (
                                 <li key={product.id} className="flex py-6">
                                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                    <img
+                                    <Image
                                       src={product.imageSrc}
                                       alt={product.imageAlt}
                                       className="h-full w-full object-cover object-center"
@@ -219,6 +219,7 @@ function FloatBox() {
           <h3 className="text-xs text-white mt-1">Compare</h3>
         </div>
       </div>
+      <FloatButton.BackTop />
     </>
   );
 }

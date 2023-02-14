@@ -69,9 +69,12 @@ input:focus-visible {
   outline: none !important;
   --tw-ring-color: "#ffffff00";
 }
-.ant-switch:not(.ant-switch-disabled){
+.ant-switch:not(.ant-switch-disabled) {
   background-color: rgba(0, 0, 0, 0.45);
 }
-.ant-switch.ant-switch-checked:not(.ant-switch-disabled){
+.ant-switch.ant-switch-checked:not(.ant-switch-disabled) {
   background-color: #4096ff;
+}
+.ant-btn-primary {
+  background-color: #1677ff;
 }
