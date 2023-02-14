@@ -45,7 +45,7 @@ const Home: NextPage = (props: any) => {
             </div>
             <div className="w-full mt-10">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 px-3 sm:px-0 gap-5">
-                {props.products.slice(0, 6).map((item: any, index: number) => (
+                {props.products.slice(8, 14).map((item: any, index: number) => (
                   <div
                     key={index}
                     className="bg-white dark:bg-gray-800 group/main py-4 rounded-lg border dark:border-gray-800 shadow-sm hover:shadow-md"
@@ -61,16 +61,25 @@ const Home: NextPage = (props: any) => {
                         />
                         ৳
                       </span> */}
-                      <div className="p-3 relative">
-                        <Link href={"/"}>
-                          <Image
-                            src={"/assets/products/1.jpg"}
-                            width={100}
-                            height={100}
-                            alt={"product image"}
-                            className="w-full group-hover/main:scale-105 ease-in-out duration-300"
-                          />
-                        </Link>
+
+                      <div className="p-3 relative w-full h-[230px] overflow-hidden my-2">
+                        {item.src && (
+                          <Link
+                            href={{
+                              pathname: `/${item.name
+                                .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                                .toLowerCase()}`,
+                              query: { id: item.id },
+                            }}
+                          >
+                            <Image
+                              src={item.src}
+                              fill
+                              alt={"product image"}
+                              className="w-full group-hover/main:scale-105 ease-in-out duration-300 object-contain"
+                            />
+                          </Link>
+                        )}
                       </div>
                     </div>
                     <div className="px-4 pt-4">
@@ -131,7 +140,7 @@ const Home: NextPage = (props: any) => {
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseOne"
-                    aria-expanded="true"
+                    aria-expanded="false"
                     aria-controls="collapseOne"
                   >
                     Expand and get information about classic computer
@@ -182,7 +191,7 @@ export async function getServerSideProps() {
   const menuItems = await menuCollections.find().toArray();
   const products = await productsCollection
     .find()
-    .limit(12)
+    .limit(18)
     .sort({ createdAt: -1 })
     .toArray();
   const slider = await db.collection("slider").find().toArray();

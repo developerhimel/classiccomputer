@@ -130,7 +130,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
                     />
                     ৳
                   </span>
-                  <div className="p-3 relative">
+                  {/* <div className="p-3 relative my-2">
                     {item.src && (
                       <Link
                         href={{
@@ -146,6 +146,25 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
                           height={100}
                           alt={"product image"}
                           className="w-full group-hover/main:scale-105 ease-in-out duration-300"
+                        />
+                      </Link>
+                    )}
+                  </div> */}
+                  <div className="p-3 relative w-full h-[230px] overflow-hidden my-2">
+                    {item.src && (
+                      <Link
+                        href={{
+                          pathname: `/${item.name
+                            .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                            .toLowerCase()}`,
+                          query: { id: item.id },
+                        }}
+                      >
+                        <Image
+                          src={item.src}
+                          fill
+                          alt={"product image"}
+                          className="w-full group-hover/main:scale-105 ease-in-out duration-300 object-contain"
                         />
                       </Link>
                     )}
