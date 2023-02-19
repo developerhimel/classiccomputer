@@ -1,8 +1,9 @@
 import React from "react";
 import { CaretRightOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import menu from "../../../json/menu.json";
 
-export default function Menu(props: { mainItems: any }) {
+function Menu() {
   const MenuItems = (props: { name: string; mainItem: any; id: number }) => {
     return (
       <>
@@ -71,7 +72,7 @@ export default function Menu(props: { mainItems: any }) {
   };
   return (
     <ul className="main_menu_wrapper flex flow-row justify-between items-center flex-wrap">
-      {props.mainItems.map((item: any, index: number) => (
+      {menu.map((item: any, index: number) => (
         <li
           className="text-gray-800 relative group/main font-semibold px-2 py-3 dark:text-white hover:bg-gray-800 hover:text-white rounded-b-md ease-in-out duration-200 hover:shadow-md cursor-pointer"
           key={index}
@@ -82,3 +83,5 @@ export default function Menu(props: { mainItems: any }) {
     </ul>
   );
 }
+
+export default Menu;

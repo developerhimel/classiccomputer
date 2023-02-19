@@ -105,7 +105,6 @@ function AddProducts() {
           specifications: specifications,
           description: description,
           published: true,
-          createdAt: new Date(),
         },
       }),
     });

@@ -11,9 +11,10 @@ export default async function handler(req: NextApiRequest, res: any) {
     const db = client.db("cc");
 
     const products = db.collection("products");
+    const insertProduct = { ...product, createdAt: new Date() };
 
     try {
-      const result = await products.insertOne(product);
+      const result = await products.insertOne(insertProduct);
       if (result) {
         res.json({ message: "product inserted." });
       } else {

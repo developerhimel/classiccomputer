@@ -7,6 +7,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import FloatBox from "../components/reusable/FloatBox";
 import { useRouter } from "next/router";
+import Layout from "./Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -21,7 +22,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       {router.route.startsWith("/Admin") ? null : <FloatBox />}
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </>
   );
 }

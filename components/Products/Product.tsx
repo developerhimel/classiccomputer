@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Footer from "../reusable/Footer/Footer";
-import Navbar from "../reusable/NavBar/Navbar";
 import Link from "next/link";
 import { Image, Tabs } from "antd";
 import { NumericFormat } from "react-number-format";
@@ -12,7 +10,6 @@ function Product(props: { menu: any; product: any }) {
 
   return (
     <div className="w-full bg-white">
-      <Navbar categoryItems={props.menu} />
       <div className="px-5 sm:px-0">
         <div className="container m-auto py-3">
           <nav className="flex" aria-label="Breadcrumb">
@@ -202,12 +199,13 @@ function Product(props: { menu: any; product: any }) {
                           </div>
                         ))}
                         <div>
-                          <a
+                          <Link
                             className="text-base text-red-500 border-b pb-1 border-red-500 hover:border-b-2 animate-pulse"
                             href={"#specificationsId"}
+                            // href={"/"}
                           >
                             Explore More...
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -567,7 +565,6 @@ function Product(props: { menu: any; product: any }) {
           );
         })}
       </div>
-      <Footer />
     </div>
   );
 }

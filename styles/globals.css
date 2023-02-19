@@ -78,3 +78,6 @@ input:focus-visible {
 .ant-btn-primary {
   background-color: #1677ff;
 }
+.ant-image-img {
+  background: none !important;
+}

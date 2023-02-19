@@ -26,7 +26,6 @@ const Home: NextPage = (props: any) => {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <div className="w-full">
-        <Navbar categoryItems={props.menu} />
         <Homepage
           banner={props.banner}
           products={props.products}
@@ -136,7 +135,7 @@ const Home: NextPage = (props: any) => {
               <div className="accordion-item bg-white dark:bg-gray-700 dark:border-gray-600 border border-gray-200 p-1">
                 <h2 className="accordion-header mb-0" id="headingOne">
                   <button
-                    className="accordion-button relative flex items-center w-full py-3 px-5 text-sm font-bold text-gray-600 text-left bg-white dark:bg-gray-700 dark:text-gray-200 border-0 rounded-none transition focus:outline-none"
+                    className="accordion-button collapsed relative flex items-center w-full py-3 px-5 text-sm font-bold text-gray-600 text-left bg-white dark:bg-gray-700 dark:text-gray-200 border-0 rounded-none transition focus:outline-none"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseOne"
@@ -169,9 +168,6 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
         </div>
-        <div>
-          <Footer />
-        </div>
       </div>
     </>
   );
@@ -191,13 +187,11 @@ export async function getServerSideProps() {
   const menuItems = await menuCollections.find().toArray();
   const products = await productsCollection
     .find()
-    .limit(18)
+    .limit(12)
     .sort({ createdAt: -1 })
     .toArray();
   const slider = await db.collection("slider").find().toArray();
   const banner = await db.collection("banner").find().toArray();
-
-  console.log(products);
 
   client.close();
 
