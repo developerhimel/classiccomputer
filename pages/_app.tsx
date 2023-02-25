@@ -21,10 +21,18 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {router.route.startsWith("/Admin") ? null : <FloatBox />}
-      <Layout>
+      {router.route.startsWith("/admin") ||
+      router.route.startsWith("/login") ||
+      router.route.startsWith("/register") ? (
         <Component {...pageProps} />
-      </Layout>
+      ) : (
+        <>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+          <FloatBox />
+        </>
+      )}
     </>
   );
 }

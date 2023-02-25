@@ -4,6 +4,7 @@ import { verifyAuth } from "./lib/auth";
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("AdminUserJwt")?.value;
+  const userToken = request.cookies.get("userJwt")?.value;
 
   const verifiedToken =
     token &&
@@ -11,15 +12,34 @@ export async function middleware(request: NextRequest) {
       console.log(error);
     }));
 
-  if (request.url.includes("/Admin")) {
-    if (request.url.includes("/Admin/dashboard")) {
+  if (request.url.match("/admin")) {
+    if (request.url.includes("/admin/dashboard")) {
       if (!verifiedToken) {
-        return NextResponse.redirect(new URL("/Admin/login", request.url));
+        return NextResponse.redirect(new URL("/admin/login", request.url));
       }
-    } else if (request.url.includes("/Admin/login")) {
+    } else if (request.url.includes("/admin/login")) {
       if (verifiedToken) {
-        return NextResponse.redirect(new URL("/Admin/dashboard", request.url));
+        return NextResponse.redirect(new URL("/admin/dashboard", request.url));
       }
+    }
+  }
+
+  const verifiedUserToken =
+    userToken &&
+    (await verifyAuth(userToken).catch((error) => {
+      console.log(error);
+    }));
+
+  if (request.url.match("/user")) {
+    if (!verifiedUserToken) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+  } else if (
+    request.url.includes("/login") ||
+    request.url.includes("/register")
+  ) {
+    if (verifiedUserToken) {
+      return NextResponse.redirect(new URL("/", request.url));
     }
   }
 }

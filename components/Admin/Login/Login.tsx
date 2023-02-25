@@ -34,7 +34,7 @@ export default function Login() {
         .then(() => {
           localStorage.setItem("adminUser", username);
           setLoading(false);
-          router.push("/Admin/dashboard");
+          router.push("/admin/dashboard");
         });
     } else if (data.message === "user not found") {
       messageApi.open({

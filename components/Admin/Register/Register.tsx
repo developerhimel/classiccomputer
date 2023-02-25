@@ -46,7 +46,7 @@ export default function Register() {
         })
         .then(() => {
           setLoading(false);
-          router.push("/Admin/login");
+          router.push("/admin/login");
         });
     }
   };

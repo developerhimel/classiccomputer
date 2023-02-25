@@ -32,8 +32,6 @@ function AddProducts() {
   const [imageUrls, setImageUrls] = useState<{ src: string }[]>([]);
   const [uploadStatus, setUploadStatus] = useState(false);
 
-  console.log(new Date());
-
   const getBase64 = (file: RcFile): Promise<string> =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();

@@ -9,7 +9,7 @@ SwiperCore.use([Autoplay]);
 
 function Homepage(props: { banner: any; products: any; slider: any }) {
   return (
-    <div className="container m-auto mt-10">
+    <div className="container m-auto">
       {/* Slider Section Start */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-2">
         <div className="grid grid-cols-2 md:grid-cols-1 gap-2">
@@ -76,7 +76,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
       </div>
       {/* Slider Section End */}
 
-      {/*  */}
+      {/* Featured Category */}
       <div className="w-full mt-16">
         <div className="w-full">
           <h1 className="text-center text-xl font-semibold text-gray-800 dark:text-white">
@@ -86,11 +86,13 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
             Get Your Desired Product from Featured Category!
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 items-center my-6 gap-[2px]">
+        <div className="grid grid-cols-4 lg:grid-cols-8 items-center my-6 gap-[2px]">
           {featuredItems.map((item: any, index: number) => (
             <div className="w-full group overflow-hidden" key={index}>
               <div className="bg-white dark:bg-gray-700 items-center hover:scale-[1.08] cursor-pointer rounded shadow-sm ease-in-out duration-200 flex flex-col p-5 overflow-hidden">
-                <Image src={item.url} alt={item.title} height={48} width={48} />
+                <i
+                  className={`fa-${item.style} text-gray-400 ${item.icon} text-4xl`}
+                ></i>
                 <h2 className="mt-2 truncate text-gray-800 group-hover:text-pink-600 dark:text-gray-200 text-sm">
                   {item.title}
                 </h2>
@@ -99,6 +101,8 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
           ))}
         </div>
       </div>
+
+      {/* Featured Products */}
       <div className="w-full mt-16">
         <div className="w-full">
           <h1 className="text-center text-xl font-semibold text-gray-800 dark:text-white">

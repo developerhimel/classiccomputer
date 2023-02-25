@@ -1,66 +1,82 @@
 [
   {
     "title": "All Laptop",
-    "url": "/assets/Featured/laptop.png"
+    "icon": "fa-laptop",
+    "style": "duotone"
   },
   {
     "title": "Desktop",
-    "url": "/assets/Featured/desktop-48x48.png"
+    "icon": "fa-computer",
+    "style": "duotone"
   },
   {
     "title": "Monitor",
-    "url": "/assets/Featured/monitor-48x48.png"
+    "icon": "fa-display",
+    "style": "regular"
   },
   {
     "title": "Processor",
-    "url": "/assets/Featured/cpu-48x48.png"
+    "icon": "fa-microchip",
+    "style": "duotone"
   },
   {
     "title": "Graphics Card",
-    "url": "/assets/Featured/gpu-48x48 (1).png"
+    "icon": "fa-speaker",
+    "style": "duotone"
   },
   {
-    "title": "SSD",
-    "url": "/assets/Featured/ssd-48x48.png"
+    "title": "SSD & HDD",
+    "icon": "fa-hard-drive",
+    "style": "duotone"
   },
   {
-    "title": "Laptop Adapter",
-    "url": "/assets/Featured/laptop-battery-01-48x48.png"
+    "title": "Projector",
+    "icon": "fa-projector",
+    "style": "duotone"
   },
   {
     "title": "Mouse",
-    "url": "/assets/Featured/mouse.png-40x40.webp"
+    "icon": "fa-mouse",
+    "style": "duotone"
   },
   {
     "title": "Keyboard",
-    "url": "/assets/Featured/keyboard-48x48.png"
+    "icon": "fa-keyboard",
+    "style": "duotone"
   },
   {
     "title": "Headphone",
-    "url": "/assets/Featured/headphone-48x48.png"
+    "icon": "fa-headset",
+    "style": "duotone"
   },
   {
     "title": "Router",
-    "url": "/assets/Featured/router-48x48.png"
+    "icon": "fa-router",
+    "style": "duotone"
   },
   {
-    "title": "Portable Wifi Camera",
-    "url": "/assets/Featured/portable-ip-camera-48x48.png"
+    "title": "Wifi Camera",
+    "icon": "fa-camera-web",
+    "style": "duotone"
   },
   {
     "title": "Smart Watch",
-    "url": "/assets/Featured/smart-watch-48x48.png"
+    "icon": "fa-watch-apple",
+    "style": "duotone"
   },
   {
     "title": "Gaming Console",
-    "url": "/assets/Featured/gaming-console-48x48.png"
+    "icon": "fa-gamepad-modern",
+    "style": "duotone"
   },
   {
-    "title": "Converter & Cable",
-    "url": "/assets/Featured/cableconverter.png"
+    "title": "Printers",
+    "icon": "fa-print",
+    "style": "duotone"
   },
   {
     "title": "Gamning Chair",
-    "url": "/assets/Featured/chair.png-40x40.webp"
+    "icon": "fa-chair-office",
+    "style": "duotone"
   }
 ]

@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Navbar from "../components/reusable/NavBar/Navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { NumericFormat } from "react-number-format";
@@ -7,7 +6,6 @@ import ccdetails from "../json/ccdetails.json";
 import { MongoClient } from "mongodb";
 import { NextPage } from "next";
 import Homepage from "../components/Homepage/Homepage";
-import Footer from "../components/reusable/Footer/Footer";
 
 const Home: NextPage = (props: any) => {
   // console.log(props.products);
@@ -25,7 +23,7 @@ const Home: NextPage = (props: any) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <div className="w-full">
+      <div className="w-full mt-8">
         <Homepage
           banner={props.banner}
           products={props.products}
@@ -187,7 +185,7 @@ export async function getServerSideProps() {
   const menuItems = await menuCollections.find().toArray();
   const products = await productsCollection
     .find()
-    .limit(12)
+    .limit(24)
     .sort({ createdAt: -1 })
     .toArray();
   const slider = await db.collection("slider").find().toArray();

@@ -10,7 +10,10 @@ const FilterPage: NextPage = (props: any) => {
   return (
     <>
       <Head>
-        <title>{query.filterId}</title>
+        <title>
+          {query.filterId} - Classic Computer || Largest tech accessories shop
+          in Bangladesh
+        </title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="asdfwadffwaf" />
         <meta name="keywords" content="asfw weradsf" />

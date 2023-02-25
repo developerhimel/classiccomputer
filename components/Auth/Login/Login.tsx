@@ -1,118 +1,164 @@
-import React from "react";
+import React, { useState } from "react";
+import Link from "next/link";
+import { message } from "antd";
+import { useRouter } from "next/router";
 
 export default function Login() {
+  const router = useRouter();
+  const [messageApi, contextHolder] = message.useMessage();
+  const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async () => {
+    setLoading(true);
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    });
+    const data = await res.json();
+    console.log(data.message);
+
+    if (data.message === "success") {
+      messageApi
+        .open({
+          type: "success",
+          content: "You have successfully logged in.",
+        })
+        .then(() => {
+          localStorage.setItem("user", username);
+          setLoading(false);
+          router.push("/Admin/dashboard");
+        });
+    } else if (data.message === "user not found") {
+      messageApi.open({
+        type: "error",
+        content: "user not found!",
+      });
+      setLoading(false);
+    } else if (data.message === "invalid password") {
+      messageApi.open({
+        type: "error",
+        content: "You have entered invalid password!",
+      });
+      setLoading(false);
+    } else if (data.message === "unverified user") {
+      messageApi.open({
+        type: "error",
+        content: "User is not approved. Please contact Classic Computer Admin.",
+      });
+      setLoading(false);
+    }
+  };
   return (
     <div>
-      <div
-        id="authentication-modal"
-        aria-hidden="true"
-        tabIndex={0}
-        className="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
-      >
-        <div className="relative w-full h-full max-w-md md:h-auto">
-          <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <button
-              type="button"
-              className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-              data-modal-toggle="authentication-modal"
-            >
-              <svg
-                aria-hidden="true"
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              <span className="sr-only">Close modal</span>
-            </button>
-            <div className="px-6 py-6 lg:px-8">
-              <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-                Sign in to our platform
-              </h3>
-              <form className="space-y-6" action="#">
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Your email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    placeholder="name@company.com"
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Your password
-                  </label>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                    required
-                  />
-                </div>
-                <div className="flex justify-between">
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
-                      <input
-                        id="remember"
-                        type="checkbox"
-                        value=""
-                        className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
-                        required
-                      />
+      {contextHolder}
+      <section className="h-full gradient-form bg-gray-200 md:h-screen">
+        <div className="container py-12 px-6 h-full m-auto">
+          <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
+            <div className="xl:w-10/12">
+              <div className="block bg-white shadow-lg rounded-lg">
+                <div className="lg:flex lg:flex-wrap g-0">
+                  <div className="lg:w-6/12 px-4 md:px-0">
+                    <div className="md:p-12 md:mx-6">
+                      <div className="text-center">
+                        <Link href={"/"}>
+                          <img
+                            className="mx-auto w-48"
+                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                            alt="logo"
+                          />
+                        </Link>
+                        <h4 className="text-xl font-semibold mt-1 mb-12 pb-1">
+                          Classic Computer Admin Login
+                        </h4>
+                      </div>  
+                      <form>
+                        <p className="mb-4">Please login to your account</p>
+                        <div className="mb-4">
+                          <input
+                            type="text"
+                            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            id="username"
+                            placeholder="Username"
+                            onChange={(e) => setUsername(e.target.value)}
+                          />
+                        </div>
+                        <div className="mb-4">
+                          <input
+                            type="password"
+                            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            id="password"
+                            placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                          />
+                        </div>
+                        <div className="text-center pt-1 mb-12 pb-1">
+                          <button
+                            disabled={loading}
+                            onClick={() => handleLogin()}
+                            className="inline-block items-center px-6 py-2.5 bg-gradient-to-r from-orange-500 via-pink-700 to-indigo-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
+                            type="button"
+                            data-mdb-ripple="true"
+                            data-mdb-ripple-color="light"
+                          >
+                            {loading && (
+                              <div
+                                className="spinner-border animate-spin inline-block w-3 h-3 border-2 rounded-full mr-1"
+                                role="status"
+                              >
+                                <span className="visually-hidden">
+                                  Loading...
+                                </span>
+                              </div>
+                            )}
+                            Log in
+                          </button>
+                          <a className="text-gray-500" href="">
+                            Forgot password?
+                          </a>
+                        </div>
+                        <div className="flex items-center justify-between pb-6">
+                          <p className="mb-0 mr-2">Dont have an account?</p>
+                          <button
+                            onClick={() => router.push("/Admin/register")}
+                            type="button"
+                            className="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                            data-mdb-ripple="true"
+                            data-mdb-ripple-color="light"
+                          >
+                            Get One
+                          </button>
+                        </div>
+                      </form>
                     </div>
-                    <label
-                      htmlFor="remember"
-                      className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                    >
-                      Remember me
-                    </label>
                   </div>
-                  <a
-                    href="#"
-                    className="text-sm text-blue-700 hover:underline dark:text-blue-500"
-                  >
-                    Lost Password?
-                  </a>
+                  <div className="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none bg-gradient-to-br from-orange-400 via-pink-700 to-indigo-700">
+                    <div className="text-white px-4 py-6 md:p-12 md:mx-6">
+                      <h4 className="text-xl font-semibold mb-6">
+                        We are more than just a company
+                      </h4>
+                      <p className="text-sm">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit, sed do eiusmod tempor incididunt ut labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis
+                        nostrud exercitation ullamco laboris nisi ut aliquip ex
+                        ea commodo consequat.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <button
-                  type="submit"
-                  className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Login to your account
-                </button>
-                <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-                  Not registered?
-                  <a
-                    href="#"
-                    className="text-blue-700 hover:underline dark:text-blue-500"
-                  >
-                    Create account
-                  </a>
-                </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

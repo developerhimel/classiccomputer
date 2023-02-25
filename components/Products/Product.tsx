@@ -3,8 +3,10 @@ import Link from "next/link";
 import { Image, Tabs } from "antd";
 import { NumericFormat } from "react-number-format";
 import { RadioGroup } from "@headlessui/react";
+import { useRouter } from "next/router";
 
 function Product(props: { menu: any; product: any }) {
+  const router = useRouter();
   const [paymentType, setPaymentType] = useState("normal");
   const [buyQuantity, setBuyQuantity] = useState(1);
 
@@ -393,20 +395,20 @@ function Product(props: { menu: any; product: any }) {
                           </button>
                         </div>
                         <div className="w-full h-full">
-                          <Link href={"/checkout"}>
-                            <button
-                              disabled={paymentType === "emi" ? true : false}
-                              className={`${
-                                paymentType === "normal"
-                                  ? "bg-green-500"
-                                  : "bg-indigo-500"
-                              } w-44 rounded h-full text-gray-50 hover:shadow-[inset_13rem_0_0_0] hover:shadow-[#18181842] duration-[400ms,700ms] transition-[color,box-shadow]`}
-                            >
-                              {paymentType === "normal"
-                                ? "Buy Now"
-                                : "Unavailable"}
-                            </button>
-                          </Link>
+                          <button
+                            type="button"
+                            onClick={() => router.push("/checkout")}
+                            disabled={paymentType === "normal" ? false : true}
+                            className={`${
+                              paymentType === "normal"
+                                ? "bg-green-500"
+                                : "bg-indigo-500"
+                            } w-44 rounded h-full text-gray-50 hover:shadow-[inset_13rem_0_0_0] hover:shadow-[#18181842] duration-[400ms,700ms] transition-[color,box-shadow]`}
+                          >
+                            {paymentType === "normal"
+                              ? "Buy Now"
+                              : "Unavailable"}
+                          </button>
                         </div>
                       </div>
                     </div>

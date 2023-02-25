@@ -221,7 +221,12 @@ function Footer() {
               </span>
             </button>
             <div className="px-1" />
-            <button className="bg-gray-600 inline-flex py-1 px-2 rounded-md items-center hover:bg-gray-700 focus:outline-none">
+            <button
+              type="button"
+              data-te-ripple-init
+              data-te-ripple-color="light"
+              className="bg-gray-600 inline-flex py-1 px-2 rounded-md items-center hover:bg-gray-700 focus:outline-none"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"

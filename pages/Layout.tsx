@@ -4,11 +4,11 @@ import Navbar from "../components/reusable/NavBar/Navbar";
 
 function Layout(props: { children: any }) {
   return (
-    <div>
+    <>
       <Navbar />
       {props.children}
       <Footer />
-    </div>
+    </>
   );
 }
 
