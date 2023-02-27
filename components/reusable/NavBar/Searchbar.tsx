@@ -33,22 +33,22 @@ function Searchbar() {
     <div>
       <div
         onClick={() => setOpen(true)}
-        className="relative mt-1 rounded-md cursor-pointer"
+        className="relative rounded-r-full rounded-l-full border border-sky-500 cursor-pointer group"
       >
         <input
           disabled
           type="text"
-          className="block w-full cursor-pointer rounded-md px-3 py-[10px] md:text-base sm:text-sm bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-transparent focus:border-none ring-transparent border-none"
+          className="block w-full cursor-pointer rounded-r-full rounded-l-full pl-3 py-2 md:text-base sm:text-sm bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-transparent focus:border-none ring-transparent border-none"
           placeholder="Search for products"
         />
-        <div className="absolute inset-y-0 right-0 flex items-center mr-3 hover:scale-95">
+        <div className="absolute inset-y-0 right-0 flex items-center px-4 rounded-r-full bg-sky-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            strokeWidth={1.5}
+            strokeWidth={2}
             stroke="currentColor"
-            className="w-6 h-6 text-gray-800 dark:text-white"
+            className="w-6 h-6 text-white group-hover:scale-105"
           >
             <path
               strokeLinecap="round"
@@ -116,7 +116,7 @@ function Searchbar() {
                         className="w-full mx-1 px-2 border-none rounded"
                         placeholder="Search"
                         autoFocus
-                        onChange={debounce(handleSearch, 1000)}
+                        onChange={debounce(handleSearch, 500)}
                       />
                       <button
                         className="border px-1 rounded bg-gray-50"
@@ -129,7 +129,7 @@ function Searchbar() {
                       <div className="w-full h-full justify-center items-center flex">
                         {filtered.length === 0 ? (
                           <div>
-                            <h2>Empty!</h2>
+                            <h2>No products found!</h2>
                           </div>
                         ) : filtered.length > 6 ? (
                           <div className="pt-2">

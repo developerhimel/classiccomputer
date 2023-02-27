@@ -310,7 +310,7 @@ function AddProducts() {
             </div>
           </div>
           {/* Specifications */}
-          <div className="">
+          <div className="pb-10">
             <div className="flex justify-start mt-1">
               <div className="xl:w-full">
                 <div className="flex flex-row justify-between items-center shadow mb-2 bg-indigo-50 shadow-indigo-200 p-1 rounded pl-3">

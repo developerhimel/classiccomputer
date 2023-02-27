@@ -80,3 +80,6 @@ input:focus-visible {
 .ant-image-img {
   background: none !important;
 }
+.ant-float-btn-default .ant-float-btn-body:hover {
+  background-color: #3fa9f5;
+}

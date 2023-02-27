@@ -9,14 +9,14 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-1 md:gap-2 lg:gap-5 py-10">
           <div className="flex flex-col justify-between items-center md:items-start">
             <Link href={"/"}>
-              <Image
-                className="mb-3"
-                alt="Logo"
-                src={"/assets/logo/logo.png"}
-                height={55}
-                width={115}
-                priority
-              />
+              <div className="w-40 h-20 relative">
+                <Image
+                  alt="Logo"
+                  src={"/assets/logo/logo-footer.png"}
+                  fill
+                  className="object-contain"
+                />
+              </div>
             </Link>
             <div className="pb-2">
               <span className="flex flex-row justify-start items-center py-3">

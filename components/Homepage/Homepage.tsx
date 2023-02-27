@@ -4,6 +4,7 @@ import Image from "next/image";
 import featuredItems from "../../json/featuredItems.json";
 import Link from "next/link";
 import { NumericFormat } from "react-number-format";
+import { Suspense } from "react";
 
 SwiperCore.use([Autoplay]);
 
@@ -11,24 +12,23 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
   return (
     <div className="container m-auto">
       {/* Slider Section Start */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-2">
-        <div className="grid grid-cols-2 md:grid-cols-1 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-5">
+        <div className="hidden md:grid grid-cols-1 gap-2">
           {props.banner.slice(0, 2).map((item: any, index: number) => (
             <div
               key={index}
-              className="w-full hover:scale-[0.98] ease-in-out duration-300 cursor-pointer"
+              className="md:h-full w-full h-[160px] relative cursor-pointer overflow-hidden"
             >
               <Image
                 src={item.src}
-                width={350}
-                height={160}
                 alt={item.title}
-                className="w-full hover:rounded-md ease-in-out duration-300"
+                fill
+                className="w-full object-cover ease-in-out duration-300 hover:scale-110"
               />
             </div>
           ))}
         </div>
-        <div className="col-span-2 relative rounded-b-md shadow-md hover:cursor-pointer cursor-default">
+        <div className="md:col-span-2 relative hover:cursor-pointer cursor-default">
           <Swiper
             pagination={{
               dynamicBullets: true,
@@ -43,32 +43,22 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
           >
             {props.slider.map((item: any, index: number) => (
               <SwiperSlide key={index}>
-                {/* <Image
-                      src={item.src}
-                      alt={item.title}
-                      width={500}
-                      height={250}
-                      className="w-full"
-                      priority
-                    /> */}
-                {/* <Image fill={true} className="object-contain" src={item.src} alt={item.title} /> */}
                 <img src={item.src} alt={item.title} />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-1 gap-2">
+        <div className="hidden md:grid grid-cols-1 gap-2">
           {props.banner.slice(2, 4).map((item: any, index: number) => (
             <div
               key={index}
-              className="w-full hover:scale-[0.98] ease-in-out duration-300 cursor-pointer"
+              className="md:h-full w-full h-[160px] relative cursor-pointer overflow-hidden"
             >
               <Image
                 src={item.src}
-                width={350}
-                height={160}
                 alt={item.title}
-                className="w-full hover:rounded-md ease-in-out duration-300"
+                fill
+                className="w-full object-cover ease-in-out duration-300 hover:scale-110"
               />
             </div>
           ))}
@@ -91,9 +81,9 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
             <div className="w-full group overflow-hidden" key={index}>
               <div className="bg-white dark:bg-gray-700 items-center hover:scale-[1.08] cursor-pointer rounded shadow-sm ease-in-out duration-200 flex flex-col p-5 overflow-hidden">
                 <i
-                  className={`fa-${item.style} text-gray-400 ${item.icon} text-4xl`}
+                  className={`fa-${item.style} text-gray-400 group-hover:text-sky-600 ${item.icon} text-4xl`}
                 ></i>
-                <h2 className="mt-2 truncate text-gray-800 group-hover:text-pink-600 dark:text-gray-200 text-sm">
+                <h2 className="mt-2 truncate text-gray-800 group-hover:text-sky-600 dark:text-gray-200 text-sm">
                   {item.title}
                 </h2>
               </div>
@@ -117,7 +107,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
             {props.products.map((item: any, index: number) => (
               <div
                 key={index}
-                className="bg-white dark:bg-gray-700 group/main py-4 rounded-lg shadow-sm hover:shadow-md"
+                className="bg-white dark:bg-gray-700 group/main py-4 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-200"
               >
                 <div className="border-b-[5px] border-b-gray-50 dark:border-b-gray-800">
                   <span

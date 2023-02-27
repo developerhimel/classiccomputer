@@ -11,11 +11,15 @@ export default async function handler(req: NextApiRequest, res: any) {
     const db = client.db("cc");
 
     const products = db.collection("products");
-    const filteredProducts = await products
-      .find({ name: { $regex: query, $options: "i" } })
-      .toArray();
+    if (query !== "") {
+      const filteredProducts = await products
+        .find({ name: { $regex: query, $options: "i" } })
+        .toArray();
 
-    res.json(filteredProducts);
+      res.json(filteredProducts);
+    } else {
+      res.json([]);
+    }
 
     client.close();
   } else {

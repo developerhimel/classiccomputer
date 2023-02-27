@@ -71,7 +71,8 @@ function Navbar() {
   return (
     <>
       <div className="sticky top-0 z-40">
-        <div className="bg-gray-900 lg:py-[15px] pt-3 pb-[1px] rounded-b-md lg:rounded-none">
+        <div className="bg-white bg-opacity-90 dark:bg-gray-900 backdrop-blur-sm shadow dark:shadow-none shadow-sky-100 pb-[1px] rounded-b-md lg:rounded-none">
+          {/* <div className="bg-gray-900 lg:py-[15px] pt-3 pb-[1px] rounded-b-md lg:rounded-none"> */}
           <div className="container m-auto">
             {/* Codes For Mobile Mode Start*/}
             <div className="lg:hidden">
@@ -80,7 +81,7 @@ function Navbar() {
                 <Link href={"/"}>
                   <Image
                     alt="Logo"
-                    src={"/assets/logo/logo.png"}
+                    src={"/assets/logo/logo1.png"}
                     height={50}
                     width={110}
                     priority
@@ -119,15 +120,16 @@ function Navbar() {
             {/* Codes For Desktop Mode Start*/}
             <div className="hidden lg:flex flex-row justify-start items-center">
               <Link href={"/"}>
-                <Image
-                  alt="Logo"
-                  src={"/assets/logo/logo.png"}
-                  height={55}
-                  width={115}
-                  priority
-                />
+                <div className="w-40 h-20 relative">
+                  <Image
+                    alt="Logo"
+                    src={"/assets/logo/logo1.png"}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </Link>
-              <div className="w-full flex flex-row">
+              <div className="w-full flex flex-row items-center">
                 <div className="w-1/2 mx-5 hidden lg:block">
                   <DynamicSearchbar />
                 </div>
@@ -151,7 +153,7 @@ function Navbar() {
                         </svg>
                       </div>
                       <div>
-                        <h2 className="text-white text-base">Offers</h2>
+                        <h2 className="text-gray-800 text-base">Offers</h2>
                         <h3 className="text-gray-400 text-xs">Latest Offers</h3>
                       </div>
                     </div>
@@ -175,7 +177,9 @@ function Navbar() {
                         </svg>
                       </div>
                       <div>
-                        <h2 className="text-white text-base">Bijoy Offers</h2>
+                        <h2 className="text-gray-800 text-base">
+                          Bijoy Offers
+                        </h2>
                         <h3 className="text-gray-400 text-xs">Special Offer</h3>
                       </div>
                     </div>
@@ -199,18 +203,18 @@ function Navbar() {
                         </svg>
                       </div>
                       <div>
-                        <h2 className="text-white text-base">Account</h2>
+                        <h2 className="text-gray-800 text-base">Account</h2>
                         <h3 className="text-gray-400 text-xs">
                           Register || Login
                         </h3>
                       </div>
                     </div>
                   </Dropdown>
-                  <Flowbite>
+                  {/* <Flowbite>
                     <Tooltip content="Switch Theme" style="light">
                       <DarkThemeToggle className="focus:outline-none focus:bg-gray-800 hover:bg-none" />
                     </Tooltip>
-                  </Flowbite>
+                  </Flowbite> */}
                   <Link
                     href={"/pcbuilder"}
                     className="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-normal text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group"
