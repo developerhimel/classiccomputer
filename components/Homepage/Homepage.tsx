@@ -4,7 +4,6 @@ import Image from "next/image";
 import featuredItems from "../../json/featuredItems.json";
 import Link from "next/link";
 import { NumericFormat } from "react-number-format";
-import { Suspense } from "react";
 
 SwiperCore.use([Autoplay]);
 
@@ -14,7 +13,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
       {/* Slider Section Start */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-5">
         <div className="hidden md:grid grid-cols-1 gap-2">
-          {props.banner.slice(0, 2).map((item: any, index: number) => (
+          {props?.banner?.slice(0, 2).map((item: any, index: number) => (
             <div
               key={index}
               className="md:h-full w-full h-[160px] relative cursor-pointer overflow-hidden"
@@ -41,7 +40,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
             direction="horizontal"
             draggable={true}
           >
-            {props.slider.map((item: any, index: number) => (
+            {props?.slider?.map((item: any, index: number) => (
               <SwiperSlide key={index}>
                 <img src={item.src} alt={item.title} />
               </SwiperSlide>
@@ -49,7 +48,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
           </Swiper>
         </div>
         <div className="hidden md:grid grid-cols-1 gap-2">
-          {props.banner.slice(2, 4).map((item: any, index: number) => (
+          {props?.banner?.slice(2, 4).map((item: any, index: number) => (
             <div
               key={index}
               className="md:h-full w-full h-[160px] relative cursor-pointer overflow-hidden"

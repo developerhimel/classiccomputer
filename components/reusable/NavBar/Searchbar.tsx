@@ -183,11 +183,9 @@ function Searchbar() {
                       {loading && (
                         <div className="text-sky-500 flex items-center justify-center py-2">
                           <div
-                            className="spinner-border  animate-spin inline-block w-6 h-6 border-4  rounded-full mr-1"
+                            className="spinner-border animate-spin inline-block w-6 h-6 border-4 rounded-full"
                             role="status"
-                          >
-                            <span className="visually-hidden">Loading...</span>
-                          </div>
+                          />
                         </div>
                       )}
                     </div>

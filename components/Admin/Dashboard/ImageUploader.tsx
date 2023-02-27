@@ -60,7 +60,7 @@ function ImageUploader(props: { fileList: any; setFileList: any }) {
         fileList={props.fileList}
         onPreview={handlePreview}
         onChange={handleChange}
-        accept="image/*,.png,.jpg,.jpeg,.svg"
+        accept="image/*,.png,.jpg,.jpeg,.svg,.webp,.jfif,.pjpeg,.pjp"
       >
         {props.fileList.length >= 8 ? null : uploadButton}
       </Upload>

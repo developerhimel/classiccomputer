@@ -1,7 +1,4 @@
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { NumericFormat } from "react-number-format";
 import ccdetails from "../json/ccdetails.json";
 import { MongoClient } from "mongodb";
 import { NextPage } from "next";
@@ -29,96 +26,6 @@ const Home: NextPage = (props: any) => {
           products={props.products}
           slider={props.slider}
         />
-        {/* Recent viewed products section */}
-        <div className="bg-white dark:bg-gray-700">
-          <div className="container m-auto mt-16 pt-10 pb-12">
-            <div className="w-full">
-              <h1 className="text-center text-xl font-semibold text-gray-800 dark:text-white">
-                Recent Viewed Products
-              </h1>
-              <p className="text-center text-sm mt-1 text-gray-800 dark:text-white">
-                Check Your Recent Viewed Products!
-              </p>
-            </div>
-            <div className="w-full mt-10">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 px-3 sm:px-0 gap-5">
-                {props.products.slice(8, 14).map((item: any, index: number) => (
-                  <div
-                    key={index}
-                    className="bg-white dark:bg-gray-800 group/main py-4 rounded-lg border dark:border-gray-800 shadow-sm hover:shadow-md"
-                  >
-                    <div className="border-b-[5px] border-b-gray-50 dark:border-b-gray-700">
-                      {/* <span className="text-xs bg-pink-500 pr-2 text-white p-1 rounded-r-full">
-                        Save:
-                        <NumericFormat
-                          displayType="text"
-                          className="px-1"
-                          value={item.price - item.discountPrice}
-                          thousandSeparator=","
-                        />
-                        ৳
-                      </span> */}
-
-                      <div className="p-3 relative w-full h-[230px] overflow-hidden my-2">
-                        {item.src && (
-                          <Link
-                            href={{
-                              pathname: `/${item.name
-                                .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
-                                .toLowerCase()}`,
-                              query: { id: item.id },
-                            }}
-                          >
-                            <Image
-                              src={item.src}
-                              fill
-                              alt={"product image"}
-                              className="w-full group-hover/main:scale-105 ease-in-out duration-300 object-contain"
-                            />
-                          </Link>
-                        )}
-                      </div>
-                    </div>
-                    <div className="px-4 pt-4">
-                      <Link
-                        href={"/"}
-                        className="text-sm text-ellipsis line-clamp-3 hover:underline hover:text-pink-600 dark:text-gray-200 dark:hover:text-pink-500"
-                      >
-                        {item.name}
-                      </Link>
-                      <div className="pt-2 flex flex-row flex-wrap justify-start items-end">
-                        <div className="flex flex-row justify-start text-sky-600 font-semibold">
-                          <NumericFormat
-                            displayType="text"
-                            className=""
-                            value={
-                              item.discountPrice
-                                ? item.discountPrice
-                                : item.price
-                            }
-                            thousandSeparator=","
-                          />
-                          <span className="ml-1">৳</span>
-                        </div>
-                        {item.discountPrice && (
-                          <div className="flex flex-row justify-start text-xs dark:text-gray-400 ml-3 line-through">
-                            <NumericFormat
-                              displayType="text"
-                              className=""
-                              value={item.price}
-                              thousandSeparator=","
-                            />
-                            <span className="ml-1">৳</span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
         <div className="w-full py-16">
           <div className="container m-auto px-3 md:px-0">
             <div className="w-full pb-8">
@@ -171,6 +78,8 @@ const Home: NextPage = (props: any) => {
   );
 };
 
+export default Home;
+
 export async function getServerSideProps() {
   // fetch data from an API
   const client = await MongoClient.connect(
@@ -219,5 +128,3 @@ export async function getServerSideProps() {
     },
   };
 }
-
-export default Home;

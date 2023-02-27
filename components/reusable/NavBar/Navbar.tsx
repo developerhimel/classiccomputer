@@ -125,6 +125,7 @@ function Navbar() {
                     alt="Logo"
                     src={"/assets/logo/logo1.png"}
                     fill
+                    priority={true}
                     className="object-contain"
                   />
                 </div>

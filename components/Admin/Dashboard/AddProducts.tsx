@@ -4,6 +4,7 @@ import { Modal, Select } from "antd";
 import ImageUploader from "./ImageUploader";
 import type { RcFile, UploadFile } from "antd/es/upload/interface";
 import brands from "../../../json/brands.json";
+import menu from "../../../json/menu.json";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { storage } from "../../../firebase";
 
@@ -11,11 +12,37 @@ function AddProducts() {
   const router = useRouter();
   const [modal, contextHolder] = Modal.useModal();
   const [loading, setLoading] = useState(false);
+  const [imgLoading, setImgLoading] = useState(false);
   const [productName, setProductName] = useState("");
   const [regularPrice, setRegularPrice] = useState(0);
   const [discountPrice, setDiscountPrice] = useState(0);
   const [brand, setBrand] = useState("");
   const [productStatus, setProductStatus] = useState("In Stock");
+
+  // Category functions start
+  const [category, setCategory] = useState<{
+    value: string;
+    label: string;
+    index: number;
+  }>();
+  const [subCategory, setSubCategory] = useState<{
+    value: string;
+    label: string;
+    index: number;
+    extraSub: boolean;
+  }>();
+  const [extraSubCategory, setExtraSubCategory] = useState<string>();
+
+  const categoryItem =
+    category?.index !== undefined ? menu[category?.index] : undefined;
+
+  const subCategoryItem =
+    subCategory?.index !== undefined
+      ? categoryItem?.items[subCategory?.index]
+      : undefined;
+
+  // Category functions end
+
   const [keyFeatures, setKeyFeatures] = useState([
     { value: "" },
     { value: "" },
@@ -30,6 +57,7 @@ function AddProducts() {
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [description, setDescription] = useState("");
   const [imageUrls, setImageUrls] = useState<{ src: string }[]>([]);
+  const [mainImage, setMainImage] = useState("");
   const [uploadStatus, setUploadStatus] = useState(false);
 
   const getBase64 = (file: RcFile): Promise<string> =>
@@ -46,40 +74,77 @@ function AddProducts() {
     setKeyFeatures(newKeyFeatures);
   };
 
-  const onSearch = (value: string) => {
-    console.log("search:", value);
-  };
-
   const uploadImages = async () => {
-    if (fileList.length === 0) return;
+    setImgLoading(true);
+    if (fileList.length === 0) {
+      modal.warning({
+        centered: true,
+        closable: false,
+        okText: "Okay",
+        title: "Warning!",
+        content: "Please add at least one image.",
+        bodyStyle: { padding: "20px 24px" },
+      });
+      setImgLoading(false);
+      return;
+    }
+
+    const mainimg = fileList[0];
+
+    const file = await getBase64(mainimg.originFileObj as RcFile);
+
+    const storageRef = ref(
+      storage,
+      `ProductImages/${productName}/${mainimg.name}`
+    );
+
+    await uploadString(storageRef, file as string, "data_url").then(
+      (snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          setMainImage(url);
+        });
+      }
+    );
 
     let urls: { src: string }[] = [];
-    fileList.map(async (item: any) => {
-      const file = await getBase64(item.originFileObj as RcFile);
 
-      const storageRef = ref(
-        storage,
-        `ProductImages/${productName}/${item.name}`
-      );
-      await uploadString(storageRef, file as string, "data_url").then(
-        (snapshot) => {
-          getDownloadURL(snapshot.ref).then((url) => {
-            urls.push({ src: url });
-          });
-        }
-      );
-      setUploadStatus(true);
-    });
+    function uploadImagesPromise() {
+      const promise = Promise.all(
+        fileList.map(async (item: any, index: number) => {
+          if (index === 0) return;
+          const file = await getBase64(item.originFileObj as RcFile);
 
-    setImageUrls(urls);
-    modal.success({
-      centered: true,
-      closable: false,
-      okText: "Done",
-      title: "Product Images Uploaded.",
-      content: "You have successfully uploaded the product images.",
-      bodyStyle: { padding: "20px 24px" },
-    });
+          const storageRef = ref(
+            storage,
+            `ProductImages/${productName}/${item.name}`
+          );
+          await uploadString(storageRef, file as string, "data_url").then(
+            (snapshot) => {
+              getDownloadURL(snapshot.ref).then((url) => {
+                urls.push({ src: url });
+              });
+            }
+          );
+        })
+      );
+      return promise;
+    }
+
+    uploadImagesPromise()
+      .then(() => {
+        setUploadStatus(true);
+        setImageUrls(urls.reverse());
+        setImgLoading(false);
+        modal.success({
+          centered: true,
+          closable: false,
+          okText: "Done",
+          title: "Product Images Uploaded.",
+          content: "You have successfully uploaded the product images.",
+          bodyStyle: { padding: "20px 24px" },
+        });
+      })
+      .catch((error) => console.log(error));
   };
 
   const handleAddProduct = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -95,13 +160,16 @@ function AddProducts() {
           name: productName,
           price: regularPrice,
           discountPrice: discountPrice !== 0 ? discountPrice : null,
-          src: imageUrls[0].src,
+          src: mainImage,
           images: imageUrls,
           brand: brand,
           productStatus: productStatus,
           keyFeatures: keyFeatures,
           specifications: specifications,
           description: description,
+          category: category?.value,
+          subCategory: subCategory?.value,
+          extraSubCategory: extraSubCategory,
           published: true,
         },
       }),
@@ -211,7 +279,6 @@ function AddProducts() {
                 placeholder="Select brand"
                 optionFilterProp="children"
                 onChange={(value) => setBrand(value)}
-                onSearch={onSearch}
                 filterOption={(input, option) =>
                   (option?.label ?? "")
                     .toLowerCase()
@@ -239,6 +306,106 @@ function AddProducts() {
                 ]}
               />
             </div>
+          </div>
+          {/* Category Section */}
+          <div className="bg-white border shadow shadow-indigo-200 p-3 mt-5 rounded">
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label
+                  htmlFor="category"
+                  className="form-label inline-block mb-2 text-indigo-700 text-base"
+                >
+                  Choose Category <span className="text-red-500">*</span>
+                </label>
+                <br />
+                <Select
+                  aria-required
+                  showSearch
+                  id="category"
+                  style={{ width: "100%" }}
+                  size="large"
+                  placeholder="Select category"
+                  optionFilterProp="children"
+                  onChange={(value, options: any) => setCategory(options)}
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  options={menu.map((item: any, index: number) => ({
+                    value: item.name,
+                    label: item.name,
+                    index: index,
+                  }))}
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="subcategory"
+                  className="form-label inline-block mb-2 text-indigo-700 text-base"
+                >
+                  Choose Sub-category <span className="text-red-500">*</span>
+                </label>
+                <br />
+                <Select
+                  aria-required
+                  showSearch
+                  disabled={!category ? true : false}
+                  id="subcategory"
+                  style={{ width: "100%" }}
+                  size="large"
+                  placeholder="Select sub-category"
+                  optionFilterProp="children"
+                  onChange={(value, options: any) => setSubCategory(options)}
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  options={categoryItem?.items.map(
+                    (item: any, index: number) => ({
+                      value: item.name,
+                      label: item.name,
+                      index: index,
+                      extraSub: item.items ? true : false,
+                    })
+                  )}
+                />
+              </div>
+            </div>
+            {subCategory?.extraSub && (
+              <div className="mt-3">
+                <label
+                  htmlFor="extrasubcategory"
+                  className="form-label inline-block mb-2 text-indigo-700 text-base"
+                >
+                  Choose Extra-sub-category
+                </label>
+                <br />
+                <Select
+                  showSearch
+                  disabled={!category ? true : false}
+                  id="extrasubcategory"
+                  style={{ width: "100%" }}
+                  size="large"
+                  placeholder="Select extra-sub-category"
+                  optionFilterProp="children"
+                  onChange={(value) => setExtraSubCategory(value)}
+                  filterOption={(input, option) =>
+                    (option?.label ?? "")
+                      .toLowerCase()
+                      .includes(input.toLowerCase())
+                  }
+                  options={subCategoryItem?.items?.map(
+                    (item: any, index: number) => ({
+                      value: item.name,
+                      label: item.name,
+                      index: index,
+                    })
+                  )}
+                />
+              </div>
+            )}
           </div>
           {/* Key Features */}
           <div className="flex justify-start mt-5">
@@ -310,7 +477,7 @@ function AddProducts() {
             </div>
           </div>
           {/* Specifications */}
-          <div className="pb-10">
+          <div className="">
             <div className="flex justify-start mt-1">
               <div className="xl:w-full">
                 <div className="flex flex-row justify-between items-center shadow mb-2 bg-indigo-50 shadow-indigo-200 p-1 rounded pl-3">
@@ -579,7 +746,7 @@ function AddProducts() {
               type="button"
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
-              disabled={uploadStatus}
+              disabled={uploadStatus || imgLoading}
               onClick={() => uploadImages()}
               className={`inline-block w-full px-6 py-2.5 ${
                 !uploadStatus
@@ -587,7 +754,17 @@ function AddProducts() {
                   : "bg-gray-600"
               } text-white font-medium text-sm leading-tight rounded shadow-md focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out`}
             >
-              {!uploadStatus ? "Upload Images" : "Uploaded"}
+              {imgLoading && (
+                <div
+                  className="spinner-border animate-spin inline-block w-3 h-3 border-2 rounded-full mr-2"
+                  role="status"
+                />
+              )}
+              {imgLoading
+                ? "Uploading"
+                : !uploadStatus
+                ? "Upload Images"
+                : "Uploaded"}
             </button>
             <button
               type="submit"
