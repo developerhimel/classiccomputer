@@ -3,7 +3,7 @@ import { MongoClient } from "mongodb";
 
 export default async function handler(req: NextApiRequest, res: any) {
   if (req.method === "POST") {
-    const { query } = req.body;
+    const { filterId } = req.body;
     const client = await MongoClient.connect(
       process.env.NEXT_PUBLIC_MONGODB_URL as string
     );
@@ -11,19 +11,17 @@ export default async function handler(req: NextApiRequest, res: any) {
     const db = client.db("cc");
 
     const products = db.collection("products");
-    if (query !== "") {
-      const filteredProducts = await products
-        .find({ $text: { $search: query } })
-        .toArray();
-      // await products.createIndex({ name: "text" });
-      // const filteredProducts = await products
-      //   .find({ $text: { $search: query } })
-      //   .toArray();
-
-      res.json(filteredProducts);
-    } else {
-      res.json([]);
-    }
+    const filteredProducts = await products
+      .find({ name: { $regex: filterId as string, $options: "i" } })
+      .toArray();
+    const highToLow = await products
+      .find({ name: { $regex: filterId as string, $options: "i" } })
+      .sort({ discountPrice: -1 })
+      .toArray();
+    res.json({
+      filteredProducts: filteredProducts,
+      highToLow: highToLow[0]?.discountPrice,
+    });
 
     client.close();
   } else {

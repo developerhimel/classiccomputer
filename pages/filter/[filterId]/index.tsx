@@ -11,12 +11,18 @@ const FilterPage: NextPage = (props: any) => {
     <>
       <Head>
         <title>
-          {query.filterId} - Classic Computer || Largest tech accessories shop
-          in Bangladesh
+          {`${query.cg} - Classic Computer || Largest tech accessories shop
+          in Bangladesh`}
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="asdfwadffwaf" />
-        <meta name="keywords" content="asfw weradsf" />
+        <meta
+          name="description"
+          content="Classic Computer || Largest tech accessories shop in Bangladesh"
+        />
+        <meta
+          name="keywords"
+          content="Largest tech accessories shop in Bangladesh"
+        />
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <Filter />

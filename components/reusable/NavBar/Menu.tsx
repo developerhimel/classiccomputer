@@ -7,7 +7,15 @@ function Menu() {
   const MenuItems = (props: { name: string; mainItem: any; id: number }) => {
     return (
       <>
-        <Link href={"/"} className="text-sm hover:underline">
+        <Link
+          href={{
+            pathname: `/filter/${props.name
+              .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+              .toLowerCase()}`,
+            query: { id: "63fcf7073cb15db45b5a5811", cg: props.name },
+          }}
+          className="text-sm hover:underline"
+        >
           {props.name}
         </Link>
         {props.mainItem.items && (

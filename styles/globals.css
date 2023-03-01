@@ -31,6 +31,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+li::marker{
+  margin-right: 0px !important;
+}
 .requiredStyle {
   position: absolute;
   inset: auto auto 0px 0px;

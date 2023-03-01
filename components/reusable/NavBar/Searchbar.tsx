@@ -10,11 +10,13 @@ function Searchbar() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [filtered, setFiltered] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const cancelButtonRef = useRef(null);
 
   const handleSearch = async (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setLoading(true);
+    setSearchText(e.target.value);
     const res = await fetch("/api/search/search", {
       method: "POST",
       headers: {
@@ -117,6 +119,20 @@ function Searchbar() {
                         placeholder="Search"
                         autoFocus
                         onChange={debounce(handleSearch, 500)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            setOpen(false);
+                            setFiltered([]);
+                            router.push({
+                              pathname: `/filter/${searchText
+                                .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                                .toLowerCase()}`,
+                              query: {
+                                cg: searchText,
+                              },
+                            });
+                          }
+                        }}
                       />
                       <button
                         className="border px-1 rounded bg-gray-50"
@@ -134,6 +150,18 @@ function Searchbar() {
                         ) : filtered.length > 6 ? (
                           <div className="pt-2">
                             <button
+                              onClick={() => {
+                                setOpen(false);
+                                setFiltered([]);
+                                router.push({
+                                  pathname: `/filter/${searchText
+                                    .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                                    .toLowerCase()}`,
+                                  query: {
+                                    cg: searchText,
+                                  },
+                                });
+                              }}
                               type="button"
                               className="hover:text-red-500 hover:underline px-2"
                             >

@@ -1,9 +1,456 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { CaretRightOutlined } from "@ant-design/icons";
+import { Collapse, Select, Slider } from "antd";
+import brands from "../../json/brands.json";
+import {
+  Backdrop,
+  Checkbox,
+  CircularProgress,
+  FormControlLabel,
+} from "@mui/material";
+import ProductUi from "./ProductUi";
+
+const { Panel } = Collapse;
 
 function Filter() {
+  const router = useRouter();
+  const query = router.query;
+  const [loading, setLoading] = useState(false);
+  const [range, setRange] = useState<[number, number]>();
+  const [minPriceRange, setMinPriceRange] = useState(undefined as any);
+  const [maxPriceRange, setMaxPriceRange] = useState(undefined as any);
+  const [max, setMax] = useState<number>();
+  const [data, setData] = useState(undefined as any);
+  const [filteredData, setFilteredData] = useState(undefined as any);
+  const [showCount, setShowCount] = useState<number>(20);
+  const [updatedBrands, setUpdatedBrands] = useState(undefined as any);
+
+  const handleChangehl = (value: string) => {
+    setLoading(true);
+    if (filteredData) {
+      const newDataAsc = [...filteredData].sort(
+        (a: any, b: any) => a.discountPrice - b.discountPrice
+      );
+      const newDataDesc = [...filteredData].sort(
+        (a: any, b: any) => b.discountPrice - a.discountPrice
+      );
+      if (value === "Low to High") {
+        setTimeout(() => {
+          setFilteredData(newDataAsc);
+          setLoading(false);
+        }, 500);
+      } else if (value === "High to Low") {
+        setTimeout(() => {
+          setFilteredData(newDataDesc);
+          setLoading(false);
+        }, 500);
+      } else {
+        setTimeout(() => {
+          setFilteredData(data);
+          setLoading(false);
+        }, 500);
+      }
+    } else {
+      const newDataAsc = [...data].sort(
+        (a: any, b: any) => a.discountPrice - b.discountPrice
+      );
+      const newDataDesc = [...data].sort(
+        (a: any, b: any) => b.discountPrice - a.discountPrice
+      );
+      if (value === "Low to High") {
+        setTimeout(() => {
+          setFilteredData(newDataAsc);
+          setLoading(false);
+        }, 500);
+      } else if (value === "High to Low") {
+        setTimeout(() => {
+          setFilteredData(newDataDesc);
+          setLoading(false);
+        }, 500);
+      } else {
+        setTimeout(() => {
+          setFilteredData(data);
+          setLoading(false);
+        }, 500);
+      }
+    }
+  };
+
+  const handleChange = (value: string) => {
+    setLoading(true);
+    if (data) {
+      if (value === "20") {
+        setTimeout(() => {
+          setShowCount(20);
+          setLoading(false);
+        }, 500);
+      } else if (value === "30") {
+        setTimeout(() => {
+          setShowCount(30);
+          setLoading(false);
+        }, 500);
+      } else if (value === "40") {
+        setTimeout(() => {
+          setShowCount(40);
+          setLoading(false);
+        }, 500);
+      } else if (value === "50") {
+        setTimeout(() => {
+          setShowCount(50);
+          setLoading(false);
+        }, 500);
+      }
+    }
+  };
+
+  //   useEffect(() => {
+  // if(filteredData){
+  //   const newDataByRange = filteredData.filter(
+  //     (item: any) =>
+  //       item.discountPrice >=
+  //         (value[0] / 100) *
+  //           (max !== undefined ? max : 0) &&
+  //       item.discountPrice <=
+  //         (value[1] / 100) * (max !== undefined ? max : 0)
+  //   );
+  // }
+  //   }, [data,filteredData]);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch("/api/filter/filter", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        filterId: query.cg,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.filteredProducts);
+        setFilteredData(data.filteredProducts);
+        setMaxPriceRange(data.highToLow);
+        setMax(data.highToLow);
+        setLoading(false);
+      });
+    setRange([0, 100]);
+    setMinPriceRange(0);
+    setMaxPriceRange(0);
+  }, [query.cg]);
+
   return (
-    <div>Filter</div>
-  )
+    <div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={loading}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      {/* Breadcamp section start */}
+      <div className="bg-white py-3 shadow">
+        <nav className="flex container m-auto" aria-label="Breadcrumb">
+          <ol className="inline-flex items-center space-x-1 md:space-x-3">
+            <li className="inline-flex items-center">
+              <Link
+                href="/"
+                className="inline-flex items-center text-xs font-medium text-gray-700 hover:text-red-500 hover:underline dark:text-gray-400 dark:hover:text-white"
+              >
+                <svg
+                  aria-hidden="true"
+                  className="w-3 h-3 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                </svg>
+                Home
+              </Link>
+            </li>
+            <li>
+              <div className="flex items-center">
+                <svg
+                  aria-hidden="true"
+                  className="w-4 h-4 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+                <Link
+                  href={"/"}
+                  className="ml-1 text-xs font-medium text-gray-700 hover:text-red-500 hover:underline md:ml-2 dark:text-gray-400 dark:hover:text-white"
+                >
+                  {query.cg}
+                </Link>
+              </div>
+            </li>
+            {/* <li aria-current="page">
+              <div className="flex items-center">
+                <svg
+                  aria-hidden="true"
+                  className="w-4 h-4 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+                <span className="ml-1 text-xs font-medium text-gray-500 md:ml-2 dark:text-gray-400">
+                  Flowbite
+                </span>
+              </div>
+            </li> */}
+          </ol>
+        </nav>
+      </div>
+      {/* Breadcamp section end */}
+      <div className="container m-auto min-h-screen">
+        <div className="py-5 flex gap-5">
+          <div className="max-w-xs">
+            <Collapse
+              bordered={false}
+              defaultActiveKey={["1", "2", "3"]}
+              expandIconPosition="end"
+              expandIcon={({ isActive }) => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
+              className="bg-transparent"
+            >
+              <Panel
+                className="shadow-sm mb-2 bg-white text-base rounded"
+                header="Price Range"
+                key="1"
+              >
+                <div className="border-t py-2">
+                  <Slider
+                    range={{ draggableTrack: true }}
+                    defaultValue={range}
+                    value={range}
+                    onAfterChange={(value: [number, number]) => {
+                      setLoading(true);
+                      setTimeout(() => {
+                        const newDataByRange = data.filter(
+                          (item: any) =>
+                            item.discountPrice >=
+                              (value[0] / 100) *
+                                (max !== undefined ? max : 0) &&
+                            item.discountPrice <=
+                              (value[1] / 100) * (max !== undefined ? max : 0)
+                        );
+                        setFilteredData(newDataByRange);
+                        setLoading(false);
+                      }, 500);
+                    }}
+                    onChange={(value: [number, number]) => {
+                      setRange(value);
+                      const x =
+                        (value[0] / 100) * (max !== undefined ? max : 0);
+                      const y =
+                        (value[1] / 100) * (max !== undefined ? max : 0);
+                      setMinPriceRange(x);
+                      setMaxPriceRange(y);
+                    }}
+                    tooltip={{ open: false }}
+                  />
+                </div>
+                <div className="flex justify-between flex-row w-full pb-2">
+                  <input
+                    className="w-1/2 mr-2 py-2 bg-white rounded shadow-sm px-3 border border-gray-200"
+                    type="number"
+                    value={minPriceRange}
+                    onChange={(e) =>
+                      setMinPriceRange(Number(e.target.value).toFixed(0))
+                    }
+                  />
+                  <input
+                    className="w-1/2 ml-2 py-2 bg-white rounded shadow-sm px-3 border border-gray-200"
+                    type="number"
+                    value={maxPriceRange}
+                    onChange={(e) =>
+                      setMaxPriceRange(Number(e.target.value).toFixed(0))
+                    }
+                  />
+                </div>
+              </Panel>
+              <Panel
+                className="shadow-sm mb-2 bg-white text-base rounded"
+                header="Availability"
+                key="2"
+              >
+                <div className="border-t py-2">
+                  <div className="flex flex-col justify-center">
+                    <FormControlLabel
+                      className="hover:bg-gray-100 m-0"
+                      control={<Checkbox size="small" defaultChecked={false} />}
+                      label="In Stock"
+                    />
+                    <FormControlLabel
+                      className="hover:bg-gray-100 m-0"
+                      control={<Checkbox size="small" defaultChecked={false} />}
+                      label="Pre Order"
+                    />
+                    <FormControlLabel
+                      className="hover:bg-gray-100 m-0"
+                      control={<Checkbox size="small" defaultChecked={false} />}
+                      label="Up Coming"
+                    />
+                  </div>
+                </div>
+                {/* invisible div start */}
+                <div className="flex justify-between flex-row w-full invisible h-0">
+                  <input
+                    className="w-1/2 bg-white rounded shadow-sm border border-gray-200 h-0"
+                    type="number"
+                    disabled
+                  />
+                  <input
+                    className="w-1/2 bg-white rounded shadow-sm border border-gray-200 h-0"
+                    type="number"
+                    disabled
+                  />
+                </div>
+                {/* invisible div end */}
+              </Panel>
+              <Panel
+                className="shadow-sm mb-2 bg-white text-base rounded"
+                header="Brands"
+                key="3"
+              >
+                <div className="border-t py-2">
+                  <div className="flex flex-col justify-center">
+                    {brands.slice(0, 20).map((item: any, index: number) => (
+                      <FormControlLabel
+                        key={index}
+                        className="hover:bg-gray-100 m-0 text-xs"
+                        control={
+                          <Checkbox
+                            sx={{ "& .MuiSvgIcon-root": { fontSize: 14 } }}
+                            defaultChecked={false}
+                          />
+                        }
+                        label={item.value}
+                      />
+                    ))}
+                  </div>
+                </div>
+                {/* invisible div start */}
+                <div className="flex justify-between flex-row w-full invisible h-0">
+                  <input
+                    className="w-1/2 bg-white rounded shadow-sm border border-gray-200 h-0"
+                    type="number"
+                    disabled
+                  />
+                  <input
+                    className="w-1/2 bg-white rounded shadow-sm border border-gray-200 h-0"
+                    type="number"
+                    disabled
+                  />
+                </div>
+                {/* invisible div end */}
+              </Panel>
+            </Collapse>
+          </div>
+          <div className="w-full">
+            <div className="bg-white py-2 px-3 rounded shadow flex justify-between items-center">
+              <h2>
+                {query.cg} - {filteredData ? filteredData.length : data?.length}
+              </h2>
+              <div className="flex gap-3">
+                <div>
+                  <span className="text-sm font-semibold mr-1">Sort by: </span>
+                  <Select
+                    defaultValue="Default"
+                    style={{ width: 100 }}
+                    onChange={handleChangehl}
+                    options={[
+                      { value: "Default", label: "Default" },
+                      { value: "Low to High", label: "Low to High" },
+                      { value: "High to Low", label: "High to Low" },
+                    ]}
+                  />
+                </div>
+                <div>
+                  <span className="text-sm font-semibold mr-1">Show: </span>
+                  <Select
+                    defaultValue="20"
+                    style={{ width: 60 }}
+                    onChange={handleChange}
+                    options={[
+                      {
+                        value: "20",
+                        label: "20",
+                        disabled: filteredData
+                          ? filteredData.length < 20
+                            ? true
+                            : false
+                          : data?.length < 20
+                          ? true
+                          : false,
+                      },
+                      {
+                        value: "30",
+                        label: "30",
+                        disabled: filteredData
+                          ? filteredData.length < 30
+                            ? true
+                            : false
+                          : data?.length < 30
+                          ? true
+                          : false,
+                      },
+                      {
+                        value: "40",
+                        label: "40",
+                        disabled: filteredData
+                          ? filteredData.length < 40
+                            ? true
+                            : false
+                          : data?.length < 40
+                          ? true
+                          : false,
+                      },
+                      {
+                        value: "50",
+                        label: "50",
+                        disabled: filteredData
+                          ? filteredData.length < 50
+                            ? true
+                            : false
+                          : data?.length < 50
+                          ? true
+                          : false,
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="my-2 grid grid-cols-5 gap-3">
+              {filteredData ? (
+                <ProductUi limit={showCount} data={filteredData} />
+              ) : (
+                <ProductUi limit={showCount} data={data} />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Filter
+export default Filter;

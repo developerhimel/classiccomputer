@@ -16,5 +16,5 @@ module.exports = {
     require("tw-elements/dist/plugin"),
   ],
   // darkMode: 'class',
-  // important: true,
+  important: true,
 };

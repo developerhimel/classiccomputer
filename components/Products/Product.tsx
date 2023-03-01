@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { Image, Tabs } from "antd";
+import { FloatButton, Image, Tabs } from "antd";
 import { NumericFormat } from "react-number-format";
 import { RadioGroup } from "@headlessui/react";
 import { useRouter } from "next/router";
@@ -204,7 +204,6 @@ function Product(props: { menu: any; product: any }) {
                           <Link
                             className="text-base text-red-500 border-b pb-1 border-red-500 hover:border-b-2 animate-pulse"
                             href={"#specificationsId"}
-                            // href={"/"}
                           >
                             Explore More...
                           </Link>
