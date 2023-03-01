@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { Fragment, useState } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { MenuProps, Modal, MenuTheme } from "antd";
 import { Dropdown } from "antd";
@@ -8,6 +8,7 @@ import { MenuOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { DarkThemeToggle, Flowbite, Tooltip } from "flowbite-react";
 import Menu from "./Menu";
 import { useRouter } from "next/router";
+import User from "./user";
 
 const DynamicSearchbar = dynamic(() => import("./Searchbar"), {
   suspense: true,
@@ -15,6 +16,27 @@ const DynamicSearchbar = dynamic(() => import("./Searchbar"), {
 
 function Navbar() {
   const router = useRouter();
+  const [user, setUser] = useState(undefined as any);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const userId = localStorage.getItem("user");
+    if (userId) {
+      fetch("/api/user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: userId,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUser(data);
+        });
+    }
+  }, [router.asPath]);
 
   const items: MenuProps["items"] = [
     {
@@ -185,32 +207,36 @@ function Navbar() {
                       </div>
                     </div>
                   </Link>
-                  <Dropdown menu={{ items }} placement="bottom" arrow>
-                    <div className="flex flex-row items-center hover:cursor-pointer">
-                      <div className="px-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="w-6 h-6 ccprimary"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                          />
-                        </svg>
+                  {user ? (
+                    <User user={user} setUser={setUser} />
+                  ) : (
+                    <Dropdown menu={{ items }} placement="bottom" arrow>
+                      <div className="flex flex-row items-center hover:cursor-pointer">
+                        <div className="px-2">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="w-6 h-6 ccprimary"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                            />
+                          </svg>
+                        </div>
+                        <div>
+                          <h2 className="text-gray-800 text-base">Account</h2>
+                          <h3 className="text-gray-400 text-xs">
+                            Register || Login
+                          </h3>
+                        </div>
                       </div>
-                      <div>
-                        <h2 className="text-gray-800 text-base">Account</h2>
-                        <h3 className="text-gray-400 text-xs">
-                          Register || Login
-                        </h3>
-                      </div>
-                    </div>
-                  </Dropdown>
+                    </Dropdown>
+                  )}
                   {/* <Flowbite>
                     <Tooltip content="Switch Theme" style="light">
                       <DarkThemeToggle className="focus:outline-none focus:bg-gray-800 hover:bg-none" />

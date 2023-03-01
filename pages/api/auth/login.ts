@@ -54,7 +54,7 @@ export default async function handler(req: NextApiRequest, res: any) {
         });
 
         res.setHeader("Set-Cookie", serialised);
-        res.status(200).json({ message: "success" });
+        res.status(200).json({ message: "success", userId: foundUser._id });
       }
     }
     client.close();
