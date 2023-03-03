@@ -21,8 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {router.route.startsWith("/admin") ||
-      router.route.startsWith("/register") ? (
+      {router.route.startsWith("/admin") ? (
         <Component {...pageProps} />
       ) : (
         <>

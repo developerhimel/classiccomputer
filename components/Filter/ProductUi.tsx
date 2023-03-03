@@ -57,9 +57,11 @@ function ProductUi(props: { data: any; limit: number }) {
                 query: { id: item._id },
               }}
             >
-              <h3 className="hover:text-red-500 hover:underline line-clamp-2 text-ellipsis">
-                {item?.name}
-              </h3>
+              <div className="w-full h-10">
+                <h3 className="hover:text-red-500 hover:underline line-clamp-2 text-ellipsis">
+                  {item?.name}
+                </h3>
+              </div>
             </Link>
           </div>
           <div className="border-b mx-3 pb-2 min-h-[120px]">

@@ -7,7 +7,7 @@ import React from "react";
 function Logout(props: { user: any; setUser: any }) {
   const router = useRouter();
   return (
-    <Tooltip title="Logout">
+    <Tooltip placement="bottom" title="Logout">
       <button
         type="button"
         onClick={async () => {
@@ -19,9 +19,9 @@ function Logout(props: { user: any; setUser: any }) {
             router.push("/");
           }
         }}
-        className="bg-gray-200 w-12 group hover:bg-gray-300 duration-200"
+        className="bg-red-200 w-12 group hover:bg-red-300 rounded-r"
       >
-        <i className="fa-duotone fa-right-from-bracket text-red-500 group-hover:scale-110 duration-200 ease-in-out"></i>
+        <i className="fa-duotone fa-right-from-bracket text-red-500 group-hover:scale-110"></i>
       </button>
     </Tooltip>
   );

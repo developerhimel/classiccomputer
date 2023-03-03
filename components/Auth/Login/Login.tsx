@@ -1,6 +1,8 @@
 import { Button } from "@mui/material";
 import { message } from "antd";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import Image from "next/image";
 import React, { useState } from "react";
 
 function Login() {
@@ -9,9 +11,17 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState(undefined as any);
   const [password, setPassword] = useState(undefined as any);
-  
+
   const handleLogin = async () => {
     setLoading(true);
+    if (!email || !password) {
+      messageApi.open({
+        type: "warning",
+        content: "Email / Password cannot be empty!",
+      });
+      setLoading(false);
+      return;
+    }
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: {
@@ -63,6 +73,19 @@ function Login() {
         <div className="container m-auto">
           <div className="flex justify-center items-center">
             <form className="bg-white shadow-sky-200 border shadow rounded-lg mt-14 w-[600px] p-10">
+              <div className="flex justify-center">
+                <Link href={"/"}>
+                  <div className="w-28 h-14 relative">
+                    <Image
+                      alt="Logo"
+                      src={"/assets/logo/logo1.png"}
+                      fill
+                      priority={true}
+                      className="object-contain"
+                    />
+                  </div>
+                </Link>
+              </div>
               <h1 className="text-lg font-semibold text-center">
                 Account Login
               </h1>
@@ -71,6 +94,7 @@ function Login() {
                   Email Address :
                 </label>
                 <input
+                  required
                   type="email"
                   name="loginEmail"
                   id="loginEmail"
@@ -84,6 +108,7 @@ function Login() {
                   Password :
                 </label>
                 <input
+                  required
                   type="password"
                   name="loginPassword"
                   id="loginPassword"
@@ -101,6 +126,7 @@ function Login() {
                 </button>
               </div>
               <Button
+                type="submit"
                 disabled={loading}
                 onClick={() => handleLogin()}
                 className={`w-full font-semibold ${
@@ -126,6 +152,7 @@ function Login() {
                 <div className="w-full border-b" />
               </div>
               <Button
+                onClick={() => router.push("/register")}
                 className="w-full font-semibold hover:bg-sky-600 shadow-none py-2 border border-sky-600 bg-white text-sky-600 hover:text-white"
                 variant="outlined"
               >

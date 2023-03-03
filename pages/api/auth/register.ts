@@ -4,7 +4,7 @@ var CryptoJS = require("crypto-js");
 
 export default async function handler(req: NextApiRequest, res: any) {
   if (req.method === "POST") {
-    const { fullName, email, password } = req.body;
+    const { fullName, email, phone, password } = req.body;
     const client = await MongoClient.connect(
       process.env.NEXT_PUBLIC_MONGODB_URL as string
     );
@@ -24,6 +24,7 @@ export default async function handler(req: NextApiRequest, res: any) {
         .insertOne({
           fullName: fullName,
           email: email,
+          phone: phone,
           password: CryptoJS.AES.encrypt(
             password,
             process.env.NEXT_PUBLIC_SECRET_KEY

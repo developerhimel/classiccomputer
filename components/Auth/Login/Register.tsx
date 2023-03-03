@@ -1,164 +1,200 @@
-import React, { useState } from "react";
+import { Button } from "@mui/material";
+import { message, Modal } from "antd";
 import Link from "next/link";
-import { message } from "antd";
+import Image from "next/image";
 import { useRouter } from "next/router";
+import React, { useState } from "react";
 
-export default function Login() {
+function Register() {
   const router = useRouter();
-  const [messageApi, contextHolder] = message.useMessage();
+  const [messageApi, contextHolderMessage] = message.useMessage();
+  const [modal, contextHolderModal] = Modal.useModal();
   const [loading, setLoading] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [registerFullName, setRegisterFullName] = useState(undefined as any);
+  const [registerEmail, setRegisterEmail] = useState(undefined as any);
+  const [registerPhoneNumber, setRegisterPhoneNumber] = useState(
+    undefined as any
+  );
+  const [registerPassword, setRegisterPassword] = useState(undefined as any);
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     setLoading(true);
-    const res = await fetch("/api/auth/login", {
+    if (!registerFullName || !registerEmail || !registerPassword) {
+      messageApi.open({
+        type: "warning",
+        content: "Fields cannot be empty!",
+      });
+      setLoading(false);
+      return;
+    }
+    const res = await fetch("/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: username,
-        password: password,
+        fullName: registerFullName,
+        email: registerEmail,
+        phone: registerPhoneNumber as number,
+        password: registerPassword,
       }),
     });
     const data = await res.json();
-    console.log(data.message);
+    console.log(data);
 
-    if (data.message === "success") {
-      messageApi
-        .open({
-          type: "success",
-          content: "You have successfully logged in.",
-        })
-        .then(() => {
-          localStorage.setItem("user", username);
-          setLoading(false);
-          router.push("/Admin/dashboard");
-        });
-    } else if (data.message === "user not found") {
-      messageApi.open({
-        type: "error",
-        content: "user not found!",
-      });
+    if (data.message === "user inserted") {
       setLoading(false);
-    } else if (data.message === "invalid password") {
-      messageApi.open({
-        type: "error",
-        content: "You have entered invalid password!",
+      modal.success({
+        centered: true,
+        closable: false,
+        okText: "Login",
+        title: "Registered",
+        onOk: () => router.push("/login"),
+        content:
+          "You have successfully registered on Classic Computer. Login now.",
+        bodyStyle: { padding: "20px 24px" },
       });
-      setLoading(false);
-    } else if (data.message === "unverified user") {
+    } else if (data.message === "email already exists") {
       messageApi.open({
         type: "error",
-        content: "User is not approved. Please contact Classic Computer Admin.",
+        content: "email already exists!",
       });
       setLoading(false);
     }
   };
   return (
-    <div>
-      {contextHolder}
-      <section className="h-full gradient-form bg-gray-200 md:h-screen">
-        <div className="container py-12 px-6 h-full m-auto">
-          <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-            <div className="xl:w-10/12">
-              <div className="block bg-white shadow-lg rounded-lg">
-                <div className="lg:flex lg:flex-wrap g-0">
-                  <div className="lg:w-6/12 px-4 md:px-0">
-                    <div className="md:p-12 md:mx-6">
-                      <div className="text-center">
-                        <Link href={"/"}>
-                          <img
-                            className="mx-auto w-48"
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                            alt="logo"
-                          />
-                        </Link>
-                        <h4 className="text-xl font-semibold mt-1 mb-12 pb-1">
-                          Classic Computer Admin Login
-                        </h4>
-                      </div>
-                      <form>
-                        <p className="mb-4">Please login to your account</p>
-                        <div className="mb-4">
-                          <input
-                            type="text"
-                            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            id="username"
-                            placeholder="Username"
-                            onChange={(e) => setUsername(e.target.value)}
-                          />
-                        </div>
-                        <div className="mb-4">
-                          <input
-                            type="password"
-                            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            id="password"
-                            placeholder="Password"
-                            onChange={(e) => setPassword(e.target.value)}
-                          />
-                        </div>
-                        <div className="text-center pt-1 mb-12 pb-1">
-                          <button
-                            disabled={loading}
-                            onClick={() => handleLogin()}
-                            className="inline-block items-center px-6 py-2.5 bg-gradient-to-r from-orange-500 via-pink-700 to-indigo-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
-                            type="button"
-                            data-mdb-ripple="true"
-                            data-mdb-ripple-color="light"
-                          >
-                            {loading && (
-                              <div
-                                className="spinner-border animate-spin inline-block w-3 h-3 border-2 rounded-full mr-1"
-                                role="status"
-                              >
-                                <span className="visually-hidden">
-                                  Loading...
-                                </span>
-                              </div>
-                            )}
-                            Log in
-                          </button>
-                          <a className="text-gray-500" href="">
-                            Forgot password?
-                          </a>
-                        </div>
-                        <div className="flex items-center justify-between pb-6">
-                          <p className="mb-0 mr-2">Dont have an account?</p>
-                          <button
-                            onClick={() => router.push("/Admin/register")}
-                            type="button"
-                            className="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-                            data-mdb-ripple="true"
-                            data-mdb-ripple-color="light"
-                          >
-                            Get One
-                          </button>
-                        </div>
-                      </form>
-                    </div>
+    <>
+      {contextHolderMessage}
+      <>{contextHolderModal}</>
+      <div className="w-full min-h-[70vh] bg-white">
+        <div className="container m-auto">
+          <div className="flex justify-center items-center">
+            <form className="bg-white shadow-sky-200 border shadow rounded-lg my-14 w-[600px] p-10">
+              <div className="flex justify-center">
+                <Link href={"/"}>
+                  <div className="w-28 h-14 relative">
+                    <Image
+                      alt="Logo"
+                      src={"/assets/logo/logo1.png"}
+                      fill
+                      priority={true}
+                      className="object-contain"
+                    />
                   </div>
-                  <div className="lg:w-6/12 flex items-center lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none bg-gradient-to-br from-orange-400 via-pink-700 to-indigo-700">
-                    <div className="text-white px-4 py-6 md:p-12 md:mx-6">
-                      <h4 className="text-xl font-semibold mb-6">
-                        We are more than just a company
-                      </h4>
-                      <p className="text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex
-                        ea commodo consequat.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                </Link>
               </div>
-            </div>
+              <h1 className="text-lg font-semibold text-center">
+                Account Registration
+              </h1>
+              <div className="flex flex-col mt-2">
+                <label className="my-2" htmlFor="loginEmail">
+                  Full Name :
+                </label>
+                <input
+                  required
+                  type="text"
+                  aria-autocomplete="none"
+                  name="registerFullName"
+                  id="registerFullName"
+                  placeholder="Full Name"
+                  className="rounded border border-gray-300"
+                  onChange={(e) => setRegisterFullName(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col mt-2">
+                <label className="my-2" htmlFor="loginEmail">
+                  Email Address :
+                </label>
+                <input
+                  required
+                  type="text"
+                  aria-autocomplete="none"
+                  name="registerEmail"
+                  id="registerEmail"
+                  placeholder="Email"
+                  className="rounded border border-gray-300"
+                  onChange={(e) => setRegisterEmail(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col mt-2">
+                <label className="my-2" htmlFor="loginEmail">
+                  Phone Number :
+                </label>
+                <input
+                  required
+                  type="number"
+                  aria-autocomplete="none"
+                  name="registerPhoneNumber"
+                  id="registerPhoneNumber"
+                  placeholder="+880 -"
+                  className="rounded border border-gray-300"
+                  onChange={(e) => setRegisterPhoneNumber(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col mt-2">
+                <label className="my-2" htmlFor="loginPassword">
+                  Password :
+                </label>
+                <input
+                  required
+                  type="password"
+                  aria-autocomplete="none"
+                  name="registerPassword"
+                  id="registerPassword"
+                  placeholder="password"
+                  className="rounded border border-gray-300"
+                  onChange={(e) => setRegisterPassword(e.target.value)}
+                />
+              </div>
+              <div className="flex justify-end my-3">
+                <button
+                  className="text-red-500 text-sm hover:underline hover:scale-105 duration-300 ease-in-out"
+                  type="button"
+                >
+                  Forgotten Password?
+                </button>
+              </div>
+              <Button
+                type="submit"
+                disabled={loading}
+                onClick={() => handleRegister()}
+                className={`w-full font-semibold ${
+                  loading ? "bg-gray-200" : "bg-sky-500"
+                } shadow-none py-2 hover:bg-sky-600`}
+                variant="contained"
+              >
+                Register
+                {loading && (
+                  <div
+                    className="spinner-border animate-spin inline-block w-3 h-3 border-2 rounded-full ml-2"
+                    role="status"
+                  >
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                )}
+              </Button>
+              <div className="grid grid-cols-3 items-center gap-3 my-5">
+                <div className="w-full border-b" />
+                <div>
+                  <h1 className="text-sm text-center">
+                    Already have an account
+                  </h1>
+                </div>
+                <div className="w-full border-b" />
+              </div>
+              <Button
+                onClick={() => router.push("/login")}
+                className="w-full font-semibold hover:bg-sky-600 shadow-none py-2 border border-sky-600 bg-white text-sky-600 hover:text-white"
+                variant="outlined"
+              >
+                Login
+              </Button>
+            </form>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </>
   );
 }
+
+export default Register;
