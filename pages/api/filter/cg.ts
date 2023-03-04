@@ -3,7 +3,7 @@ import { MongoClient } from "mongodb";
 
 export default async function handler(req: NextApiRequest, res: any) {
   if (req.method === "POST") {
-    const { filterId } = req.body;
+    const { cg } = req.body;
     const client = await MongoClient.connect(
       process.env.NEXT_PUBLIC_MONGODB_URL as string
     );
@@ -11,11 +11,9 @@ export default async function handler(req: NextApiRequest, res: any) {
     const db = client.db("cc");
 
     const products = db.collection("products");
-    const filteredProducts = await products
-      .find({ name: { $regex: filterId as string, $options: "i" } })
-      .toArray();
+    const filteredProducts = await products.find({ category: cg }).toArray();
     const highToLow = await products
-      .find({ name: { $regex: filterId as string, $options: "i" } })
+      .find({ category: cg })
       .sort({ discountPrice: -1 })
       .toArray();
     res.json({

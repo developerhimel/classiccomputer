@@ -13,6 +13,7 @@ function Product() {
   const [paymentType, setPaymentType] = useState("normal");
   const [buyQuantity, setBuyQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [pmimg, setPmimg] = useState(true);
   const [product, setProduct] = useState(undefined as any);
 
   useEffect(() => {
@@ -137,7 +138,7 @@ function Product() {
                       <DotChartOutlined
                         style={{ fontSize: 40, color: "#bfbfbf" }}
                       />
-                    </Skeleton.Node>
+                    </Skeleton.Node> 
                   </div>
                 </div>
               </div>
@@ -155,12 +156,19 @@ function Product() {
                     <div className="container m-auto">
                       <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-10 mb-20">
                         <div>
-                          <div className="flex flex-col justify-center items-center">
+                          <div className="flex flex-col justify-center items-center h-[500px]">
+                            {pmimg && (
+                              <Skeleton.Image
+                                className="w-full h-full"
+                                active={pmimg}
+                              />
+                            )}
                             <Image
                               className="w-full object-contain"
                               placeholder
                               src={item.src}
-                              alt="Product Main Image"
+                              alt={item.name}
+                              onLoad={() => setPmimg(false)}
                             />
                           </div>
                           <div className="w-full justify-center items-center flex flex-row py-3">

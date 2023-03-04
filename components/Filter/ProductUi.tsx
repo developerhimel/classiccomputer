@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NumericFormat } from "react-number-format";
 import Image from "next/image";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DifferenceIcon from "@mui/icons-material/Difference";
 import Link from "next/link";
 import { Button } from "@mui/material";
+import { Skeleton } from "antd";
 
 function ProductUi(props: { data: any; limit: number }) {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+  }, [props.data]);
+
   return (
     <>
       {props.data?.slice(0, props.limit).map((item: any, index: number) => (
@@ -30,6 +36,9 @@ function ProductUi(props: { data: any; limit: number }) {
               </span>
             </div>
             <div className="p-3 relative w-full h-[230px] overflow-hidden border-b-2">
+              {loading && (
+                <Skeleton.Image className="w-full h-full" active={loading} />
+              )}
               <Link
                 href={{
                   pathname: `/${item.name
@@ -39,10 +48,10 @@ function ProductUi(props: { data: any; limit: number }) {
                 }}
               >
                 <Image
-                  loading="lazy"
                   src={item.src}
                   fill
                   alt={item.name}
+                  onLoad={() => setLoading(false)}                  
                   className="w-full group-hover/main:scale-105 ease-in-out duration-300 object-contain p-5"
                 />
               </Link>

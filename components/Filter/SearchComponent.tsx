@@ -3,18 +3,20 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { CaretRightOutlined } from "@ant-design/icons";
 import { Collapse, Select, Slider } from "antd";
-import brands from "../../json/brands.json";
 import {
   Backdrop,
   Checkbox,
   CircularProgress,
   FormControlLabel,
+  Radio,
+  RadioGroup,
 } from "@mui/material";
 import ProductUi from "./ProductUi";
+import _ from "lodash";
 
 const { Panel } = Collapse;
 
-function Filter() {
+function SearchComponent() {
   const router = useRouter();
   const query = router.query;
   const [loading, setLoading] = useState(false);
@@ -26,6 +28,11 @@ function Filter() {
   const [filteredData, setFilteredData] = useState(undefined as any);
   const [showCount, setShowCount] = useState<number>(20);
   const [updatedBrands, setUpdatedBrands] = useState(undefined as any);
+  const [brand, setBrand] = useState(undefined as any);
+
+  const handleChangeBrand = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBrand(event.target.value);
+  };
 
   const handleChangehl = (value: string) => {
     setLoading(true);
@@ -105,28 +112,15 @@ function Filter() {
     }
   };
 
-  //   useEffect(() => {
-  // if(filteredData){
-  //   const newDataByRange = filteredData.filter(
-  //     (item: any) =>
-  //       item.discountPrice >=
-  //         (value[0] / 100) *
-  //           (max !== undefined ? max : 0) &&
-  //       item.discountPrice <=
-  //         (value[1] / 100) * (max !== undefined ? max : 0)
-  //   );
-  // }
-  //   }, [data,filteredData]);
-
   useEffect(() => {
     setLoading(true);
-    fetch("/api/filter/filter", {
+    fetch("/api/filter/search", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        filterId: query.cg,
+        query: query.q,
       }),
     })
       .then((res) => res.json())
@@ -138,9 +132,24 @@ function Filter() {
         setLoading(false);
       });
     setRange([0, 100]);
+    setBrand("");
     setMinPriceRange(0);
     setMaxPriceRange(0);
-  }, [query.cg]);
+  }, [query.q]);
+
+  useEffect(() => {
+    const brands = filteredData?.filter(
+      (ele: any, index: number) =>
+        index ===
+        filteredData?.findIndex((elem: any) => elem.brand === ele.brand)
+    );
+    let sorted = _.sortBy(brands, [
+      function (o) {
+        return o.brand;
+      },
+    ]);
+    setUpdatedBrands(sorted);
+  }, [data, filteredData]);
 
   return (
     <div>
@@ -171,56 +180,13 @@ function Filter() {
                 Home
               </Link>
             </li>
-            <li>
-              <div className="flex items-center">
-                <svg
-                  aria-hidden="true"
-                  className="w-4 h-4 text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <Link
-                  href={"/"}
-                  className="ml-1 text-xs font-medium text-gray-700 hover:text-red-500 hover:underline md:ml-2 dark:text-gray-400 dark:hover:text-white"
-                >
-                  {query.cg}
-                </Link>
-              </div>
-            </li>
-            {/* <li aria-current="page">
-              <div className="flex items-center">
-                <svg
-                  aria-hidden="true"
-                  className="w-4 h-4 text-gray-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="ml-1 text-xs font-medium text-gray-500 md:ml-2 dark:text-gray-400">
-                  Flowbite
-                </span>
-              </div>
-            </li> */}
           </ol>
         </nav>
       </div>
       {/* Breadcamp section end */}
       <div className="container m-auto min-h-screen">
         <div className="py-5 flex gap-5">
-          <div className="max-w-xs">
+          <div className="hidden lg:block max-w-xs">
             <Collapse
               bordered={false}
               defaultActiveKey={["1", "2", "3"]}
@@ -332,19 +298,24 @@ function Filter() {
               >
                 <div className="border-t py-2">
                   <div className="flex flex-col justify-center">
-                    {brands.slice(0, 20).map((item: any, index: number) => (
-                      <FormControlLabel
-                        key={index}
-                        className="hover:bg-gray-100 m-0 text-xs"
-                        control={
-                          <Checkbox
-                            sx={{ "& .MuiSvgIcon-root": { fontSize: 14 } }}
-                            defaultChecked={false}
-                          />
-                        }
-                        label={item.value}
-                      />
-                    ))}
+                    <RadioGroup
+                      aria-labelledby="demo-controlled-radio-buttons-group"
+                      name="controlled-radio-buttons-group"
+                      value={brand}
+                      onChange={handleChangeBrand}
+                    >
+                      {updatedBrands?.map((item: any) => (
+                        <>
+                          {item.brand !== "" && (
+                            <FormControlLabel
+                              value={item.brand}
+                              control={<Radio size="small" />}
+                              label={item.brand}
+                            />
+                          )}
+                        </>
+                      ))}
+                    </RadioGroup>
                   </div>
                 </div>
                 {/* invisible div start */}
@@ -365,9 +336,10 @@ function Filter() {
             </Collapse>
           </div>
           <div className="w-full">
-            <div className="bg-white py-2 px-3 rounded shadow flex justify-between items-center">
+            <div className="bg-white py-2 px-3 mx-2 lg:mx-0 rounded shadow flex justify-between items-center">
               <h2>
-                {query.cg} - {filteredData ? filteredData.length : data?.length}
+                Search Result -{" "}
+                {filteredData ? filteredData.length : data?.length}
               </h2>
               <div className="flex gap-3">
                 <div>
@@ -439,7 +411,7 @@ function Filter() {
                 </div>
               </div>
             </div>
-            <div className="my-2 grid grid-cols-5 gap-3">
+            <div className="my-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 mx-2 lg:mx-0">
               {filteredData ? (
                 <ProductUi limit={showCount} data={filteredData} />
               ) : (
@@ -453,4 +425,4 @@ function Filter() {
   );
 }
 
-export default Filter;
+export default SearchComponent;

@@ -2,9 +2,9 @@ import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
-import Filter from "../../../components/Filter/Filter";
+import CgComponent from "../../../components/Filter/CgComponent";
 
-const FilterPage: NextPage = (props: any) => {
+const CategoryPage: NextPage = (props: any) => {
   const router = useRouter();
   const query = router.query;
   return (
@@ -27,9 +27,9 @@ const FilterPage: NextPage = (props: any) => {
         />
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <Filter />
+      <CgComponent />
     </>
   );
 };
 
-export default FilterPage;
+export default CategoryPage;

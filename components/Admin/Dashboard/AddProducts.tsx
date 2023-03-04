@@ -303,6 +303,8 @@ function AddProducts() {
                 options={[
                   { value: "In Stock", label: "In Stock" },
                   { value: "Out of Stock", label: "Out of Stock" },
+                  { value: "Pre Order", label: "Pre Order" },
+                  { value: "Up Coming", label: "Up Coming" },
                 ]}
               />
             </div>

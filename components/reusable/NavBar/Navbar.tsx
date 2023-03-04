@@ -9,6 +9,7 @@ import { DarkThemeToggle, Flowbite, Tooltip } from "flowbite-react";
 import Menu from "./Menu";
 import { useRouter } from "next/router";
 import User from "./user";
+import { SwipeableDrawer } from "@mui/material";
 
 const DynamicSearchbar = dynamic(() => import("./Searchbar"), {
   suspense: true,
@@ -17,6 +18,7 @@ const DynamicSearchbar = dynamic(() => import("./Searchbar"), {
 function Navbar() {
   const router = useRouter();
   const [user, setUser] = useState(undefined as any);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -98,8 +100,21 @@ function Navbar() {
           <div className="container m-auto">
             {/* Codes For Mobile Mode Start*/}
             <div className="lg:hidden">
-              <div className="flex flex-row justify-between items-center lg:hidden px-3">
-                <MenuOutlined className="text-white text-xl" />
+              <div className="flex flex-row justify-between items-center lg:hidden px-3 py-1">
+                <div>
+                  <button onClick={() => setDrawerOpen(true)}>
+                    <MenuOutlined className="text-gray-800 text-xl" />
+                  </button>
+                  <SwipeableDrawer
+                    open={drawerOpen}
+                    onClose={() => setDrawerOpen(false)}
+                    onOpen={() => setDrawerOpen(true)}
+                  >
+                    <h2>hello world</h2>
+                    <h2>hello world</h2>
+                    <h2>hello world</h2>
+                  </SwipeableDrawer>
+                </div>
                 <Link href={"/"}>
                   <Image
                     alt="Logo"
@@ -109,32 +124,12 @@ function Navbar() {
                     priority
                   />
                 </Link>
-                <ShoppingCartOutlined className="text-white text-2xl" />
+                <button>
+                  <ShoppingCartOutlined className="text-gray-800 text-2xl" />
+                </button>
               </div>
-              <div className="relative mt-1 rounded-md">
-                <input
-                  type="text"
-                  className="block w-full rounded-md px-3 py-[10px] md:text-base sm:text-sm"
-                  placeholder="Search for products"
-                />
-                <Link href={"/"}>
-                  <div className="absolute inset-y-0 right-0 flex items-center mr-3 hover:scale-95">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                      />
-                    </svg>
-                  </div>
-                </Link>
+              <div className="mx-3">
+                <DynamicSearchbar />
               </div>
             </div>
             {/* Codes For Mobile Mode End*/}
@@ -259,7 +254,7 @@ function Navbar() {
           </div>
         </div>
       </div>
-      <div className="bg-white dark:bg-gray-700 border-b dark:border-gray-600">
+      <div className="bg-white dark:bg-gray-700 border-b dark:border-gray-600 lg:block hidden">
         <div className="container m-auto relative">
           <Menu />
         </div>

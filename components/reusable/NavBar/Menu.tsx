@@ -2,17 +2,19 @@ import React from "react";
 import { CaretRightOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import menu from "../../../json/menu.json";
+import { useRouter } from "next/router";
 
 function Menu() {
+  const router = useRouter();
   const MenuItems = (props: { name: string; mainItem: any; id: number }) => {
     return (
       <>
         <Link
           href={{
-            pathname: `/filter/${props.name
+            pathname: `/category/${props.name
               .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
               .toLowerCase()}`,
-            query: { id: "63fcf7073cb15db45b5a5811", cg: props.name },
+            query: { cg: props.name },
           }}
           className="text-sm hover:underline"
         >
@@ -37,7 +39,15 @@ function Menu() {
                   key={index}
                 >
                   <div className="flex flex-row justify-between items-center">
-                    <Link href={"/"} className="text-sm hover:underline">
+                    <Link
+                      href={{
+                        pathname: `/sub-category/${subItem.name
+                          .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                          .toLowerCase()}`,
+                        query: { cg: props.name, scg: subItem.name },
+                      }}
+                      className="text-sm hover:underline cursor-pointer text-left"
+                    >
                       {subItem.name}
                     </Link>
                     {subItem.items && <CaretRightOutlined />}

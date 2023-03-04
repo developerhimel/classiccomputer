@@ -35,15 +35,17 @@ function Searchbar() {
     <div>
       <div
         onClick={() => setOpen(true)}
-        className="relative rounded-r-full rounded-l-full border border-sky-500 cursor-pointer group"
+        className="relative rounded-t lg:rounded-r-full lg:rounded-l-full border border-sky-500 cursor-pointer group"
       >
         <input
           disabled
           type="text"
-          className="block w-full cursor-pointer rounded-r-full rounded-l-full pl-3 py-2 md:text-base sm:text-sm bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-transparent focus:border-none ring-transparent border-none"
-          placeholder="Search for products"
+          className="block w-full cursor-pointer rounded-t lg:rounded-r-full lg:rounded-l-full pl-3 py-1 lg:py-2 md:text-base sm:text-sm bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-transparent focus:border-none ring-transparent border-none"
+          placeholder={
+            router.query.q ? (router.query.q as any) : "Search for products"
+          }
         />
-        <div className="absolute inset-y-0 right-0 flex items-center px-4 rounded-r-full bg-sky-500">
+        <div className="absolute inset-y-0 right-0 flex items-center px-4 lg:rounded-r-full bg-sky-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -94,7 +96,7 @@ function Searchbar() {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-3xl min-h-[600px]">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full w-full mx-3 sm:max-w-3xl min-h-[600px]">
                   <div>
                     <div className="border-b px-3 py-4 flex items-center">
                       <svg
@@ -123,12 +125,11 @@ function Searchbar() {
                           if (e.key === "Enter") {
                             setOpen(false);
                             setFiltered([]);
+
                             router.push({
-                              pathname: `/filter/${searchText
-                                .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
-                                .toLowerCase()}`,
+                              pathname: "/search",
                               query: {
-                                cg: searchText,
+                                q: searchText,
                               },
                             });
                           }
@@ -154,11 +155,9 @@ function Searchbar() {
                                 setOpen(false);
                                 setFiltered([]);
                                 router.push({
-                                  pathname: `/filter/${searchText
-                                    .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
-                                    .toLowerCase()}`,
+                                  pathname: "/search",
                                   query: {
-                                    cg: searchText,
+                                    q: searchText,
                                   },
                                 });
                               }}
