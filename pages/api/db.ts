@@ -12,6 +12,7 @@ export default async function handler(req: NextApiRequest, res: any) {
 
   const exits = await collections
     .find({ category: { $exists: false } })
+    // .limit(50)
     .toArray();
 
   //   const result = await collections.find({ subCategory: "Proccesor" }).toArray();
@@ -24,8 +25,7 @@ export default async function handler(req: NextApiRequest, res: any) {
   //     );
   //   });
 
-  res.json({ length: exits.length });
-  //   res.json({ message: "Successfull :)" });
+  client.close();
 
-  res.status(200).json({ message: "Database updated" });
+  res.json(exits);
 }

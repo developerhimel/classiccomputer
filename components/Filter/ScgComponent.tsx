@@ -120,6 +120,7 @@ function ScgComponent() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        cg: query.cg,
         scg: query.scg,
       }),
     })
@@ -135,7 +136,7 @@ function ScgComponent() {
     setBrand("");
     setMinPriceRange(0);
     setMaxPriceRange(0);
-  }, [query.scg]);
+  }, [query.cg, query.scg]);
 
   useEffect(() => {
     const brands = filteredData?.filter(
@@ -161,7 +162,10 @@ function ScgComponent() {
       </Backdrop>
       {/* Breadcamp section start */}
       <div className="bg-white py-3 shadow">
-        <nav className="flex container m-auto" aria-label="Breadcrumb">
+        <nav
+          className="flex container m-auto px-3 lg:px-0"
+          aria-label="Breadcrumb"
+        >
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
               <Link
@@ -352,10 +356,11 @@ function ScgComponent() {
                       value={brand}
                       onChange={handleChangeBrand}
                     >
-                      {updatedBrands?.map((item: any) => (
+                      {updatedBrands?.map((item: any, index: number) => (
                         <>
                           {item.brand !== "" && (
                             <FormControlLabel
+                              key={index}
                               value={item.brand}
                               control={<Radio size="small" />}
                               label={item.brand}

@@ -1,38 +1,28 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { FloatButton } from "antd";
 import Image from "next/image";
+import { useCart } from "react-use-cart";
 
-const products = [
-  {
-    id: 1,
-    name: "Throwback Hip Bag",
-    href: "#",
-    color: "Salmon",
-    price: "88,000 ৳",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-    imageAlt:
-      "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
-  },
-  {
-    id: 2,
-    name: "Medium Stuff Satchel",
-    href: "#",
-    color: "Blue",
-    price: "57,000 ৳",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-    imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },
-];
 function FloatBox() {
+  const {
+    isEmpty,
+    totalUniqueItems,
+    items,
+    updateItemQuantity,
+    removeItem,
+    cartTotal,
+  } = useCart();
   const [open, setOpen] = useState(false);
+  const [totalCartUniqueItemsLength, setTotalCartUniqueItemsLength] =
+    useState(0);
+
+  useEffect(() => {
+    setTotalCartUniqueItemsLength(totalUniqueItems);
+  }, [totalUniqueItems]);
+
   return (
     <>
       <Transition.Root show={open} as={Fragment}>
@@ -89,12 +79,12 @@ function FloatBox() {
                               role="list"
                               className="-my-6 divide-y divide-gray-200"
                             >
-                              {products.map((product) => (
+                              {items?.map((product: any) => (
                                 <li key={product.id} className="flex py-6">
                                   <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                     <Image
-                                      src={product.imageSrc}
-                                      alt={product.imageAlt}
+                                      src={product.src}
+                                      alt={product.name}
                                       fill
                                       className="object-contain"
                                     />
@@ -104,11 +94,24 @@ function FloatBox() {
                                     <div>
                                       <div className="flex justify-between text-base font-medium text-gray-900">
                                         <h3>
-                                          <a href={product.href}>
+                                          <Link
+                                            onClick={() => setOpen(false)}
+                                            href={{
+                                              pathname: `/${product.name
+                                                .replace(
+                                                  /[&\/\\#, +()$~%.'":*?<>{}]/g,
+                                                  "-"
+                                                )
+                                                .toLowerCase()}`,
+                                              query: { id: product.id },
+                                            }}
+                                          >
                                             {product.name}
-                                          </a>
+                                          </Link>
                                         </h3>
-                                        <p className="ml-4">{product.price}</p>
+                                        <p className="ml-4">
+                                          {product.discountPrice}
+                                        </p>
                                       </div>
                                       <p className="mt-1 text-sm text-gray-500">
                                         {product.color}
@@ -121,6 +124,7 @@ function FloatBox() {
 
                                       <div className="flex">
                                         <button
+                                          onClick={() => removeItem(product.id)}
                                           type="button"
                                           className="font-medium text-indigo-600 hover:text-indigo-500"
                                         >
@@ -139,7 +143,7 @@ function FloatBox() {
                       <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <p>Subtotal</p>
-                          <p>88,000 ৳</p>
+                          <p>{cartTotal} ৳</p>
                         </div>
                         <p className="mt-0.5 text-sm text-gray-500">
                           Shipping and taxes calculated at checkout.
@@ -181,7 +185,7 @@ function FloatBox() {
           className="bg-slate-700 relative h-16 w-16 rounded hover:bg-red-500 cursor-pointer flex justify-center items-center flex-col"
         >
           <span className="absolute -right-1 -top-1 border border-white bg-red-500 text-white font-bold w-5 h-5 text-center text-xs flex items-center justify-center rounded-full">
-            0
+            {totalCartUniqueItemsLength}
           </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"

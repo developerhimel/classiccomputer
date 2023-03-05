@@ -3,7 +3,7 @@ import { MongoClient, ObjectId } from "mongodb";
 
 export default async function handler(req: NextApiRequest, res: any) {
   if (req.method === "POST") {
-    const { id } = req.body;
+    const { id, cg, scg, escg } = req.body;
     const client = await MongoClient.connect(
       process.env.NEXT_PUBLIC_MONGODB_URL as string
     );
@@ -11,9 +11,11 @@ export default async function handler(req: NextApiRequest, res: any) {
     const db = client.db("cc");
 
     const collection = db.collection("products");
-    const product = await collection.findOne({ _id: new ObjectId(id) });
-    res.json(product);
-
+    const update = await collection.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: { category: cg, subCategory: scg, extraSubCategory: escg } }
+    );
+    res.json(update);
     client.close();
   } else {
     //Response for other than POST method

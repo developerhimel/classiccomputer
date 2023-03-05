@@ -29,7 +29,7 @@ function CgComponent() {
   const [showCount, setShowCount] = useState<number>(20);
   const [updatedBrands, setUpdatedBrands] = useState(undefined as any);
   const [brand, setBrand] = useState(undefined as any);
-  
+
   const handleChangeBrand = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBrand(event.target.value);
   };
@@ -161,7 +161,10 @@ function CgComponent() {
       </Backdrop>
       {/* Breadcamp section start */}
       <div className="bg-white py-3 shadow">
-        <nav className="flex container m-auto" aria-label="Breadcrumb">
+        <nav
+          className="flex container m-auto px-3 lg:px-0"
+          aria-label="Breadcrumb"
+        >
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
               <Link
@@ -344,10 +347,11 @@ function CgComponent() {
                       value={brand}
                       onChange={handleChangeBrand}
                     >
-                      {updatedBrands?.map((item: any) => (
+                      {updatedBrands?.map((item: any, index: number) => (
                         <>
                           {item.brand !== "" && (
                             <FormControlLabel
+                              key={index}
                               value={item.brand}
                               control={<Radio size="small" />}
                               label={item.brand}

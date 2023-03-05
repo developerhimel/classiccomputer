@@ -11,13 +11,16 @@ export default async function handler(req: NextApiRequest, res: any) {
     const db = client.db("cc");
 
     const products = db.collection("products");
+
     const filteredProducts = await products
-      .find({ name: { $regex: query as string, $options: "i" } })
+      .find({ $text: { $search: query } })
       .toArray();
+
     const highToLow = await products
-      .find({ name: { $regex: query as string, $options: "i" } })
+      .find({ $text: { $search: query } })
       .sort({ discountPrice: -1 })
       .toArray();
+
     res.json({
       filteredProducts: filteredProducts,
       highToLow: highToLow[0]?.discountPrice,
@@ -29,3 +32,5 @@ export default async function handler(req: NextApiRequest, res: any) {
     res.status(500).json({ message: "Route not valid" });
   }
 }
+
+// { name: { $regex: query as string, $options: "i" } },

@@ -1,5 +1,6 @@
 import React from "react";
 import AddProducts from "./AddProducts";
+import Categories from "./Categories";
 
 function Products() {
   return (
@@ -49,7 +50,7 @@ function Products() {
                 aria-controls="tabs-profile3"
                 aria-selected="false"
               >
-                Overview
+                Categories
               </a>
             </li>
           </ul>
@@ -68,7 +69,7 @@ function Products() {
               role="tabpanel"
               aria-labelledby="tabs-profile-tab3"
             >
-              Tab 2 content button version
+              <Categories />
             </div>
           </div>
         </div>

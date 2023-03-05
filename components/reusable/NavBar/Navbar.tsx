@@ -2,14 +2,21 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { MenuProps, Modal, MenuTheme } from "antd";
+import { MenuProps } from "antd";
 import { Dropdown } from "antd";
 import { MenuOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { DarkThemeToggle, Flowbite, Tooltip } from "flowbite-react";
 import Menu from "./Menu";
 import { useRouter } from "next/router";
 import User from "./user";
-import { SwipeableDrawer } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  SwipeableDrawer,
+} from "@mui/material";
+import menu from "../../../json/menu.json";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const DynamicSearchbar = dynamic(() => import("./Searchbar"), {
   suspense: true,
@@ -20,6 +27,12 @@ function Navbar() {
   const [user, setUser] = useState(undefined as any);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [expanded, setExpanded] = React.useState<string | false>();
+
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
+      setExpanded(newExpanded ? panel : false);
+    };
 
   useEffect(() => {
     const userId = localStorage.getItem("user");
@@ -100,9 +113,9 @@ function Navbar() {
           <div className="container m-auto">
             {/* Codes For Mobile Mode Start*/}
             <div className="lg:hidden">
-              <div className="flex flex-row justify-between items-center lg:hidden px-3 py-1">
+              <div className="flex flex-row justify-between items-center lg:hidden py-1">
                 <div>
-                  <button onClick={() => setDrawerOpen(true)}>
+                  <button className="px-3" onClick={() => setDrawerOpen(true)}>
                     <MenuOutlined className="text-gray-800 text-xl" />
                   </button>
                   <SwipeableDrawer
@@ -110,9 +123,72 @@ function Navbar() {
                     onClose={() => setDrawerOpen(false)}
                     onOpen={() => setDrawerOpen(true)}
                   >
-                    <h2>hello world</h2>
-                    <h2>hello world</h2>
-                    <h2>hello world</h2>
+                    <div className="w-[50vw]">
+                      {menu.map((cg: any, index: number) => {
+                        const categoryName = cg.name;
+                        return (
+                          <Accordion
+                            key={index}
+                            disableGutters
+                            expanded={expanded === `panel${index}`}
+                            onChange={handleChange(`panel${index}`)}
+                            className='shadow-none border-b'
+                          >
+                            <AccordionSummary
+                              expandIcon={<ExpandMoreIcon />}
+                              aria-controls={`panel${index}d-content`}
+                              id={`panel${index}d-header`}
+                              className='shadow shadow-sky-200'
+                            >
+                              <button
+                                onClick={() => {
+                                  setDrawerOpen(false);
+                                  router.push({
+                                    pathname: `/category/${cg.name
+                                      .replace(
+                                        /[&\/\\#, +()$~%.'":*?<>{}]/g,
+                                        "-"
+                                      )
+                                      .toLowerCase()}`,
+                                    query: { cg: cg.name },
+                                  });
+                                }}
+                                className="hover:text-red-500 hover:underline text-left"
+                              >
+                                {cg.name}
+                              </button>
+                            </AccordionSummary>
+                            {cg.items && (
+                              <AccordionDetails>
+                                {cg.items.map((scg: any, index: number) => (
+                                  <button
+                                    key={index}
+                                    onClick={() => {
+                                      setDrawerOpen(false);
+                                      router.push({
+                                        pathname: `/sub-category/${scg.name
+                                          .replace(
+                                            /[&\/\\#, +()$~%.'":*?<>{}]/g,
+                                            "-"
+                                          )
+                                          .toLowerCase()}`,
+                                        query: {
+                                          cg: categoryName,
+                                          scg: scg.name,
+                                        },
+                                      });
+                                    }}
+                                    className="hover:text-red-500 hover:underline w-full text-left my-1 text-sm"
+                                  >
+                                    {scg.name}
+                                  </button>
+                                ))}
+                              </AccordionDetails>
+                            )}
+                          </Accordion>
+                        );
+                      })}
+                    </div>
                   </SwipeableDrawer>
                 </div>
                 <Link href={"/"}>
@@ -124,7 +200,7 @@ function Navbar() {
                     priority
                   />
                 </Link>
-                <button>
+                <button className="px-3">
                   <ShoppingCartOutlined className="text-gray-800 text-2xl" />
                 </button>
               </div>

@@ -1,6 +1,7 @@
 import React from "react";
-import Footer from "../components/reusable/Footer/Footer";
-import Navbar from "../components/reusable/NavBar/Navbar";
+import FloatBox from "./reusable/FloatBox";
+import Footer from "./reusable/Footer/Footer";
+import Navbar from "./reusable/NavBar/Navbar";
 
 function Layout(props: { children: any }) {
   return (
@@ -8,6 +9,7 @@ function Layout(props: { children: any }) {
       <Navbar />
       {props.children}
       <Footer />
+      <FloatBox />
     </>
   );
 }

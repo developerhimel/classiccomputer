@@ -5,9 +5,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import FloatBox from "../components/reusable/FloatBox";
 import { useRouter } from "next/router";
-import Layout from "./Layout";
+import Layout from "../components/Layout";
+import { CartProvider } from "react-use-cart";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -24,12 +24,11 @@ export default function App({ Component, pageProps }: AppProps) {
       {router.route.startsWith("/admin") ? (
         <Component {...pageProps} />
       ) : (
-        <>
+        <CartProvider id="cccart">
           <Layout>
             <Component {...pageProps} />
           </Layout>
-          <FloatBox />
-        </>
+        </CartProvider>
       )}
     </>
   );

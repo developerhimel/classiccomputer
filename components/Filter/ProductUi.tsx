@@ -6,8 +6,10 @@ import DifferenceIcon from "@mui/icons-material/Difference";
 import Link from "next/link";
 import { Button } from "@mui/material";
 import { Skeleton } from "antd";
+import { useCart } from "react-use-cart";
 
 function ProductUi(props: { data: any; limit: number }) {
+  const { addItem } = useCart();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
@@ -37,7 +39,10 @@ function ProductUi(props: { data: any; limit: number }) {
             </div>
             <div className="p-3 relative w-full h-[230px] overflow-hidden border-b-2">
               {loading && (
-                <Skeleton.Image className="w-full h-full" active={loading} />
+                <Skeleton.Image
+                  className="w-full h-full absolute top-0 z-[1] left-0"
+                  active={loading}
+                />
               )}
               <Link
                 href={{
@@ -51,7 +56,7 @@ function ProductUi(props: { data: any; limit: number }) {
                   src={item.src}
                   fill
                   alt={item.name}
-                  onLoad={() => setLoading(false)}                  
+                  onLoad={() => setLoading(false)}
                   className="w-full group-hover/main:scale-105 ease-in-out duration-300 object-contain p-5"
                 />
               </Link>
@@ -106,6 +111,10 @@ function ProductUi(props: { data: any; limit: number }) {
           </div>
           <div className="mx-3 py-3">
             <Button
+              onClick={() => {
+                addItem({ ...item, quantity: 1, id: item._id });
+                alert(`Added on cart: ${item.name}`);
+              }}
               startIcon={<ShoppingCartIcon />}
               className="bg-indigo-50 text-indigo-700 hover:text-white w-full shadow-none font-semibold capitalize hover:bg-indigo-700"
               variant="contained"
