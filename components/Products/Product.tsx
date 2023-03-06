@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import { DotChartOutlined } from "@ant-design/icons";
 import { useCart } from "react-use-cart";
+import RProducts from "./RProducts";
 
 function Product() {
   const router = useRouter();
@@ -18,11 +19,18 @@ function Product() {
   const [loading, setLoading] = useState(false);
   const [pmimg, setPmimg] = useState(true);
   const [product, setProduct] = useState(undefined as any);
+  const [rProducts, setRProducts] = useState(undefined as any);
 
   const emifloat = (Number(product?.price) + 5000) / 12;
   const imagesLength = product?.images.length;
 
   const handleBuy = () => {
+    addItem({
+      ...product,
+      quantity: 1,
+      id: product._id,
+      price: product.discountPrice,
+    });
     modal.success({
       centered: true,
       closable: true,
@@ -32,7 +40,6 @@ function Product() {
       content: `${product?.name}`,
       bodyStyle: { padding: "20px 24px" },
     });
-    addItem({ ...product, quantity: buyQuantity, id: product._id });
     // console.log({ ...product, quantity: buyQuantity, id: product._id });
   };
 
@@ -53,6 +60,25 @@ function Product() {
         setLoading(false);
       });
   }, [query.id]);
+
+  useEffect(() => {
+    fetch("/api/filter/rproducts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        cg: product?.category,
+        scg: product?.subCategory,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.filteredProducts);
+        setRProducts(data.filteredProducts);
+      });
+  }, [product]);
+
   return (
     <>
       {contextHolder}
@@ -559,7 +585,7 @@ function Product() {
                     </div>
                   </div>
                   <div className="w-full bg-gray-50">
-                    <div className="container m-auto grid grid-cols-4 gap-5">
+                    <div className="container m-auto grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-5">
                       <div className="col-span-3">
                         <div id="specificationsId" className="w-full pt-8">
                           <div className="p-5 rounded bg-white">
@@ -582,10 +608,10 @@ function Product() {
                                             key={index}
                                             className="border-b bg-white hover:bg-gray-100 p-3 flex"
                                           >
-                                            <td className="table-flex">
+                                            <td className="flex-1">
                                               {item.key}
                                             </td>
-                                            <td className="flex-auto">
+                                            <td className="flex-1">
                                               {item.value}
                                             </td>
                                           </tr>
@@ -698,11 +724,20 @@ function Product() {
                           </div>
                         </div>
                       </div>
-                      <div className="w-full pt-8">
+                      <div className="w-full pt-0 md:pt-8">
                         <div className="bg-white rounded">
-                          <h1 className="text-center font-bold text-gray-500 py-3 text-lg">
+                          <h1 className="text-center font-bold text-indigo-500 py-3 text-lg rounded bg-indigo-100">
                             Related Products
                           </h1>
+                          <div className="w-full">
+                            {rProducts
+                              ?.slice(0, 10)
+                              .map((ritems: any, index: number) => (
+                                <div className="w-full" key={index}>
+                                  <RProducts ritems={ritems} />
+                                </div>
+                              ))}
+                          </div>
                         </div>
                         <div className="bg-white rounded mt-5">
                           <h1 className="text-center font-bold text-gray-500 py-3 text-lg">

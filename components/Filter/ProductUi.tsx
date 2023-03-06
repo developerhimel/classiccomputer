@@ -112,7 +112,12 @@ function ProductUi(props: { data: any; limit: number }) {
           <div className="mx-3 py-3">
             <Button
               onClick={() => {
-                addItem({ ...item, quantity: 1, id: item._id });
+                addItem({
+                  ...item,
+                  quantity: 1,
+                  id: item._id,
+                  price: item.discountPrice,
+                });
                 alert(`Added on cart: ${item.name}`);
               }}
               startIcon={<ShoppingCartIcon />}

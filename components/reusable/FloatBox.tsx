@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FloatButton } from "antd";
 import Image from "next/image";
 import { useCart } from "react-use-cart";
+import DifferenceIcon from "@mui/icons-material/Difference";
 
 function FloatBox() {
   const {
@@ -162,7 +163,7 @@ function FloatBox() {
                             or
                             <button
                               type="button"
-                              className="font-medium text-indigo-600 hover:text-indigo-500"
+                              className="font-medium text-indigo-600 hover:text-indigo-500 mx-2"
                               onClick={() => setOpen(false)}
                             >
                               Continue Shopping
@@ -182,9 +183,9 @@ function FloatBox() {
       <div className="hidden fixed bottom-24 right-4 lg:flex flex-col gap-3 z-50">
         <div
           onClick={() => setOpen(true)}
-          className="bg-slate-700 relative h-16 w-16 rounded hover:bg-red-500 cursor-pointer flex justify-center items-center flex-col"
+          className="bg-gray-900 border border-gray-600 relative h-[60px] w-[60px] rounded hover:bg-gray-500 cursor-pointer flex justify-center items-center flex-col"
         >
-          <span className="absolute -right-1 -top-1 border border-white bg-red-500 text-white font-bold w-5 h-5 text-center text-xs flex items-center justify-center rounded-full">
+          <span className="absolute -right-1 -top-1 border-4 border-gray-900 bg-red-500 text-white font-bold w-6 h-6 text-center text-xs flex items-center justify-center rounded-full">
             {totalCartUniqueItemsLength}
           </span>
           <svg
@@ -203,24 +204,11 @@ function FloatBox() {
           </svg>
           <h3 className="text-xs text-white mt-1">Cart</h3>
         </div>
-        <div className="bg-slate-700 relative h-16 w-16 rounded hover:bg-red-500 cursor-pointer flex justify-center items-center flex-col">
-          <span className="absolute -right-1 -top-1 border border-white bg-red-500 text-white font-bold w-5 h-5 text-center text-xs flex items-center justify-center rounded-full">
+        <div className="bg-gray-900 border border-gray-600 relative h-[60px] w-[60px] rounded hover:bg-gray-500 cursor-pointer flex justify-center items-center flex-col">
+          <span className="absolute -right-1 -top-1 border-4 border-gray-900 bg-red-500 text-white font-bold w-6 h-6 text-center text-xs flex items-center justify-center rounded-full">
             0
           </span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6 text-white"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
-            />
-          </svg>
+          <DifferenceIcon className="text-white" />
           <h3 className="text-xs text-white mt-1">Compare</h3>
         </div>
       </div>
