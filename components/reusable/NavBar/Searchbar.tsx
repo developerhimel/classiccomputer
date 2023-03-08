@@ -35,16 +35,11 @@ function Searchbar() {
     <div>
       <div
         onClick={() => setOpen(true)}
-        className="relative rounded-t lg:rounded-r-full lg:rounded-l-full border border-sky-500 cursor-pointer group"
+        className="relative w-full rounded-t lg:rounded-r-full lg:rounded-l-full border border-sky-500 dark:border-gray-700 cursor-pointer group z-10"
       >
-        <input
-          disabled
-          type="text"
-          className="block w-full cursor-pointer rounded-t lg:rounded-r-full lg:rounded-l-full pl-3 py-1 lg:py-2 md:text-base sm:text-sm bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-transparent focus:border-none ring-transparent border-none"
-          placeholder={
-            router.query.q ? (router.query.q as any) : "Search for products"
-          }
-        />
+        <button className="block w-full text-left text-sm cursor-pointer rounded-t lg:rounded-r-full lg:rounded-l-full pl-3 py-1 lg:py-2 md:text-sm sm:text-sm bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:ring-transparent focus:border-none ring-transparent border-none">
+          {router.query.q ? (router.query.q as any) : "Search for products"}
+        </button>
         <div className="absolute inset-y-0 right-0 flex items-center px-4 lg:rounded-r-full bg-sky-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +77,7 @@ function Searchbar() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-300 bg-opacity-50 backdrop-blur-sm transition-opacity" />
+            <div className="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm transition-opacity" />
           </Transition.Child>
 
           <div className="fixed inset-0 z-10 overflow-y-auto">
@@ -96,9 +91,9 @@ function Searchbar() {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full w-full mx-3 sm:max-w-3xl min-h-[600px]">
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white dark:bg-gray-700 text-left shadow-xl transition-all sm:my-8 sm:w-full w-full mx-3 sm:max-w-3xl min-h-[600px]">
                   <div>
-                    <div className="border-b px-3 py-4 flex items-center">
+                    <div className="border-b px-3 py-4 flex items-center dark:border-b-gray-600">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -117,7 +112,7 @@ function Searchbar() {
                         type="search"
                         name="search"
                         id="searchproduct"
-                        className="w-full mx-1 px-2 border-none rounded"
+                        className="w-full mx-1 px-2 border-none rounded bg-white dark:bg-gray-700 dark:text-white"
                         placeholder="Search"
                         autoFocus
                         onChange={debounce(handleSearch, 500)}
@@ -136,7 +131,7 @@ function Searchbar() {
                         }}
                       />
                       <button
-                        className="border px-1 rounded bg-gray-50"
+                        className="border px-1 rounded bg-gray-50 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
                         type="button"
                       >
                         esc
@@ -146,7 +141,9 @@ function Searchbar() {
                       <div className="w-full h-full justify-center items-center flex">
                         {filtered.length === 0 ? (
                           <div>
-                            <h2>No products found!</h2>
+                            <h2 className="dark:text-white">
+                              No products found!
+                            </h2>
                           </div>
                         ) : filtered.length > 6 ? (
                           <div className="pt-2">
@@ -162,7 +159,7 @@ function Searchbar() {
                                 });
                               }}
                               type="button"
-                              className="hover:text-red-500 hover:underline px-2"
+                              className="hover:text-red-500 hover:underline px-2 dark:text-white"
                             >
                               See all results - {filtered.length}
                             </button>
@@ -182,7 +179,7 @@ function Searchbar() {
                             });
                           }}
                           key={index}
-                          className="flex items-center hover:bg-sky-50 p-2 my-1 cursor-pointer shadow shadow-sky-100 border border-sky-50 hover:border-sky-400 rounded"
+                          className="flex items-center hover:bg-sky-50 dark:hover:bg-gray-800 p-2 my-1 cursor-pointer shadow shadow-sky-100 dark:shadow-gray-800 border border-sky-50 dark:border-gray-700 hover:border-sky-400 rounded"
                         >
                           <div className="w-14 h-14 relative mr-2">
                             <Image
@@ -194,7 +191,9 @@ function Searchbar() {
                             />
                           </div>
                           <div>
-                            <h2 className="text-sm">{item.name}</h2>
+                            <h2 className="text-sm dark:text-white">
+                              {item.name}
+                            </h2>
                             <div className="text-sky-600 text-xs">
                               <NumericFormat
                                 displayType="text"

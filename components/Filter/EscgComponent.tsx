@@ -16,7 +16,7 @@ import _ from "lodash";
 
 const { Panel } = Collapse;
 
-function SearchComponent() {
+function EscgComponent() {
   const router = useRouter();
   const query = router.query;
   const [loading, setLoading] = useState(false);
@@ -114,13 +114,15 @@ function SearchComponent() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("/api/filter/search", {
+    fetch("/api/filter/escg", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        query: query.q,
+        cg: query.cg,
+        scg: query.scg,
+        escg: query.escg,
       }),
     })
       .then((res) => res.json())
@@ -135,7 +137,7 @@ function SearchComponent() {
     setBrand("");
     setMinPriceRange(0);
     setMaxPriceRange(0);
-  }, [query.q]);
+  }, [query.cg, query.scg, query.escg]);
 
   useEffect(() => {
     const brands = filteredData?.filter(
@@ -183,6 +185,64 @@ function SearchComponent() {
                 Home
               </Link>
             </li>
+            <li>
+              <div className="flex items-center">
+                <svg
+                  aria-hidden="true"
+                  className="w-4 h-4 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+                <Link
+                  href={{
+                    pathname: `/category/${(query.cg as any)
+                      ?.replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                      .toLowerCase()}`,
+                    query: { cg: query.cg },
+                  }}
+                  className="ml-1 text-xs font-medium text-gray-700 hover:text-red-500 hover:underline md:ml-2 dark:text-gray-400 dark:hover:text-white"
+                >
+                  {query.cg}
+                </Link>
+              </div>
+            </li>
+            <li>
+              <div className="flex items-center">
+                <svg
+                  aria-hidden="true"
+                  className="w-4 h-4 text-gray-400"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+                {query.scg !== undefined && (
+                  <Link
+                    href={{
+                      pathname: `/sub-category/${(query?.scg as any)
+                        .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                        .toLowerCase()}`,
+                      query: { cg: query.cg, scg: query.scg },
+                    }}
+                    className="ml-1 text-xs font-medium text-gray-700 hover:text-red-500 hover:underline md:ml-2 dark:text-gray-400 dark:hover:text-white"
+                  >
+                    {query.scg}
+                  </Link>
+                )}
+              </div>
+            </li>
             <li aria-current="page">
               <div className="flex items-center">
                 <svg
@@ -199,7 +259,7 @@ function SearchComponent() {
                   ></path>
                 </svg>
                 <span className="ml-1 text-xs font-medium text-gray-500 md:ml-2 dark:text-gray-400">
-                  Search
+                  {query.escg}
                 </span>
               </div>
             </li>
@@ -344,7 +404,7 @@ function SearchComponent() {
                       name="controlled-radio-buttons-group"
                       value={brand}
                       onChange={handleChangeBrand}
-                      className='dark:text-white'
+                      className="dark:text-white"
                     >
                       {updatedBrands?.map((item: any, index: number) => (
                         <>
@@ -352,7 +412,12 @@ function SearchComponent() {
                             <FormControlLabel
                               key={index}
                               value={item.brand}
-                              control={<Radio size="small" className="dark:text-white" />}
+                              control={
+                                <Radio
+                                  size="small"
+                                  className="dark:text-white"
+                                />
+                              }
                               label={item.brand}
                             />
                           )}
@@ -379,9 +444,9 @@ function SearchComponent() {
             </Collapse>
           </div>
           <div className="w-full">
-            <div className="bg-white dark:bg-gray-700 py-2 px-3 mx-2 lg:mx-0 rounded shadow flex justify-between items-center dark:text-white">
+            <div className="bg-white py-2 px-3 mx-2 lg:mx-0 rounded shadow flex justify-between items-center dark:bg-gray-700 dark:text-white">
               <h2>
-                Search Result -{" "}
+                {query.escg} -{" "}
                 {filteredData ? filteredData.length : data?.length}
               </h2>
               <div className="flex gap-3">
@@ -468,4 +533,4 @@ function SearchComponent() {
   );
 }
 
-export default SearchComponent;
+export default EscgComponent;

@@ -13,7 +13,7 @@ function RProducts(props: { ritems: any }) {
           query: { id: props.ritems._id },
         }}
       >
-        <div className="flex items-center hover:bg-indigo-50 p-2 cursor-pointer border-b hover:border-indigo-400 rounded group">
+        <div className="flex items-center hover:bg-indigo-50 p-2 cursor-pointer border-b hover:border-indigo-400 rounded group dark:hover:bg-gray-700 dark:text-white">
           <div className="w-14 h-14 relative mr-2">
             <Image
               loading="lazy"
@@ -24,7 +24,7 @@ function RProducts(props: { ritems: any }) {
             />
           </div>
           <div className="w-full">
-            <h2 className="text-sm group-hover:text-red-500 group-hover:underline text-gray-800 line-clamp-2 text-ellipsis max-w-full">
+            <h2 className="text-sm group-hover:text-red-500 group-hover:underline text-gray-800 line-clamp-2 text-ellipsis max-w-full dark:text-white dark:group-hover:text-red-400">
               {props.ritems.name}
             </h2>
           </div>

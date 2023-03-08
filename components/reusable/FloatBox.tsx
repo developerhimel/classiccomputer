@@ -6,6 +6,7 @@ import { FloatButton } from "antd";
 import Image from "next/image";
 import { useCart } from "react-use-cart";
 import DifferenceIcon from "@mui/icons-material/Difference";
+import { NumericFormat } from "react-number-format";
 
 function FloatBox() {
   const {
@@ -37,7 +38,7 @@ function FloatBox() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            <div className="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-hidden">
@@ -53,16 +54,16 @@ function FloatBox() {
                   leaveTo="translate-x-full"
                 >
                   <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                    <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                    <div className="flex h-full flex-col overflow-y-scroll bg-white dark:bg-gray-700 shadow-xl">
                       <div className="flex-1 overflow-y-auto py-6 px-4 sm:px-6">
                         <div className="flex items-start justify-between">
-                          <Dialog.Title className="text-lg font-medium text-gray-900">
+                          <Dialog.Title className="text-lg font-medium text-gray-900 dark:text-white">
                             Shopping cart
                           </Dialog.Title>
                           <div className="ml-3 flex h-7 items-center">
                             <button
                               type="button"
-                              className="-m-2 p-2 text-gray-400 hover:text-gray-500"
+                              className="-m-2 p-2 text-gray-400 hover:text-gray-500 dark:text-white dark:hover:text-gray-200"
                               onClick={() => setOpen(false)}
                             >
                               <span className="sr-only">Close panel</span>
@@ -78,11 +79,11 @@ function FloatBox() {
                           <div className="flow-root">
                             <ul
                               role="list"
-                              className="-my-6 divide-y divide-gray-200"
+                              className="-my-6 divide-y divide-gray-200 dark:divide-gray-500"
                             >
                               {items?.map((product: any) => (
                                 <li key={product.id} className="flex py-6">
-                                  <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                     <Image
                                       src={product.src}
                                       alt={product.name}
@@ -93,9 +94,10 @@ function FloatBox() {
 
                                   <div className="ml-4 flex flex-1 flex-col">
                                     <div>
-                                      <div className="flex justify-between text-base font-medium text-gray-900">
+                                      <div className="flex justify-between text-sm font-medium text-gray-900 dark:text-white">
                                         <h3>
                                           <Link
+                                            className="hover:text-red-500 hover:underline"
                                             onClick={() => setOpen(false)}
                                             href={{
                                               pathname: `/${product.name
@@ -111,7 +113,13 @@ function FloatBox() {
                                           </Link>
                                         </h3>
                                         <p className="ml-4">
-                                          {product.discountPrice}
+                                          <NumericFormat
+                                            displayType="text"
+                                            className="px-1"
+                                            value={product.discountPrice}
+                                            thousandSeparator=","
+                                          />
+                                          ৳
                                         </p>
                                       </div>
                                       <p className="mt-1 text-sm text-gray-500">
@@ -119,7 +127,7 @@ function FloatBox() {
                                       </p>
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
-                                      <p className="text-gray-500">
+                                      <p className="text-gray-500 dark:text-gray-300">
                                         Qty {product.quantity}
                                       </p>
 
@@ -127,7 +135,7 @@ function FloatBox() {
                                         <button
                                           onClick={() => removeItem(product.id)}
                                           type="button"
-                                          className="font-medium text-indigo-600 hover:text-indigo-500"
+                                          className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400"
                                         >
                                           Remove
                                         </button>
@@ -141,29 +149,44 @@ function FloatBox() {
                         </div>
                       </div>
 
-                      <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-                        <div className="flex justify-between text-base font-medium text-gray-900">
+                      <div className="border-t border-gray-200 py-6 px-4 sm:px-6 dark:border-gray-500">
+                        <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white">
                           <p>Subtotal</p>
-                          <p>{cartTotal} ৳</p>
+                          <p>
+                            <NumericFormat
+                              displayType="text"
+                              className="px-1"
+                              value={cartTotal}
+                              thousandSeparator=","
+                            />
+                            ৳
+                          </p>
                         </div>
-                        <p className="mt-0.5 text-sm text-gray-500">
+                        <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-300">
                           Shipping and taxes calculated at checkout.
                         </p>
-                        <div className="mt-6">
+                        <div className="mt-6 flex w-full gap-3">
+                          <Link
+                            href={"/checkout/cart"}
+                            onClick={() => setOpen(false)}
+                            className="flex items-center w-full justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                          >
+                            View Cart
+                          </Link>
                           <Link
                             href={"/checkout"}
                             onClick={() => setOpen(false)}
-                            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                            className="flex items-center w-full justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                           >
                             Checkout
                           </Link>
                         </div>
-                        <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                        <div className="mt-6 flex justify-center text-center text-sm text-gray-500 dark:text-gray-300">
                           <p>
                             or
                             <button
                               type="button"
-                              className="font-medium text-indigo-600 hover:text-indigo-500 mx-2"
+                              className="font-medium text-indigo-600 hover:text-indigo-500 mx-2 dark:text-indigo-400"
                               onClick={() => setOpen(false)}
                             >
                               Continue Shopping

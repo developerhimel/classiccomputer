@@ -44,7 +44,9 @@ function Login() {
         .then(() => {
           localStorage.setItem("user", data.userId);
           setLoading(false);
-          router.push("/");
+          router.query.rf
+            ? router.push(`/${router.query.rf}`)
+            : router.push("/");
         });
     } else if (data.message === "user not found") {
       messageApi.open({
@@ -69,10 +71,10 @@ function Login() {
   return (
     <>
       {contextHolder}
-      <div className="w-full min-h-[70vh] bg-white">
+      <div className="w-full min-h-[70vh] bg-white dark:bg-gray-800">
         <div className="container m-auto">
           <div className="flex justify-center items-center">
-            <form className="bg-white shadow-sky-200 border shadow rounded-lg mt-14 w-[600px] p-10">
+            <form className="bg-white shadow-sky-200 border shadow rounded-lg mt-14 w-[600px] p-10 dark:bg-gray-700 dark:border-gray-600 dark:shadow-gray-600">
               <div className="flex justify-center">
                 <Link href={"/"}>
                   <div className="w-28 h-14 relative">
@@ -86,10 +88,10 @@ function Login() {
                   </div>
                 </Link>
               </div>
-              <h1 className="text-lg font-semibold text-center">
+              <h1 className="text-lg font-semibold text-center dark:text-white">
                 Account Login
               </h1>
-              <div className="flex flex-col mt-2">
+              <div className="flex flex-col mt-2 dark:text-white">
                 <label className="my-2" htmlFor="loginEmail">
                   Email Address :
                 </label>
@@ -99,11 +101,11 @@ function Login() {
                   name="loginEmail"
                   id="loginEmail"
                   placeholder="Email"
-                  className="rounded border border-gray-300"
+                  className="rounded border border-gray-300 dark:bg-gray-600 dark:text-white dark:border-gray-500"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="flex flex-col mt-2">
+              <div className="flex flex-col mt-2 dark:text-white">
                 <label className="my-2" htmlFor="loginPassword">
                   Password :
                 </label>
@@ -113,13 +115,13 @@ function Login() {
                   name="loginPassword"
                   id="loginPassword"
                   placeholder="password"
-                  className="rounded border border-gray-300"
+                  className="rounded border border-gray-300 dark:bg-gray-600 dark:text-white dark:border-gray-500"
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className="flex justify-end my-3">
                 <button
-                  className="text-red-500 text-sm hover:underline hover:scale-105 duration-300 ease-in-out"
+                  className="text-red-500 text-sm hover:underline hover:scale-105 duration-300 ease-in-out dark:text-gray-300"
                   type="button"
                 >
                   Forgotten Password?
@@ -145,15 +147,17 @@ function Login() {
                 )}
               </Button>
               <div className="grid grid-cols-3 items-center gap-3 my-5">
-                <div className="w-full border-b" />
+                <div className="w-full border-b dark:border-b-gray-500" />
                 <div>
-                  <h1 className="text-sm text-center">Dont have an account</h1>
+                  <h1 className="text-sm text-center dark:text-white">
+                    Dont have an account
+                  </h1>
                 </div>
-                <div className="w-full border-b" />
+                <div className="w-full border-b dark:border-b-gray-500" />
               </div>
               <Button
                 onClick={() => router.push("/register")}
-                className="w-full font-semibold hover:bg-sky-600 shadow-none py-2 border border-sky-600 bg-white text-sky-600 hover:text-white"
+                className="w-full font-semibold hover:bg-sky-600 shadow-none py-2 border border-sky-600 bg-white text-sky-600 hover:text-white dark:bg-gray-600 dark:text-white dark:hover:bg-sky-600"
                 variant="outlined"
               >
                 Register

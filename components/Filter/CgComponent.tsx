@@ -160,7 +160,7 @@ function CgComponent() {
         <CircularProgress color="inherit" />
       </Backdrop>
       {/* Breadcamp section start */}
-      <div className="bg-white py-3 shadow">
+      <div className="bg-white dark:bg-gray-800 py-3 shadow border-b dark:border-b-gray-600">
         <nav
           className="flex container m-auto px-3 lg:px-0"
           aria-label="Breadcrumb"
@@ -237,14 +237,14 @@ function CgComponent() {
               expandIcon={({ isActive }) => (
                 <CaretRightOutlined rotate={isActive ? 90 : 0} />
               )}
-              className="bg-transparent"
+              className="bg-transparent dark:text-white"
             >
               <Panel
-                className="shadow-sm mb-2 bg-white text-base rounded"
+                className="shadow-sm mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white dark:shadow-gray-500"
                 header="Price Range"
                 key="1"
               >
-                <div className="border-t py-2">
+                <div className="border-t py-2 dark:border-t-gray-500">
                   <Slider
                     range={{ draggableTrack: true }}
                     defaultValue={range}
@@ -278,7 +278,7 @@ function CgComponent() {
                 </div>
                 <div className="flex justify-between flex-row w-full pb-2">
                   <input
-                    className="w-1/2 mr-2 py-2 bg-white rounded shadow-sm px-3 border border-gray-200"
+                    className="w-1/2 mr-2 py-2 bg-white rounded shadow-sm px-3 border border-gray-200 dark:border-gray-500 dark:bg-gray-600 dark:text-white"
                     type="number"
                     value={minPriceRange}
                     onChange={(e) =>
@@ -286,7 +286,7 @@ function CgComponent() {
                     }
                   />
                   <input
-                    className="w-1/2 ml-2 py-2 bg-white rounded shadow-sm px-3 border border-gray-200"
+                    className="w-1/2 ml-2 py-2 bg-white rounded shadow-sm px-3 border border-gray-200 dark:border-gray-500 dark:bg-gray-600 dark:text-white"
                     type="number"
                     value={maxPriceRange}
                     onChange={(e) =>
@@ -296,25 +296,43 @@ function CgComponent() {
                 </div>
               </Panel>
               <Panel
-                className="shadow-sm mb-2 bg-white text-base rounded"
+                className="shadow-sm mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white dark:shadow-gray-500"
                 header="Availability"
                 key="2"
               >
-                <div className="border-t py-2">
+                <div className="border-t py-2 dark:border-t-gray-500">
                   <div className="flex flex-col justify-center">
                     <FormControlLabel
-                      className="hover:bg-gray-100 m-0"
-                      control={<Checkbox size="small" defaultChecked={false} />}
+                      className="hover:bg-gray-100 m-0 dark:hover:bg-gray-600 dark:text-white"
+                      control={
+                        <Checkbox
+                          size="small"
+                          className="dark:text-white"
+                          defaultChecked={false}
+                        />
+                      }
                       label="In Stock"
                     />
                     <FormControlLabel
-                      className="hover:bg-gray-100 m-0"
-                      control={<Checkbox size="small" defaultChecked={false} />}
+                      className="hover:bg-gray-100 m-0 dark:hover:bg-gray-600 dark:text-white"
+                      control={
+                        <Checkbox
+                          size="small"
+                          className="dark:text-white"
+                          defaultChecked={false}
+                        />
+                      }
                       label="Pre Order"
                     />
                     <FormControlLabel
-                      className="hover:bg-gray-100 m-0"
-                      control={<Checkbox size="small" defaultChecked={false} />}
+                      className="hover:bg-gray-100 m-0 dark:hover:bg-gray-600 dark:text-white"
+                      control={
+                        <Checkbox
+                          size="small"
+                          className="dark:text-white"
+                          defaultChecked={false}
+                        />
+                      }
                       label="Up Coming"
                     />
                   </div>
@@ -335,17 +353,18 @@ function CgComponent() {
                 {/* invisible div end */}
               </Panel>
               <Panel
-                className="shadow-sm mb-2 bg-white text-base rounded"
+                className="shadow-sm mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white dark:shadow-gray-500"
                 header="Brands"
                 key="3"
               >
-                <div className="border-t py-2">
+                <div className="border-t py-2 dark:border-t-gray-500">
                   <div className="flex flex-col justify-center">
                     <RadioGroup
                       aria-labelledby="demo-controlled-radio-buttons-group"
                       name="controlled-radio-buttons-group"
                       value={brand}
                       onChange={handleChangeBrand}
+                      className="dark:text-white"
                     >
                       {updatedBrands?.map((item: any, index: number) => (
                         <>
@@ -353,7 +372,12 @@ function CgComponent() {
                             <FormControlLabel
                               key={index}
                               value={item.brand}
-                              control={<Radio size="small" />}
+                              control={
+                                <Radio
+                                  size="small"
+                                  className="dark:text-white"
+                                />
+                              }
                               label={item.brand}
                             />
                           )}
@@ -380,7 +404,7 @@ function CgComponent() {
             </Collapse>
           </div>
           <div className="w-full">
-            <div className="bg-white py-2 px-3 mx-2 lg:mx-0 rounded shadow flex justify-between items-center">
+            <div className="bg-white py-2 px-3 mx-2 lg:mx-0 rounded shadow flex justify-between items-center dark:bg-gray-700 dark:text-white">
               <h2>
                 {query.cg} - {filteredData ? filteredData.length : data?.length}
               </h2>

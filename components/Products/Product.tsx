@@ -91,7 +91,7 @@ function Product() {
         <meta name="description" content={`${product?.description}`} />
         <meta name="keywords" content={`${product?.name}`} />
       </Head>
-      <div className="w-full bg-white min-h-screen">
+      <div className="w-full bg-white min-h-screen dark:bg-gray-700">
         <div className="px-5 sm:px-0">
           <div className="container m-auto py-3">
             <nav className="flex" aria-label="Breadcrumb">
@@ -279,11 +279,11 @@ function Product() {
                         </div>
                       </div>
                       <div className="col-span-2">
-                        <h1 className="text-xl font-semibold text-gray-600">
+                        <h1 className="text-xl font-semibold text-gray-600 dark:text-white">
                           {product.name}
                         </h1>
                         <div className="flex flex-row py-4 gap-2 flex-wrap">
-                          <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full">
+                          <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full dark:bg-gray-600 dark:text-white">
                             <div>
                               <span>Price:</span>
                               <NumericFormat
@@ -299,7 +299,7 @@ function Product() {
                               <span>৳</span>
                             </div>
                             {product.discountPrice && (
-                              <div className="ml-1 line-through text-gray-500">
+                              <div className="ml-1 line-through text-gray-500 dark:text-gray-300">
                                 <NumericFormat
                                   displayType="text"
                                   className="pl-1"
@@ -310,49 +310,53 @@ function Product() {
                               </div>
                             )}
                           </div>
-                          <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full">
+                          <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full dark:bg-gray-600 dark:text-white">
                             <div>
                               <span>Regular Price:</span>
                               <NumericFormat
                                 displayType="text"
-                                className="pl-1 text-gray-500"
+                                className="pl-1 text-gray-500 dark:text-gray-300"
                                 value={product.price}
                                 thousandSeparator=","
                               />
-                              <span className="text-gray-500">৳</span>
+                              <span className="text-gray-500 dark:text-gray-300">
+                                ৳
+                              </span>
                             </div>
                           </div>
-                          <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full">
+                          <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full dark:bg-gray-600 dark:text-white">
                             <div className="flex flex-row">
                               <div className="flex flex-row gap-1 justify-center items-center">
                                 <span className="h-2 w-2 bg-green-500 rounded-full"></span>
                                 <span>Status:</span>
                               </div>
-                              <span className="ml-1 text-gray-500">
+                              <span className="ml-1 text-gray-500 dark:text-gray-300">
                                 {product.productStatus}
                               </span>
                             </div>
                           </div>
-                          <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full">
+                          <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full dark:bg-gray-600 dark:text-white">
                             <div>
                               <span>Product Code:</span>
-                              <span className="text-gray-500 ml-1">30687</span>
+                              <span className="text-gray-500 ml-1 dark:text-gray-300">
+                                30687
+                              </span>
                             </div>
                           </div>
-                          <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full">
+                          <div className="flex flex-row justify-start items-center text-sm font-semibold bg-purple-50 px-3 py-2 rounded-full dark:bg-gray-600 dark:text-white">
                             <div>
                               <span>Brand:</span>
-                              <span className="text-gray-500 ml-1">
+                              <span className="text-gray-500 ml-1 dark:text-gray-300">
                                 {product.brand}
                               </span>
                             </div>
                           </div>
                         </div>
                         <div className="">
-                          <h2 className="font-semibold text-gray-600 text-lg py-2">
-                            Product Features
+                          <h2 className="font-semibold text-gray-600 text-lg py-2 dark:text-gray-300">
+                            Key Features
                           </h2>
-                          <div className="flex flex-col gap-1 text-[15px] text-gray-700">
+                          <div className="flex flex-col gap-1 text-[15px] text-gray-700 dark:text-gray-400">
                             {product.keyFeatures.map(
                               (item: any, index: number) => (
                                 <div
@@ -365,7 +369,7 @@ function Product() {
                             )}
                             <div>
                               <Link
-                                className="text-base text-red-500 border-b pb-1 border-red-500 hover:border-b-2 animate-pulse"
+                                className="text-base text-red-500 border-b pb-1 border-red-500 hover:border-b-2 animate-pulse dark:text-red-400 dark:border-red-400"
                                 href={"#specificationsId"}
                               >
                                 Explore More...
@@ -375,7 +379,7 @@ function Product() {
                         </div>
                         {/* Payment Options */}
                         <div className="pt-5 pb-8 border-b">
-                          <h2 className="font-semibold text-gray-600 text-lg py-2">
+                          <h2 className="font-semibold text-gray-600 text-lg py-2 dark:text-gray-300">
                             Payment Options
                           </h2>
                           <div className="grid grid-cols-3">
@@ -391,9 +395,9 @@ function Product() {
                                   <div
                                     className={`border-2 ${
                                       checked
-                                        ? "border-green-400 bg-white"
-                                        : "border-gray-200"
-                                    }  flex flex-row justify-start text-lg rounded cursor-pointer hover:shadow-md hover:border-green-400 hover:bg-green-50 shadow-green-700 font-semibold`}
+                                        ? "border-green-400 bg-white dark:bg-gray-600"
+                                        : "border-gray-200 bg-gray-600"
+                                    }  flex flex-row justify-start text-lg rounded cursor-pointer hover:shadow-md hover:border-green-400 dark:hover:bg-gray-500 hover:bg-green-50 shadow-green-700 font-semibold`}
                                   >
                                     <div
                                       className={`${
@@ -425,8 +429,8 @@ function Product() {
                                         )}
                                       </svg>
                                     </div>
-                                    <div>
-                                      <div className="flex flex-row justify-start items-center ml-2 pt-3">
+                                    <div className="dark:text-white">
+                                      <div className="flex flex-row justify-start items-center ml-2 pt-3 dark:text-white">
                                         <NumericFormat
                                           displayType="text"
                                           className=""
@@ -465,9 +469,9 @@ function Product() {
                                   <div
                                     className={`border-2 ${
                                       checked
-                                        ? "border-indigo-400 bg-white"
-                                        : "border-gray-200"
-                                    }  flex flex-row justify-start text-lg rounded cursor-pointer hover:shadow-md hover:border-indigo-400 hover:bg-indigo-50 shadow-indigo-700 font-semibold`}
+                                        ? "border-indigo-400 bg-white dark:bg-gray-600"
+                                        : "border-gray-200 dark:bg-gray-600"
+                                    }  flex flex-row justify-start text-lg rounded cursor-pointer hover:shadow-md hover:border-indigo-400 dark:hover:bg-gray-500 hover:bg-indigo-50 shadow-indigo-700 font-semibold`}
                                   >
                                     <div
                                       className={`${
@@ -501,7 +505,7 @@ function Product() {
                                         )}
                                       </svg>
                                     </div>
-                                    <div>
+                                    <div className="dark:text-white">
                                       <div className="flex flex-row justify-start items-center ml-2 pt-3">
                                         <NumericFormat
                                           displayType="text"
@@ -584,19 +588,19 @@ function Product() {
                       </div>
                     </div>
                   </div>
-                  <div className="w-full bg-gray-50">
+                  <div className="w-full bg-gray-50 dark:bg-gray-800">
                     <div className="container m-auto grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-5">
                       <div className="col-span-3">
                         <div id="specificationsId" className="w-full pt-8">
-                          <div className="p-5 rounded bg-white">
-                            <h1 className="text-gray-800 font-bold text-lg px-1 tracking-wider">
+                          <div className="p-5 rounded bg-white dark:bg-gray-700">
+                            <h1 className="text-gray-800 font-bold text-lg px-1 tracking-wider dark:text-white">
                               Specifications
                             </h1>
                             {product.specifications.map(
                               (item: any, index: number) => (
                                 <div key={index}>
-                                  <div className="bg-indigo-50 rounded">
-                                    <h1 className="mt-5 text-base font-semibold text-blue-500 py-2 ml-4">
+                                  <div className="bg-indigo-50 rounded dark:bg-indigo-900">
+                                    <h1 className="mt-5 text-base font-semibold text-blue-500 dark:text-white py-2 ml-4">
                                       {item.title}
                                     </h1>
                                   </div>
@@ -606,7 +610,7 @@ function Product() {
                                         (item: any, index: number) => (
                                           <tr
                                             key={index}
-                                            className="border-b bg-white hover:bg-gray-100 p-3 flex"
+                                            className="border-b bg-white dark:bg-gray-500 dark:text-white dark:border-b-gray-400 hover:bg-gray-100 p-3 flex"
                                           >
                                             <td className="flex-1">
                                               {item.key}
@@ -625,23 +629,23 @@ function Product() {
                           </div>
                         </div>
                         <div id="descriptionId" className="w-full pt-8">
-                          <div className="p-5 rounded bg-white">
-                            <h1 className="text-gray-800 font-bold text-lg tracking-wider">
+                          <div className="p-5 rounded bg-white dark:bg-gray-700">
+                            <h1 className="text-gray-800 font-bold text-lg tracking-wider dark:text-white">
                               Description
                             </h1>
-                            <h2 className="text-gray-600 text-sm mt-3 text-justify">
+                            <h2 className="text-gray-600 text-sm mt-3 text-justify dark:text-gray-200">
                               {product.description}
                             </h2>
                           </div>
                         </div>
                         <div id="questionsId" className="w-full pt-8">
-                          <div className="p-5 rounded bg-white">
-                            <div className="flex flex-wrap flex-row justify-between items-center border-b pb-5 pt-3">
+                          <div className="p-5 rounded bg-white dark:bg-gray-700">
+                            <div className="flex flex-wrap flex-row justify-between items-center border-b pb-5 pt-3 dark:border-b-gray-500">
                               <div>
-                                <h1 className="text-gray-800 font-bold text-lg tracking-wider">
+                                <h1 className="text-gray-800 font-bold text-lg tracking-wider dark:text-white">
                                   Questions (0)
                                 </h1>
-                                <h1 className="text-gray-600 text-sm">
+                                <h1 className="text-gray-600 text-sm dark:text-gray-200">
                                   Have question about this product? Get specific
                                   details about this product from expert.
                                 </h1>
@@ -654,12 +658,12 @@ function Product() {
                             </div>
                             <div>
                               <div className="flex flex-col justify-center items-center">
-                                <div className="bg-indigo-50 p-8 rounded-full mt-10">
+                                <div className="bg-indigo-50 p-8 rounded-full mt-10 dark:bg-gray-500">
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
-                                    className="w-12 h-12 text-indigo-600"
+                                    className="w-12 h-12 text-indigo-600 dark:text-indigo-400"
                                   >
                                     <path
                                       fillRule="evenodd"
@@ -668,7 +672,7 @@ function Product() {
                                     />
                                   </svg>
                                 </div>
-                                <p className="text-sm py-5">
+                                <p className="text-sm py-5 dark:text-white">
                                   There are no questions asked yet. Be the first
                                   one to ask a question.
                                 </p>
@@ -677,13 +681,13 @@ function Product() {
                           </div>
                         </div>
                         <div id="reviewsId" className="w-full py-8">
-                          <div className="p-5 rounded bg-white">
-                            <div className="flex flex-wrap flex-row justify-between items-center border-b pb-5 pt-3">
+                          <div className="p-5 rounded bg-white dark:bg-gray-700">
+                            <div className="flex flex-wrap flex-row justify-between items-center border-b pb-5 pt-3 dark:border-b-gray-500">
                               <div>
-                                <h1 className="text-gray-800 font-bold text-lg tracking-wider">
+                                <h1 className="text-gray-800 font-bold text-lg tracking-wider dark:text-white">
                                   Reviews (0)
                                 </h1>
-                                <h1 className="text-gray-600 text-sm">
+                                <h1 className="text-gray-600 text-sm dark:text-gray-200">
                                   Get specific details about this product from
                                   customers who own it.
                                 </h1>
@@ -696,12 +700,12 @@ function Product() {
                             </div>
                             <div>
                               <div className="flex flex-col justify-center items-center">
-                                <div className="bg-indigo-50 p-8 rounded-full mt-10">
+                                <div className="bg-indigo-50 p-8 rounded-full mt-10 dark:bg-gray-500">
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
-                                    className="w-12 h-12 text-indigo-600"
+                                    className="w-12 h-12 text-indigo-600 dark:text-indigo-400"
                                   >
                                     <path
                                       fillRule="evenodd"
@@ -715,7 +719,7 @@ function Product() {
                                     />
                                   </svg>
                                 </div>
-                                <p className="text-sm py-5">
+                                <p className="text-sm py-5 dark:text-white">
                                   This product has no reviews yet. Be the first
                                   one to write a review.
                                 </p>
@@ -725,11 +729,11 @@ function Product() {
                         </div>
                       </div>
                       <div className="w-full pt-0 md:pt-8">
-                        <div className="bg-white rounded">
-                          <h1 className="text-center font-bold text-indigo-500 py-3 text-lg rounded bg-indigo-100">
+                        <div className="bg-white rounded dark:bg-gray-700">
+                          <h1 className="text-center font-bold text-indigo-500 py-3 text-lg rounded bg-indigo-100 dark:bg-gray-700 dark:text-white">
                             Related Products
                           </h1>
-                          <div className="w-full">
+                          <div className="w-full dark:bg-gray-600">
                             {rProducts
                               ?.slice(0, 10)
                               .map((ritems: any, index: number) => (
@@ -739,8 +743,8 @@ function Product() {
                               ))}
                           </div>
                         </div>
-                        <div className="bg-white rounded mt-5">
-                          <h1 className="text-center font-bold text-gray-500 py-3 text-lg">
+                        <div className="bg-white rounded mt-5 dark:bg-gray-700">
+                          <h1 className="text-center font-bold text-gray-500 py-3 text-lg dark:text-white">
                             Recently Viewed
                           </h1>
                         </div>

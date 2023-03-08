@@ -27,61 +27,81 @@ function Menu() {
             } z-10 w-48 py-1 origin-top scale-y-0 group-hover/main:scale-y-100`}
           >
             <ul className="w-full shadow-md border border-gray-200 dark:border-gray-700 rounded-md">
-              {props.mainItem.items.map((subItem: any, index: number) => (
-                <li
-                  className={`p-2 w-full ${
-                    index === 0
-                      ? "rounded-t-md"
-                      : index === props.mainItem.items.length - 1
-                      ? "rounded-b-md"
-                      : ""
-                  } bg-white group/sub relative dark:bg-gray-700 dark:hover:bg-gray-800 hover:bg-sky-600 text-gray-800 hover:text-white dark:text-white`}
-                  key={index}
-                >
-                  <div className="flex flex-row justify-between items-center">
-                    <Link
-                      href={{
-                        pathname: `/sub-category/${subItem.name
-                          .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
-                          .toLowerCase()}`,
-                        query: { cg: props.name, scg: subItem.name },
-                      }}
-                      className="text-sm hover:underline cursor-pointer text-left"
-                    >
-                      {subItem.name}
-                    </Link>
-                    {subItem.items && <CaretRightOutlined />}
-                  </div>
-                  {subItem.items && (
-                    <div
-                      className={`absolute px-1 top-0 ${
-                        props.id < 8
-                          ? "left-full origin-left"
-                          : "right-full origin-right"
-                      } w-48 z-10 scale-x-0 ease-in-out duration-200 group-hover/sub:scale-x-100`}
-                    >
-                      <ul className="w-full bg-white dark:bg-gray-700 shadow-md border border-gray-200 dark:border-gray-700 rounded-md">
-                        {subItem.items.map((exsubItem: any, index: number) => (
-                          <li
-                            className={`p-2 hover:bg-sky-500 ${
-                              index === 0
-                                ? "rounded-t-md"
-                                : index === subItem.items.length - 1
-                                ? "rounded-b-md"
-                                : ""
-                            } bg-white dark:bg-gray-700 dark:hover:bg-gray-800 text-gray-800 hover:text-white dark:text-white`}
-                            key={index}
-                          >
-                            <Link className="hover:underline" href={"/"}>
-                              {exsubItem.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
+              {props.mainItem.items.map((subItem: any, index: number) => {
+                const subCategoryName = subItem.name;
+                return (
+                  <li
+                    className={`p-2 w-full ${
+                      index === 0
+                        ? "rounded-t-md"
+                        : index === props.mainItem.items.length - 1
+                        ? "rounded-b-md"
+                        : ""
+                    } bg-white group/sub relative dark:bg-gray-700 dark:hover:bg-gray-800 hover:bg-sky-600 text-gray-800 hover:text-white dark:text-white`}
+                    key={index}
+                  >
+                    <div className="flex flex-row justify-between items-center">
+                      <Link
+                        href={{
+                          pathname: `/sub-category/${subItem.name
+                            .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                            .toLowerCase()}`,
+                          query: { cg: props.name, scg: subItem.name },
+                        }}
+                        className="text-sm hover:underline cursor-pointer text-left"
+                      >
+                        {subItem.name}
+                      </Link>
+                      {subItem.items && <CaretRightOutlined />}
                     </div>
-                  )}
-                </li>
-              ))}
+                    {subItem.items && (
+                      <div
+                        className={`absolute px-1 top-0 ${
+                          props.id < 8
+                            ? "left-full origin-left"
+                            : "right-full origin-right"
+                        } w-48 z-10 scale-x-0 ease-in-out duration-200 group-hover/sub:scale-x-100`}
+                      >
+                        <ul className="w-full bg-white dark:bg-gray-700 shadow-md border border-gray-200 dark:border-gray-700 rounded-md">
+                          {subItem.items.map(
+                            (exsubItem: any, index: number) => (
+                              <li
+                                className={`p-2 hover:bg-sky-500 ${
+                                  index === 0
+                                    ? "rounded-t-md"
+                                    : index === subItem.items.length - 1
+                                    ? "rounded-b-md"
+                                    : ""
+                                } bg-white dark:bg-gray-700 dark:hover:bg-gray-800 text-gray-800 hover:text-white dark:text-white`}
+                                key={index}
+                              >
+                                <Link
+                                  className="hover:underline"
+                                  href={{
+                                    pathname: `/escategory/${exsubItem.name
+                                      .replace(
+                                        /[&\/\\#, +()$~%.'":*?<>{}]/g,
+                                        "-"
+                                      )
+                                      .toLowerCase()}`,
+                                    query: {
+                                      cg: props.name,
+                                      scg: subCategoryName,
+                                      escg: exsubItem.name,
+                                    },
+                                  }}
+                                >
+                                  {exsubItem.name}
+                                </Link>
+                              </li>
+                            )
+                          )}
+                        </ul>
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}

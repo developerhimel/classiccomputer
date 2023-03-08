@@ -170,7 +170,7 @@ function Footer() {
               </div>
               <div>
                 <p className="text-xs text-gray-300 py-1">9AM - 10PM</p>
-                <h2 className="font-bold text-red-500 text-lg">01750577439</h2>
+                <h2 className="font-bold text-red-500 text-lg">01718443892</h2>
               </div>
             </div>
             <Link

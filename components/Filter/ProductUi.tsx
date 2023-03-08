@@ -20,7 +20,7 @@ function ProductUi(props: { data: any; limit: number }) {
       {props.data?.slice(0, props.limit).map((item: any, index: number) => (
         <div
           key={index}
-          className="bg-white shadow-md min-h-[580px] rounded-md group/main hover:shadow-pink-300"
+          className="bg-white shadow-md min-h-[580px] rounded-md group/main hover:shadow-pink-300 dark:bg-gray-700"
         >
           <div>
             <div className="pt-2">
@@ -37,7 +37,7 @@ function ProductUi(props: { data: any; limit: number }) {
                 ৳
               </span>
             </div>
-            <div className="p-3 relative w-full h-[230px] overflow-hidden border-b-2">
+            <div className="p-3 relative w-full h-[230px] overflow-hidden border-b-2 dark:border-b-gray-500">
               {loading && (
                 <Skeleton.Image
                   className="w-full h-full absolute top-0 z-[1] left-0"
@@ -72,17 +72,17 @@ function ProductUi(props: { data: any; limit: number }) {
               }}
             >
               <div className="w-full h-10">
-                <h3 className="hover:text-red-500 hover:underline line-clamp-2 text-ellipsis">
+                <h3 className="hover:text-red-500 hover:underline line-clamp-2 text-ellipsis dark:text-white dark:hover:text-red-400">
                   {item?.name}
                 </h3>
               </div>
             </Link>
           </div>
-          <div className="border-b mx-3 pb-2 min-h-[120px]">
+          <div className="border-b mx-3 pb-2 min-h-[120px] dark:border-b-gray-500">
             {item.keyFeatures.slice(0, 4).map((item: any, index: number) => (
               <div
                 key={index}
-                className="text-xs flex justify-start items-start my-2 text-gray-700"
+                className="text-xs flex justify-start items-start my-2 text-gray-700 dark:text-gray-200"
               >
                 <i className="fa-solid fa-circle text-[4px] mr-2 mt-[5px]"></i>
                 <p className="line-clamp-1 text-ellipsis">{item.value}</p>
@@ -121,14 +121,14 @@ function ProductUi(props: { data: any; limit: number }) {
                 alert(`Added on cart: ${item.name}`);
               }}
               startIcon={<ShoppingCartIcon />}
-              className="bg-indigo-50 text-indigo-700 hover:text-white w-full shadow-none font-semibold capitalize hover:bg-indigo-700"
+              className="bg-indigo-50 text-indigo-700 hover:text-white w-full shadow-none font-semibold capitalize hover:bg-indigo-700 dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500"
               variant="contained"
             >
               Buy Now
             </Button>
             <Button
               startIcon={<DifferenceIcon />}
-              className="bg-white mt-2 text-gray-700 w-full shadow-none capitalize hover:bg-gray-100 text-xs"
+              className="bg-white mt-2 text-gray-700 w-full shadow-none capitalize hover:bg-gray-100 text-xs dark:bg-gray-500 dark:text-white dark:hover:bg-gray-400"
               variant="contained"
             >
               Add to Compare

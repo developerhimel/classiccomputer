@@ -66,10 +66,10 @@ function Register() {
     <>
       {contextHolderMessage}
       <>{contextHolderModal}</>
-      <div className="w-full min-h-[70vh] bg-white">
+      <div className="w-full bg-white dark:bg-gray-800 mb-10">
         <div className="container m-auto">
           <div className="flex justify-center items-center">
-            <form className="bg-white shadow-sky-200 border shadow rounded-lg my-14 w-[600px] p-10">
+            <form className="bg-white shadow-sky-200 border shadow rounded-lg mt-14 w-[600px] p-10 dark:bg-gray-700 dark:border-gray-600 dark:shadow-gray-600">
               <div className="flex justify-center">
                 <Link href={"/"}>
                   <div className="w-28 h-14 relative">
@@ -83,10 +83,10 @@ function Register() {
                   </div>
                 </Link>
               </div>
-              <h1 className="text-lg font-semibold text-center">
+              <h1 className="text-lg font-semibold text-center dark:text-white">
                 Account Registration
               </h1>
-              <div className="flex flex-col mt-2">
+              <div className="flex flex-col mt-2 dark:text-white">
                 <label className="my-2" htmlFor="loginEmail">
                   Full Name :
                 </label>
@@ -97,11 +97,11 @@ function Register() {
                   name="registerFullName"
                   id="registerFullName"
                   placeholder="Full Name"
-                  className="rounded border border-gray-300"
+                  className="rounded border border-gray-300 dark:border-gray-500 dark:bg-gray-600"
                   onChange={(e) => setRegisterFullName(e.target.value)}
                 />
               </div>
-              <div className="flex flex-col mt-2">
+              <div className="flex flex-col mt-2 dark:text-white">
                 <label className="my-2" htmlFor="loginEmail">
                   Email Address :
                 </label>
@@ -112,11 +112,11 @@ function Register() {
                   name="registerEmail"
                   id="registerEmail"
                   placeholder="Email"
-                  className="rounded border border-gray-300"
+                  className="rounded border border-gray-300 dark:border-gray-500 dark:bg-gray-600"
                   onChange={(e) => setRegisterEmail(e.target.value)}
                 />
               </div>
-              <div className="flex flex-col mt-2">
+              <div className="flex flex-col mt-2 dark:text-white">
                 <label className="my-2" htmlFor="loginEmail">
                   Phone Number :
                 </label>
@@ -127,11 +127,11 @@ function Register() {
                   name="registerPhoneNumber"
                   id="registerPhoneNumber"
                   placeholder="+880 -"
-                  className="rounded border border-gray-300"
+                  className="rounded border border-gray-300 dark:border-gray-500 dark:bg-gray-600"
                   onChange={(e) => setRegisterPhoneNumber(e.target.value)}
                 />
               </div>
-              <div className="flex flex-col mt-2">
+              <div className="flex flex-col mt-2 dark:text-white">
                 <label className="my-2" htmlFor="loginPassword">
                   Password :
                 </label>
@@ -142,13 +142,13 @@ function Register() {
                   name="registerPassword"
                   id="registerPassword"
                   placeholder="password"
-                  className="rounded border border-gray-300"
+                  className="rounded border border-gray-300 dark:border-gray-500 dark:bg-gray-600"
                   onChange={(e) => setRegisterPassword(e.target.value)}
                 />
               </div>
               <div className="flex justify-end my-3">
                 <button
-                  className="text-red-500 text-sm hover:underline hover:scale-105 duration-300 ease-in-out"
+                  className="text-red-500 text-sm hover:underline hover:scale-105 duration-300 ease-in-out dark:text-gray-300"
                   type="button"
                 >
                   Forgotten Password?
@@ -174,17 +174,17 @@ function Register() {
                 )}
               </Button>
               <div className="grid grid-cols-3 items-center gap-3 my-5">
-                <div className="w-full border-b" />
+                <div className="w-full border-b dark:border-b-gray-500" />
                 <div>
-                  <h1 className="text-sm text-center">
+                  <h1 className="text-sm text-center dark:text-white">
                     Already have an account
                   </h1>
                 </div>
-                <div className="w-full border-b" />
+                <div className="w-full border-b dark:border-b-gray-500" />
               </div>
               <Button
                 onClick={() => router.push("/login")}
-                className="w-full font-semibold hover:bg-sky-600 shadow-none py-2 border border-sky-600 bg-white text-sky-600 hover:text-white"
+                className="w-full font-semibold hover:bg-sky-600 shadow-none py-2 border border-sky-600 bg-white text-sky-600 hover:text-white dark:bg-gray-600 dark:text-white dark:hover:bg-sky-600"
                 variant="outlined"
               >
                 Login

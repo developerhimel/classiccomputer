@@ -17,17 +17,35 @@ import {
 } from "@mui/material";
 import menu from "../../../json/menu.json";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useCart } from "react-use-cart";
+import Lottie from "react-lottie";
+import * as animationData from "./offers.json";
 
 const DynamicSearchbar = dynamic(() => import("./Searchbar"), {
   suspense: true,
 });
 
 function Navbar() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+  const { totalUniqueItems } = useCart();
   const router = useRouter();
   const [user, setUser] = useState(undefined as any);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [expanded, setExpanded] = React.useState<string | false>();
+  const [totalCartUniqueItemsLength, setTotalCartUniqueItemsLength] =
+    useState(0);
+
+  useEffect(() => {
+    setTotalCartUniqueItemsLength(totalUniqueItems);
+  }, [totalUniqueItems]);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, newExpanded: boolean) => {
@@ -116,7 +134,7 @@ function Navbar() {
               <div className="flex flex-row justify-between items-center lg:hidden py-1">
                 <div>
                   <button className="px-3" onClick={() => setDrawerOpen(true)}>
-                    <MenuOutlined className="text-gray-800 text-xl" />
+                    <MenuOutlined className="text-gray-800 text-xl dark:text-white" />
                   </button>
                   <SwipeableDrawer
                     open={drawerOpen}
@@ -132,13 +150,13 @@ function Navbar() {
                             disableGutters
                             expanded={expanded === `panel${index}`}
                             onChange={handleChange(`panel${index}`)}
-                            className='shadow-none border-b'
+                            className="shadow-none border-b"
                           >
                             <AccordionSummary
                               expandIcon={<ExpandMoreIcon />}
                               aria-controls={`panel${index}d-content`}
                               id={`panel${index}d-header`}
-                              className='shadow shadow-sky-200'
+                              className="shadow shadow-sky-200"
                             >
                               <button
                                 onClick={() => {
@@ -200,8 +218,14 @@ function Navbar() {
                     priority
                   />
                 </Link>
-                <button className="px-3">
-                  <ShoppingCartOutlined className="text-gray-800 text-2xl" />
+                <button
+                  onClick={() => router.push("/checkout/cart")}
+                  className="px-3 relative"
+                >
+                  <span className="absolute right-0 -top-1 bg-red-500 text-white font-bold w-5 h-5 text-center text-xs flex items-center justify-center rounded-full">
+                    {totalCartUniqueItemsLength}
+                  </span>
+                  <ShoppingCartOutlined className="text-gray-800 text-2xl dark:text-white" />
                 </button>
               </div>
               <div className="mx-3">
@@ -247,7 +271,9 @@ function Navbar() {
                         </svg>
                       </div>
                       <div>
-                        <h2 className="text-gray-800 text-base">Offers</h2>
+                        <h2 className="text-gray-800 dark:text-white text-base">
+                          Offers
+                        </h2>
                         <h3 className="text-gray-400 text-xs">Latest Offers</h3>
                       </div>
                     </div>
@@ -255,24 +281,15 @@ function Navbar() {
                   <Link href={"/"}>
                     <div className="flex flex-row items-center hover:cursor-pointer">
                       <div className="px-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="w-6 h-6 ccprimary animate-pulse"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
-                          />
-                        </svg>
+                        <Lottie
+                          options={defaultOptions}
+                          height={50}
+                          width={50}
+                        />
                       </div>
                       <div>
-                        <h2 className="text-gray-800 text-base">
-                          Bijoy Offers
+                        <h2 className="text-gray-800 dark:text-white text-base">
+                          Flash Offers
                         </h2>
                         <h3 className="text-gray-400 text-xs">Special Offer</h3>
                       </div>
@@ -300,7 +317,7 @@ function Navbar() {
                           </svg>
                         </div>
                         <div>
-                          <h2 className="text-gray-800 text-base">Account</h2>
+                          <h2 className="text-gray-800 dark:text-white text-base">Account</h2>
                           <h3 className="text-gray-400 text-xs">
                             Register || Login
                           </h3>
@@ -308,11 +325,11 @@ function Navbar() {
                       </div>
                     </Dropdown>
                   )}
-                  {/* <Flowbite>
+                  <Flowbite>
                     <Tooltip content="Switch Theme" style="light">
                       <DarkThemeToggle className="focus:outline-none focus:bg-gray-800 hover:bg-none" />
                     </Tooltip>
-                  </Flowbite> */}
+                  </Flowbite>
                   <Link
                     href={"/pcbuilder"}
                     className="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-normal text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group"

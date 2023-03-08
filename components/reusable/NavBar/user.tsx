@@ -19,7 +19,7 @@ function Logout(props: { user: any; setUser: any }) {
             router.push("/");
           }
         }}
-        className="bg-red-200 w-12 group hover:bg-red-300 rounded-r"
+        className="bg-red-200 dark:bg-gray-800 w-12 group hover:bg-red-300 rounded-r"
       >
         <i className="fa-duotone fa-right-from-bracket text-red-500 group-hover:scale-110"></i>
       </button>
@@ -81,11 +81,11 @@ function user(props: { user: any; setUser: any }) {
     };
   }
   return (
-    <div className="flex bg-gray-50 rounded-md border">
+    <div className="flex bg-gray-50 dark:bg-gray-700 dark:border-gray-700 rounded-md border">
       <Dropdown menu={{ items }} placement="bottom" arrow>
-        <div className="flex flex-row items-center hover:cursor-pointer rounded-full bg-white shadow shadow-sky-200 border my-1 mx-2">
+        <div className="flex flex-row items-center hover:cursor-pointer rounded-full shadow shadow-sky-200 dark:shadow-gray-800 dark:border-gray-800 border my-1 mx-2">
           <Avatar
-            className="bg-white text-gray-600 text-sm font-semibold w-[35px] h-[35px]"
+            className="bg-white dark:bg-gray-800 text-gray-600 dark:text-white text-sm font-semibold w-[35px] h-[35px]"
             {...stringAvatar(props.user.fullName)}
           />
         </div>
