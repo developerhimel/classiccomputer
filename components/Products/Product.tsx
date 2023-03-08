@@ -34,8 +34,7 @@ function Product() {
     modal.success({
       centered: true,
       closable: true,
-      okText: "View cart",
-      cancelText: "Continue",
+      okText: "Done",
       title: "Added on cart",
       content: `${product?.name}`,
       bodyStyle: { padding: "20px 24px" },
@@ -92,8 +91,8 @@ function Product() {
         <meta name="keywords" content={`${product?.name}`} />
       </Head>
       <div className="w-full bg-white min-h-screen dark:bg-gray-700">
-        <div className="px-5 sm:px-0">
-          <div className="container m-auto py-3">
+        <div className="">
+          <div className="container m-auto py-3 px-5">
             <nav className="flex" aria-label="Breadcrumb">
               <ol className="inline-flex items-center space-x-1 md:space-x-3">
                 <li className="inline-flex items-center">
@@ -235,7 +234,7 @@ function Product() {
             <>
               {product && (
                 <div>
-                  <div className="container m-auto">
+                  <div className="container m-auto px-5 sm:px-0">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 lg:gap-10 mb-20">
                       <div>
                         <div className="flex flex-col justify-center items-center h-[500px]">
@@ -588,7 +587,7 @@ function Product() {
                       </div>
                     </div>
                   </div>
-                  <div className="w-full bg-gray-50 dark:bg-gray-800">
+                  <div className="w-full bg-gray-50 dark:bg-gray-800 py-3 px-5 sm:px-0">
                     <div className="container m-auto grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-5">
                       <div className="col-span-3">
                         <div id="specificationsId" className="w-full pt-8">

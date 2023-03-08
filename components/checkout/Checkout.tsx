@@ -66,6 +66,16 @@ function Checkout() {
   const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    if (paymentMethod === "Online Payment") {
+      setTimeout(() => {
+        setLoading(false);
+        alert(
+          "Online payment will be activated by sslcommerz within 48 hours."
+        );
+        setPaymentMethod("Cash on Delivery");
+      }, 2000);
+      return;
+    }
     const order = {
       cusInfo: {
         firstName: firstName,

@@ -5,10 +5,11 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import DifferenceIcon from "@mui/icons-material/Difference";
 import Link from "next/link";
 import { Button } from "@mui/material";
-import { Skeleton } from "antd";
+import { Modal, Skeleton } from "antd";
 import { useCart } from "react-use-cart";
 
 function ProductUi(props: { data: any; limit: number }) {
+  const [modal, contextHolder] = Modal.useModal();
   const { addItem } = useCart();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -17,6 +18,7 @@ function ProductUi(props: { data: any; limit: number }) {
 
   return (
     <>
+      {contextHolder}
       {props.data?.slice(0, props.limit).map((item: any, index: number) => (
         <div
           key={index}
@@ -118,7 +120,14 @@ function ProductUi(props: { data: any; limit: number }) {
                   id: item._id,
                   price: item.discountPrice,
                 });
-                alert(`Added on cart: ${item.name}`);
+                modal.success({
+                  centered: true,
+                  closable: true,
+                  okText: "Done",
+                  title: "Added on cart",
+                  content: `${item?.name}`,
+                  bodyStyle: { padding: "20px 24px" },
+                });
               }}
               startIcon={<ShoppingCartIcon />}
               className="bg-indigo-50 text-indigo-700 hover:text-white w-full shadow-none font-semibold capitalize hover:bg-indigo-700 dark:bg-gray-600 dark:text-white dark:hover:bg-gray-500"
