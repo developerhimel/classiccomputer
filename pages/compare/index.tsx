@@ -1,9 +1,9 @@
-import React from "react";
 import { NextPage } from "next";
 import Head from "next/head";
-import Cart from "../../components/checkout/Cart";
+import React from "react";
+import Compare from "../../components/Compare/Compare";
 
-const CartPage: NextPage = (props: any) => {
+const CompareProductsPage: NextPage = (props: any) => {
   return (
     <>
       <Head>
@@ -18,9 +18,9 @@ const CartPage: NextPage = (props: any) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <Cart />
+      <Compare />
     </>
   );
 };
 
-export default CartPage;
+export default CompareProductsPage;

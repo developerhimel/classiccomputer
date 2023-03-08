@@ -142,6 +142,31 @@ function Navbar() {
                     onOpen={() => setDrawerOpen(true)}
                   >
                     <div className="w-[50vw]">
+                      <div>
+                        {user ? (
+                          <button
+                            onClick={() => {
+                              setDrawerOpen(false);
+                              router.push("/user/profile");
+                            }}
+                            className="px-3 py-2 bg-gray-300 text-orange-500 font-semibold w-full"
+                          >
+                            <i className="fa-duotone fa-user mx-1"></i> My
+                            Account{" "}
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              setDrawerOpen(false);
+                              router.push("/login");
+                            }}
+                            className="px-3 py-2 bg-gray-300 text-orange-500 font-semibold w-full"
+                          >
+                            Register/Login{" "}
+                            <i className="fa-duotone fa-right-to-bracket mx-1"></i>
+                          </button>
+                        )}
+                      </div>
                       {menu.map((cg: any, index: number) => {
                         const categoryName = cg.name;
                         return (
@@ -317,7 +342,9 @@ function Navbar() {
                           </svg>
                         </div>
                         <div>
-                          <h2 className="text-gray-800 dark:text-white text-base">Account</h2>
+                          <h2 className="text-gray-800 dark:text-white text-base">
+                            Account
+                          </h2>
                           <h3 className="text-gray-400 text-xs">
                             Register || Login
                           </h3>

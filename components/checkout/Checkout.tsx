@@ -88,10 +88,12 @@ function Checkout() {
         cusComment: cusComment,
       },
       userInfo: user,
+      userId: user._id,
       paymentMethod: paymentMethod,
       deliveryMethod: deliveryMethod,
       products: cartItems,
       subTotal: inTotal,
+      orderStatus: "processing",
       total:
         deliveryMethod === "Home Delivery" ? inTotal + deliveryCharge : inTotal,
     };

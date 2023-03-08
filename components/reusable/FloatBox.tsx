@@ -7,8 +7,10 @@ import Image from "next/image";
 import { useCart } from "react-use-cart";
 import DifferenceIcon from "@mui/icons-material/Difference";
 import { NumericFormat } from "react-number-format";
+import { useRouter } from "next/router";
 
 function FloatBox() {
+  const router = useRouter();
   const {
     isEmpty,
     totalUniqueItems,
@@ -227,7 +229,10 @@ function FloatBox() {
           </svg>
           <h3 className="text-xs text-white mt-1">Cart</h3>
         </div>
-        <div className="bg-gray-900 border border-gray-600 relative h-[60px] w-[60px] rounded hover:bg-gray-500 cursor-pointer flex justify-center items-center flex-col">
+        <div
+          onClick={() => router.push("/compare")}
+          className="bg-gray-900 border border-gray-600 relative h-[60px] w-[60px] rounded hover:bg-gray-500 cursor-pointer flex justify-center items-center flex-col"
+        >
           <span className="absolute -right-1 -top-1 border-4 border-gray-900 bg-red-500 text-white font-bold w-6 h-6 text-center text-xs flex items-center justify-center rounded-full">
             0
           </span>
