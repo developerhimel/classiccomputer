@@ -124,7 +124,7 @@ function Orders() {
       </div>
       {/* Breadcamp section end */}
       <div className="container m-auto">
-        <div className="max-w-6xl m-auto bg-white dark:bg-gray-700 dark:border-gray-600 my-10 p-10 shadow border rounded-lg min-h-[50vh]">
+        <div className="max-w-6xl m-auto bg-white dark:bg-gray-700 dark:border-gray-600 my-10 p-3 md:p-10 shadow border rounded-lg min-h-[50vh]">
           <h1 className="text-xl font-semibold dark:text-white pb-5 border-b mb-2 dark:border-b-gray-500">
             Orders
           </h1>

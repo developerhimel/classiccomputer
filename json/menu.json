@@ -100,7 +100,8 @@
         "name": "Apple Mac Studio"
       },
       {
-        "name": "Show All Desktop"
+        "name": "Show All Desktop",
+        "value": "sl"
       }
     ]
   },
@@ -251,7 +252,8 @@
         "name": "Laptop Accessories"
       },
       {
-        "name": "Show All Laptop"
+        "name": "Show All Laptop",
+        "value": "sl"
       }
     ]
   },
@@ -993,7 +995,8 @@
         "name": "Vertical Graphics Card"
       },
       {
-        "name": "Show All PC Components"
+        "name": "Show All PC Components",
+        "value": "sl"
       }
     ]
   },
@@ -1085,7 +1088,8 @@
         "name": "Philips"
       },
       {
-        "name": "Show All Monitor"
+        "name": "Show All Monitor",
+        "value": "sl"
       }
     ]
   },
@@ -1111,7 +1115,8 @@
         "name": "IPS"
       },
       {
-        "name": "Show All UPS"
+        "name": "Show All UPS",
+        "value": "sl"
       }
     ]
   },
@@ -1155,7 +1160,8 @@
         "name": "STYLUS"
       },
       {
-        "name": "Show All Tablet"
+        "name": "Show All Tablet",
+        "value": "sl"
       }
     ]
   },
@@ -1194,6 +1200,10 @@
       },
       {
         "name": "Games"
+      },
+      {
+        "name": "Showw All Gaming Gears",
+        "value": "sl"
       }
     ]
   },
@@ -1697,6 +1707,10 @@
       },
       {
         "name": "PC Lighting & LED Strips"
+      },
+      {
+        "name": "Show All Accessories",
+        "value": "sl"
       }
     ]
   },
@@ -1865,6 +1879,9 @@
             "name": "Other"
           }
         ]
+      },{
+        "name":"Show All Camera",
+        "value": "sl"
       }
     ]
   },
@@ -1997,7 +2014,8 @@
         "name": "Digital Locker & Vault "
       },
       {
-        "name": "Show ALl Security Tools"
+        "name": "Show ALl Security Tools",
+        "value": "sl"
       }
     ]
   },
@@ -2215,7 +2233,8 @@
         ]
       },
       {
-        "name": "Show All Networking Accessories"
+        "name": "Show All Networking Accessories",
+        "value": "sl"
       }
     ]
   },
@@ -2598,7 +2617,8 @@
         "name": "Stream Deck"
       },
       {
-        "name": "Show All Gadget"
+        "name": "Show All Gadget",
+        "value": "sl"
       }
     ]
   },
@@ -2646,6 +2666,10 @@
       },
       {
         "name": "XStrike"
+      },
+      {
+        "name": "Show All Combo",
+        "value": "sl"
       }
     ]
   },
@@ -2674,7 +2698,8 @@
         "name": "TV Stand & Wall Mount"
       },
       {
-        "name": "Show All TV"
+        "name": "Show All TV",
+        "value": "sl"
       }
     ]
   },
@@ -2697,7 +2722,8 @@
         "name": "Xiaomi"
       },
       {
-        "name": "Show All AC"
+        "name": "Show All AC",
+        "value": "sl"
       }
     ]
   }

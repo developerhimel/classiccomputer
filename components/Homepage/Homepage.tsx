@@ -66,7 +66,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
       {/* Slider Section End */}
 
       {/* Featured Category */}
-      <div className="w-full mt-16">
+      <div className="w-full mt-16 px-3 md:px-0">
         <div className="w-full">
           <h1 className="text-center text-xl font-semibold text-gray-800 dark:text-white">
             Featured Category

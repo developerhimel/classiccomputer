@@ -91,8 +91,8 @@ function Cart() {
       </div>
       {/* Breadcamp section end */}
       <div className="container m-auto">
-        <div className="max-w-6xl m-auto bg-white dark:bg-gray-700 dark:border-gray-600 my-10 p-10 shadow border rounded-lg">
-          <div className="bg-white dark:bg-gray-700 shadow p-5 rounded-md text-sm mb-5">
+        <div className="max-w-6xl m-auto bg-white dark:bg-gray-700 dark:border-gray-600 my-10 p-0 md:p-10 shadow border rounded-lg">
+          <div className="bg-white dark:bg-gray-700 shadow p-3 md:p-5 rounded-md text-sm mb-5">
             <div className="flex items-center border-b pb-3 pt-1 dark:border-b-gray-500">
               <span className="bg-indigo-50 text-indigo-600 w-8 h-8 rounded-full text-center justify-center text-sm font-bold items-center flex">
                 CC
@@ -102,7 +102,7 @@ function Cart() {
               </h2>
             </div>
             <div className="bg-gray-50 dark:bg-gray-600 rounded flex justify-between items-center mt-3 mb-1">
-              <div className="w-full">
+              <div className="w-[40%] md:w-full">
                 <h3 className="w-full border-r-4 p-3 border-r-white font-semibold dark:border-r-gray-500 dark:text-white">
                   Product Name
                 </h3>
@@ -125,7 +125,7 @@ function Cart() {
                   className="border-b w-full my-1 dark:border-b-gray-500"
                 >
                   <div className="flex justify-between items-center">
-                    <div className="w-full flex items-center">
+                    <div className="w-[40%] md:w-full flex items-center">
                       <div className="relative w-14 h-14">
                         <Image src={product.src} alt={product.name} fill />
                       </div>

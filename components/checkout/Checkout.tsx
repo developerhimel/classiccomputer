@@ -449,7 +449,7 @@ function Checkout() {
                   </h2>
                 </div>
                 <div className="bg-gray-50 dark:bg-gray-600 rounded flex justify-between items-center mt-3 mb-1">
-                  <div className="w-full">
+                  <div className="w-[40%] md:w-full">
                     <h3 className="w-full border-r-4 p-3 border-r-white font-semibold dark:border-r-gray-500 dark:text-white">
                       Product Name
                     </h3>
@@ -472,7 +472,7 @@ function Checkout() {
                       className="border-b w-full my-1 dark:border-b-gray-500"
                     >
                       <div className="flex justify-between items-center">
-                        <div className="w-full">
+                        <div className="w-[40%] md:w-full">
                           <h3 className="border-r-4 p-3 border-r-white dark:border-r-gray-500">
                             <Link
                               target={"_blank"}
@@ -540,7 +540,7 @@ function Checkout() {
                   </div>
                   <div className="rounded flex justify-between items-center">
                     <div className="w-full"></div>
-                    <div className="w-[70%] md:w-[30%] lg:w-[40%] xl:w-[30%] bg-gray-100 border-b dark:bg-gray-600 dark:border-b-gray-500">
+                    <div className="w-[110%] sm:w-[70%] md:w-[30%] lg:w-[40%] xl:w-[30%] bg-gray-100 border-b dark:bg-gray-600 dark:border-b-gray-500">
                       <h3 className="w-full border-r-4 p-3 border-r-white text-end dark:text-gray-300 dark:border-r-gray-500">
                         {deliveryMethod === "Home Delivery"
                           ? "Home Delivery:"

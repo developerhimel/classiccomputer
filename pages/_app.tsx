@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {router.route.startsWith("/admin") ? (
+      {router.route.match("/admin") ? (
         <Component {...pageProps} />
       ) : (
         <CartProvider id="cccart">

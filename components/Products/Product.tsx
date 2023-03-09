@@ -609,7 +609,7 @@ function Product() {
                                         (item: any, index: number) => (
                                           <tr
                                             key={index}
-                                            className="border-b bg-white dark:bg-gray-500 dark:text-white dark:border-b-gray-400 hover:bg-gray-100 p-3 flex"
+                                            className="border-b bg-white dark:bg-gray-700 dark:text-white dark:border-b-gray-500 dark:hover:bg-gray-600 hover:bg-gray-100 p-3 flex"
                                           >
                                             <td className="flex-1">
                                               {item.key}

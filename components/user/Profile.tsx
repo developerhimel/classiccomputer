@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Avatar } from "antd";
+import { Avatar, Skeleton } from "antd";
 import GradientBb from "../../components/reusable/svg/GradientBb";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -8,7 +8,9 @@ function Profile() {
   const router = useRouter();
   const query = router.query;
   const [user, setUser] = useState(undefined as any);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     const userId = localStorage.getItem("user");
     if (userId) {
       fetch("/api/user", {
@@ -23,6 +25,7 @@ function Profile() {
         .then((res) => res.json())
         .then((data) => {
           setUser(data);
+          setLoading(false);
         });
     }
   }, []);
@@ -93,16 +96,21 @@ function Profile() {
                 />
               </svg>
             </div>
-            <div className="mx-3 dark:text-white">
-              <h2>Hello,</h2>
-              <h2 className="text-2xl font-semibold text-gray-600 dark:text-gray-200">
-                {user?.fullName}
-              </h2>
-            </div>
+            {loading ? (
+              <Skeleton className="m-1" />
+            ) : (
+              <div className="mx-3 dark:text-white">
+                <h2>Hello,</h2>
+                <h2 className="text-2xl font-semibold text-gray-600 dark:text-gray-200">
+                  {user?.fullName}
+                </h2>
+              </div>
+            )}
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3">
             <div className="relative bg-white dark:bg-gray-700 dark:border-gray-500 dark:shadow-gray-600 dark:hover:bg-gray-600 hover:bg-gray-50 rounded-xl p-6 text-sm leading-6 transition shadow-[0_1px_3px_rgba(15,23,42,0.03),0_1px_2px_rgba(15,23,42,0.06)] ring-1 ring-slate-600/[0.04]">
               <Link
+                className={`${loading ? "pointer-events-none" : ""}`}
                 href={{ pathname: "/user/orders", query: { id: user?._id } }}
               >
                 <div className="w-full h-32 flex justify-center items-center flex-col">

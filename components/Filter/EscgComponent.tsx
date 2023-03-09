@@ -280,7 +280,7 @@ function EscgComponent() {
               className="bg-transparent dark:text-white"
             >
               <Panel
-                className="shadow-sm mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white dark:shadow-gray-500"
+                className="shadow-none dark:border-none mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white"
                 header="Price Range"
                 key="1"
               >
@@ -336,7 +336,7 @@ function EscgComponent() {
                 </div>
               </Panel>
               <Panel
-                className="shadow-sm mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white dark:shadow-gray-500"
+                className="shadow-none dark:border-none mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white"
                 header="Availability"
                 key="2"
               >
@@ -393,7 +393,7 @@ function EscgComponent() {
                 {/* invisible div end */}
               </Panel>
               <Panel
-                className="shadow-sm mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white dark:shadow-gray-500"
+                className="shadow-none dark:border-none mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white"
                 header="Brands"
                 key="3"
               >

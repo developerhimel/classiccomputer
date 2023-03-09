@@ -144,16 +144,36 @@ function Navbar() {
                     <div className="w-[50vw]">
                       <div>
                         {user ? (
-                          <button
-                            onClick={() => {
-                              setDrawerOpen(false);
-                              router.push("/user/profile");
-                            }}
-                            className="px-3 py-2 bg-gray-300 text-orange-500 font-semibold w-full"
-                          >
-                            <i className="fa-duotone fa-user mx-1"></i> My
-                            Account{" "}
-                          </button>
+                          <div>
+                            <button
+                              onClick={() => {
+                                setDrawerOpen(false);
+                                router.push("/user/profile");
+                              }}
+                              className="px-3 py-2 bg-gray-300 text-orange-500 font-semibold w-full"
+                            >
+                              <i className="fa-duotone fa-user mx-1"></i> My
+                              Account{" "}
+                            </button>
+                            <button
+                              onClick={async () => {
+                                const res = await fetch("/api/auth/logout");
+                                const data = await res.json();
+                                if (
+                                  data.message === "Successfuly logged out!"
+                                ) {
+                                  setDrawerOpen(false);
+                                  localStorage.removeItem("user");
+                                  setUser(undefined);
+                                  router.push("/");
+                                }
+                              }}
+                              className="px-3 py-2 bg-gray-300 text-red-600 font-semibold w-full border-t"
+                            >
+                              Logout{" "}
+                              <i className="fa-duotone fa-right-from-bracket mx-1"></i>
+                            </button>
+                          </div>
                         ) : (
                           <button
                             onClick={() => {
@@ -352,9 +372,9 @@ function Navbar() {
                       </div>
                     </Dropdown>
                   )}
-                  <Flowbite>
+                  <Flowbite className="">
                     <Tooltip content="Switch Theme" style="light">
-                      <DarkThemeToggle className="focus:outline-none focus:bg-gray-800 hover:bg-none" />
+                      <DarkThemeToggle className="focus:outline-none hover:bg-gray-100 focus:ring-0 bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600" />
                     </Tooltip>
                   </Flowbite>
                   <Link
@@ -377,6 +397,44 @@ function Navbar() {
       <div className="bg-white dark:bg-gray-700 border-b dark:border-gray-600 lg:block hidden">
         <div className="container m-auto relative">
           <Menu />
+        </div>
+      </div>
+      <div className="fixed bottom-0 z-50 w-full pt-5 lg:hidden">
+        <Flowbite className="absolute bottom-full left-0">
+          <Tooltip content="Switch Theme" style="light">
+            <DarkThemeToggle className="focus:outline-none hover:bg-gray-100 focus:ring-0 bg-white dark:bg-gray-700 dark:hover:bg-gray-600 shadow dark:shadow-gray-900 mb-2 mx-2" />
+          </Tooltip>
+        </Flowbite>
+        <div className="bg-white dark:bg-gray-700 w-full shadow shadow-gray-900 grid grid-cols-5 gap-1">
+          <button className="flex flex-col justify-center items-center hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white py-2">
+            <i className="fa-duotone fa-gift text-lg"></i>
+            <h2 className="text-xs font-semibold">Offers</h2>
+          </button>
+          <button className="flex flex-col justify-center items-center hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white py-2">
+            <i className="fa-sharp fa-solid fa-bolt-lightning text-lg"></i>
+            <h2 className="text-xs font-semibold">Deals</h2>
+          </button>
+          <button
+            onClick={() => router.push("/pcbuilder")}
+            className="flex flex-col justify-center items-center hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white py-2"
+          >
+            <i className="fa-duotone fa-computer text-lg"></i>
+            <h2 className="text-xs font-semibold">Pc Builder</h2>
+          </button>
+          <button
+            onClick={() => router.push("/compare")}
+            className="flex flex-col justify-center items-center hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white py-2"
+          >
+            <i className="fa-duotone fa-code-compare text-lg"></i>
+            <h2 className="text-xs font-semibold">Compare</h2>
+          </button>
+          <button
+            onClick={() => router.push("/user/profile")}
+            className="flex flex-col justify-center items-center hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white py-2"
+          >
+            <i className="fa-duotone fa-user text-lg"></i>
+            <h2 className="text-xs font-semibold">Account</h2>
+          </button>
         </div>
       </div>
     </>

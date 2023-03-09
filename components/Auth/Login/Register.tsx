@@ -69,7 +69,7 @@ function Register() {
       <div className="w-full bg-white dark:bg-gray-800 mb-10">
         <div className="container m-auto">
           <div className="flex justify-center items-center">
-            <form className="bg-white shadow-sky-200 border shadow rounded-lg mt-14 w-[600px] p-10 dark:bg-gray-700 dark:border-gray-600 dark:shadow-gray-600">
+            <form className="bg-white mx-3 lg:mx-0 shadow-sky-200 border shadow rounded-lg mt-14 w-[600px] p-10 dark:bg-gray-700 dark:border-gray-600 dark:shadow-gray-600">
               <div className="flex justify-center">
                 <Link href={"/"}>
                   <div className="w-28 h-14 relative">

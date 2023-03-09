@@ -86,3 +86,6 @@ input:focus-visible {
 .ant-float-btn-default .ant-float-btn-body:hover {
   background-color: #3fa9f5;
 }
+.ant-collapse-header {
+  color: currentColor !important;
+}

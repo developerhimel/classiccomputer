@@ -41,17 +41,31 @@ function Menu() {
                     key={index}
                   >
                     <div className="flex flex-row justify-between items-center">
-                      <Link
-                        href={{
-                          pathname: `/sub-category/${subItem.name
-                            .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
-                            .toLowerCase()}`,
-                          query: { cg: props.name, scg: subItem.name },
-                        }}
-                        className="text-sm hover:underline cursor-pointer text-left"
-                      >
-                        {subItem.name}
-                      </Link>
+                      {subItem.value === "sl" ? (
+                        <Link
+                          href={{
+                            pathname: `/category/${subItem.name
+                              .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                              .toLowerCase()}`,
+                            query: { cg: props.name },
+                          }}
+                          className="text-sm hover:underline cursor-pointer text-left"
+                        >
+                          {subItem.name}
+                        </Link>
+                      ) : (
+                        <Link
+                          href={{
+                            pathname: `/sub-category/${subItem.name
+                              .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                              .toLowerCase()}`,
+                            query: { cg: props.name, scg: subItem.name },
+                          }}
+                          className="text-sm hover:underline cursor-pointer text-left"
+                        >
+                          {subItem.name}
+                        </Link>
+                      )}
                       {subItem.items && <CaretRightOutlined />}
                     </div>
                     {subItem.items && (
