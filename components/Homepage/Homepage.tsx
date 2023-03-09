@@ -4,10 +4,12 @@ import Image from "next/image";
 import featuredItems from "../../json/featuredItems.json";
 import Link from "next/link";
 import { NumericFormat } from "react-number-format";
+import { useRouter } from "next/router";
 
 SwiperCore.use([Autoplay]);
 
 function Homepage(props: { banner: any; products: any; slider: any }) {
+  const router = useRouter();
   return (
     <div className="container m-auto">
       {/* Slider Section Start */}
@@ -77,7 +79,45 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
         </div>
         <div className="grid grid-cols-4 lg:grid-cols-8 items-center my-6 gap-[2px]">
           {featuredItems.map((item: any, index: number) => (
-            <div className="w-full group overflow-hidden" key={index}>
+            <div
+              onClick={() => {
+                if (item.values.cg && item.values.scg && item.values.escg) {
+                  router.push({
+                    pathname: `/escategory/${item.values.escg
+                      .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                      .toLowerCase()}`,
+                    query: {
+                      cg: item.values.cg,
+                      scg: item.values.scg,
+                      escg: item.values.escg,
+                    },
+                  });
+                } else if (
+                  item.values.cg &&
+                  item.values.scg &&
+                  !item.values.escg
+                ) {
+                  router.push({
+                    pathname: `/sub-category/${item.values.scg
+                      .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                      .toLowerCase()}`,
+                    query: {
+                      cg: item.values.cg,
+                      scg: item.values.scg,
+                    },
+                  });
+                } else {
+                  router.push({
+                    pathname: `/category/${item.values.cg
+                      .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                      .toLowerCase()}`,
+                    query: { cg: item.values.cg },
+                  });
+                }
+              }}
+              className="w-full group overflow-hidden"
+              key={index}
+            >
               <div className="bg-white dark:bg-gray-700 items-center hover:scale-[1.08] cursor-pointer rounded shadow-sm ease-in-out duration-200 flex flex-col p-5 overflow-hidden">
                 <i
                   className={`fa-${item.style} text-gray-400 group-hover:text-sky-600 ${item.icon} text-4xl`}

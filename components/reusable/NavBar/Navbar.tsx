@@ -280,70 +280,25 @@ function Navbar() {
             {/* Codes For Mobile Mode End*/}
 
             {/* Codes For Desktop Mode Start*/}
-            <div className="hidden lg:flex flex-row justify-start items-center">
-              <Link href={"/"}>
-                <div className="w-40 h-20 relative">
-                  <Image
-                    alt="Logo"
-                    src={"/assets/logo/logo1.png"}
-                    fill
-                    priority={true}
-                    className="object-contain"
-                  />
-                </div>
-              </Link>
-              <div className="w-full flex flex-row items-center">
-                <div className="w-1/2 mx-5 hidden lg:block">
-                  <DynamicSearchbar />
-                </div>
-                <div className="hidden lg:w-1/2 lg:flex flex-row justify-between items-center">
-                  <Link href={"/"}>
-                    <div className="flex flex-row items-center hover:cursor-pointer">
-                      <div className="px-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          strokeWidth={1.5}
-                          stroke="currentColor"
-                          className="w-6 h-6 ccprimary animate-pulse"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
-                          />
-                        </svg>
-                      </div>
-                      <div>
-                        <h2 className="text-gray-800 dark:text-white text-base">
-                          Offers
-                        </h2>
-                        <h3 className="text-gray-400 text-xs">Latest Offers</h3>
-                      </div>
-                    </div>
-                  </Link>
-                  <Link href={"/"}>
-                    <div className="flex flex-row items-center hover:cursor-pointer">
-                      <div className="px-2">
-                        <Lottie
-                          options={defaultOptions}
-                          height={50}
-                          width={50}
-                        />
-                      </div>
-                      <div>
-                        <h2 className="text-gray-800 dark:text-white text-base">
-                          Flash Offers
-                        </h2>
-                        <h3 className="text-gray-400 text-xs">Special Offer</h3>
-                      </div>
-                    </div>
-                  </Link>
-                  {user ? (
-                    <User user={user} setUser={setUser} />
-                  ) : (
-                    <Dropdown menu={{ items }} placement="bottom" arrow>
+            <div className="">
+              <div className="hidden lg:flex flex-row justify-start items-center">
+                <Link href={"/"}>
+                  <div className="w-40 h-20 relative">
+                    <Image
+                      alt="Logo"
+                      src={"/assets/logo/logo1.png"}
+                      fill
+                      priority={true}
+                      className="object-contain"
+                    />
+                  </div>
+                </Link>
+                <div className="w-full flex flex-row items-center">
+                  <div className="w-1/2 mx-5 hidden lg:block">
+                    <DynamicSearchbar />
+                  </div>
+                  <div className="hidden lg:w-1/2 lg:flex flex-row justify-between items-center">
+                    <Link href={"/"}>
                       <div className="flex flex-row items-center hover:cursor-pointer">
                         <div className="px-2">
                           <svg
@@ -352,41 +307,92 @@ function Navbar() {
                             viewBox="0 0 24 24"
                             strokeWidth={1.5}
                             stroke="currentColor"
-                            className="w-6 h-6 ccprimary"
+                            className="w-6 h-6 ccprimary animate-pulse"
                           >
                             <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
-                              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                              d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
                             />
                           </svg>
                         </div>
                         <div>
                           <h2 className="text-gray-800 dark:text-white text-base">
-                            Account
+                            Offers
                           </h2>
                           <h3 className="text-gray-400 text-xs">
-                            Register || Login
+                            Latest Offers
                           </h3>
                         </div>
                       </div>
-                    </Dropdown>
-                  )}
-                  <Flowbite className="">
-                    <Tooltip content="Switch Theme" style="light">
-                      <DarkThemeToggle className="focus:outline-none hover:bg-gray-100 focus:ring-0 bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600" />
-                    </Tooltip>
-                  </Flowbite>
-                  <Link
-                    href={"/pcbuilder"}
-                    className="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-normal text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group"
-                  >
-                    <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
-                    <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
-                    <span className="relative text-white text-sm font-semibold">
-                      PC Builder
-                    </span>
-                  </Link>
+                    </Link>
+                    <Link href={"/"}>
+                      <div className="flex flex-row items-center hover:cursor-pointer">
+                        <div className="px-2">
+                          <Lottie
+                            options={defaultOptions}
+                            height={50}
+                            width={50}
+                          />
+                        </div>
+                        <div>
+                          <h2 className="text-gray-800 dark:text-white text-base">
+                            Flash Offers
+                          </h2>
+                          <h3 className="text-gray-400 text-xs">
+                            Special Offer
+                          </h3>
+                        </div>
+                      </div>
+                    </Link>
+                    {user ? (
+                      <User user={user} setUser={setUser} />
+                    ) : (
+                      <Dropdown menu={{ items }} placement="bottom" arrow>
+                        <div className="flex flex-row items-center hover:cursor-pointer">
+                          <div className="px-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              strokeWidth={1.5}
+                              stroke="currentColor"
+                              className="w-6 h-6 ccprimary"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                              />
+                            </svg>
+                          </div>
+                          <div>
+                            <h2 className="text-gray-800 dark:text-white text-base">
+                              Account
+                            </h2>
+                            <h3 className="text-gray-400 text-xs">
+                              Register || Login
+                            </h3>
+                          </div>
+                        </div>
+                      </Dropdown>
+                    )}
+                    <Flowbite className="">
+                      <Tooltip content="Switch Theme" style="light">
+                        <DarkThemeToggle className="focus:outline-none hover:bg-gray-100 focus:ring-0 bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600" />
+                      </Tooltip>
+                    </Flowbite>
+                    <Link
+                      href={"/pcbuilder"}
+                      className="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-normal text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group"
+                    >
+                      <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-700"></span>
+                      <span className="absolute bottom-0 right-0 block w-64 h-64 mb-32 mr-4 transition duration-500 origin-bottom-left transform rotate-45 translate-x-24 bg-pink-500 rounded-full opacity-30 group-hover:rotate-90 ease"></span>
+                      <span className="relative text-white text-sm font-semibold">
+                        PC Builder
+                      </span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

@@ -519,13 +519,19 @@ function EscgComponent() {
                 </div>
               </div>
             </div>
-            <div className="my-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 mx-2 lg:mx-0">
-              {filteredData ? (
-                <ProductUi limit={showCount} data={filteredData} />
-              ) : (
-                <ProductUi limit={showCount} data={data} />
-              )}
-            </div>
+            {filteredData ? (
+              <ProductUi
+                limit={showCount}
+                data={filteredData}
+                prevLoading={setLoading}
+              />
+            ) : (
+              <ProductUi
+                limit={showCount}
+                data={data}
+                prevLoading={setLoading}
+              />
+            )}
           </div>
         </div>
       </div>

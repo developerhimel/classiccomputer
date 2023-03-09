@@ -249,7 +249,7 @@ function ScgComponent() {
               className="bg-transparent dark:text-white"
             >
               <Panel
-                className="shadow-sm mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white dark:shadow-gray-500"
+                className="shadow-none dark:border-none mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white"
                 header="Price Range"
                 key="1"
               >
@@ -305,7 +305,7 @@ function ScgComponent() {
                 </div>
               </Panel>
               <Panel
-                className="shadow-sm mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white dark:shadow-gray-500"
+                className="shadow-none dark:border-none mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white"
                 header="Availability"
                 key="2"
               >
@@ -362,7 +362,7 @@ function ScgComponent() {
                 {/* invisible div end */}
               </Panel>
               <Panel
-                className="shadow-sm mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white dark:shadow-gray-500"
+                className="shadow-none dark:border-none mb-2 bg-white text-base rounded dark:bg-gray-700 dark:text-white"
                 header="Brands"
                 key="3"
               >
@@ -488,13 +488,19 @@ function ScgComponent() {
                 </div>
               </div>
             </div>
-            <div className="my-2 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-3 mx-2 lg:mx-0">
-              {filteredData ? (
-                <ProductUi limit={showCount} data={filteredData} />
-              ) : (
-                <ProductUi limit={showCount} data={data} />
-              )}
-            </div>
+            {filteredData ? (
+              <ProductUi
+                limit={showCount}
+                data={filteredData}
+                prevLoading={setLoading}
+              />
+            ) : (
+              <ProductUi
+                limit={showCount}
+                data={data}
+                prevLoading={setLoading}
+              />
+            )}
           </div>
         </div>
       </div>
