@@ -149,7 +149,11 @@ function Orders() {
                             {item._id}
                           </span>
                         </h2>
-                        <h3 className="dark:text-white text-sm">{`Date: ${date.getDay()}/${date.getUTCMonth()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`}</h3>
+                        <h3 className="dark:text-white text-sm">
+                          {moment(item.createdAt).format(
+                            "DD/MM/YYYY   h:mm:ss A"
+                          )}
+                        </h3>
                       </div>
                       <div className="text-base">
                         <i

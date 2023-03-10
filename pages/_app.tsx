@@ -8,6 +8,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import Layout from "../components/Layout";
 import { CartProvider } from "react-use-cart";
+import AdminLayout from "../components/Admin/AdminLayout";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -22,7 +23,16 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       {router.route.match("/admin") ? (
-        <Component {...pageProps} />
+        <>
+          {router.route.includes("/admin/login") ||
+          router.route.includes("/admin/register") ? (
+            <Component {...pageProps} />
+          ) : (
+            <AdminLayout>
+              <Component {...pageProps} />
+            </AdminLayout>
+          )}
+        </>
       ) : (
         <CartProvider id="cccart">
           <Layout>

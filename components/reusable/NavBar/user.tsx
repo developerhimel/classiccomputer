@@ -17,6 +17,8 @@ function Logout(props: { user: any; setUser: any }) {
             localStorage.removeItem("user");
             props.setUser(undefined);
             router.push("/");
+          } else {
+            alert("Something went wrong!");
           }
         }}
         className="bg-red-200 dark:bg-gray-800 w-12 group hover:bg-red-300 rounded-r"

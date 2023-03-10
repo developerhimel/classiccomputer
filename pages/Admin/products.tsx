@@ -3,12 +3,12 @@ import { NextPage } from "next";
 import Head from "next/head";
 import Overview from "../../components/Admin/Dashboard/Overview";
 
-const Dashboard: NextPage = (props: any) => {
+const ProductsPage: NextPage = (props: any) => {
   return (
     <>
       <Head>
         <title>
-          Dashboard - Classic Computer || Largest tech accessories shop in
+          Products - Classic Computer || Largest tech accessories shop in
           Bangladesh
         </title>
         <meta
@@ -18,11 +18,9 @@ const Dashboard: NextPage = (props: any) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <div>
-        <Overview />
-      </div>
+      <div>products</div>
     </>
   );
 };
 
-export default Dashboard;
+export default ProductsPage;

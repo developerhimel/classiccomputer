@@ -5,7 +5,7 @@ import Categories from "./Categories";
 function Products() {
   return (
     <div className="w-full bg-white">
-      <div className="container m-auto pt-5">
+      <div className="m-10 pt-5">
         <div className="p-5 pb-0 border rounded-md shadow">
           <h1>Add Products</h1>
           <ul
