@@ -97,7 +97,7 @@ function Profile() {
               </svg>
             </div>
             {loading ? (
-              <Skeleton className="m-1" />
+              <Skeleton active={loading} className="m-1" />
             ) : (
               <div className="mx-3 dark:text-white">
                 <h2>Hello,</h2>

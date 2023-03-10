@@ -20,6 +20,7 @@ function Product() {
   const [pmimg, setPmimg] = useState(true);
   const [product, setProduct] = useState(undefined as any);
   const [rProducts, setRProducts] = useState(undefined as any);
+  const [rvp, setRvp] = useState(undefined as any);
 
   const emifloat = (Number(product?.price) + 5000) / 12;
   const imagesLength = product?.images.length;
@@ -39,7 +40,6 @@ function Product() {
       content: `${product?.name}`,
       bodyStyle: { padding: "20px 24px" },
     });
-    // console.log({ ...product, quantity: buyQuantity, id: product._id });
   };
 
   useEffect(() => {
@@ -55,6 +55,21 @@ function Product() {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data) {
+          const rvp = localStorage.getItem("rvp");
+          const rvpJson = JSON.parse(rvp as string);
+          const checkrvpExist = rvpJson?.filter(
+            (item: any) => item._id === data._id
+          );
+          const rvpAdd = rvpJson?.filter((item: any) => item._id !== data._id);
+
+          if (rvpAdd) {
+            localStorage.setItem("rvp", JSON.stringify([data, ...rvpAdd]));
+          } else {
+            localStorage.setItem("rvp", JSON.stringify([data]));
+          }
+          setRvp(rvpAdd);
+        }
         setProduct(data);
         setLoading(false);
       });
@@ -73,7 +88,6 @@ function Product() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.filteredProducts);
         setRProducts(data.filteredProducts);
       });
   }, [product]);
@@ -87,7 +101,10 @@ function Product() {
       <Head>
         <title>{product?.name}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content={`${product?.description}`} />
+        <meta
+          name="description"
+          content={`Buy ${product?.description} at competitive price in Bangladesh. Order online or visit Classic Computer store.`}
+        />
         <meta name="keywords" content={`${product?.name}`} />
       </Head>
       <div className="w-full bg-white min-h-screen dark:bg-gray-700">
@@ -743,9 +760,16 @@ function Product() {
                           </div>
                         </div>
                         <div className="bg-white rounded mt-5 dark:bg-gray-700">
-                          <h1 className="text-center font-bold text-gray-500 py-3 text-lg dark:text-white">
+                          <h1 className="text-center font-bold text-indigo-500 py-3 text-lg rounded bg-indigo-100 dark:bg-gray-700 dark:text-white">
                             Recently Viewed
                           </h1>
+                          <div className="w-full dark:bg-gray-600">
+                            {rvp?.slice(0, 5).map((rvp: any, index: number) => (
+                              <div className="w-full" key={index}>
+                                <RProducts ritems={rvp} />
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </div>

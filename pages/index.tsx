@@ -5,8 +5,6 @@ import { NextPage } from "next";
 import Homepage from "../components/Homepage/Homepage";
 
 const Home: NextPage = (props: any) => {
-  // console.log(props.products);
-
   return (
     <>
       <Head>
@@ -16,6 +14,10 @@ const Home: NextPage = (props: any) => {
         <meta
           name="description"
           content="Classic Computer has the most comprehensive array of Desktop PCs. We offer top-of-the-line Custom PC, Brand PC, All-in-One PC, and Portable Mini PC at our stores spread all over Bangladesh. Get your new iMac Desktop or Apple Mac Mini with an international warranty and servicing plan. To build a Desktop PC with the components of your choice, you can always depend on the experts of the Classic Computer PC shop. Take your gaming or professional content creation to the next level with a large collection of high-end Gaming and Rendering PC from Classic Computer. You can choose and build a complete Personal computer with our PC Builder feature anytime, anywhere. Or, build a Desktop PC to your taste right in front of you at the Classic Computer PC Shop."
+        />
+        <meta
+          name="keywords"
+          content="classiccomputer, classiccomputerbd, classic computer, Classic Computer, Laptop shop in Bangladesh, Laptop shop in bd, computer shop in Bangladesh, PC shop in Bangladesh, computer shop in BD, Gaming PC shop in Bangladesh, PC accessories shop in Bangladesh, best computer shop in Bangladesh, Gadget shop in bd, Gadget Shop in Bangladesh, Online Shop in BD, online computer shop in bd, computer accessories online shop in Bangladesh, computer parts shop in bd, Laptop in Bangladesh, Notebook, Laptop, Desktop, Brand PC, computer, computer store Bangladesh, laptop store Bangladesh, gaming, desktop, monitor, computer accessories, Desktop accessories, Laptop accessories, Laptop Online Store in BD, adata, apacer, apple, asus, bangladesh, baseus, belkin, benq, best, boya, brother, cable, camera, canon, GPU, graphics card, Classic Computer & Engineering Ltd,"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
@@ -94,7 +96,7 @@ export async function getServerSideProps() {
   const menuItems = await menuCollections.find().toArray();
   const products = await productsCollection
     .find()
-    .limit(24)
+    .limit(18)
     .sort({ createdAt: -1 })
     .toArray();
   const slider = await db.collection("slider").find().toArray();

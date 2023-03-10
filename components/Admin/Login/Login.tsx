@@ -10,7 +10,8 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setLoading(true);
     const res = await fetch("/api/admin/login", {
       method: "POST",
@@ -79,22 +80,26 @@ export default function Login() {
                           Classic Computer Admin Login
                         </h4>
                       </div>
-                      <form>
+                      <form onSubmit={handleLogin}>
                         <p className="mb-4">Please login to your account</p>
                         <div className="mb-4">
                           <input
+                            required
                             type="text"
                             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             id="username"
+                            name="username"
                             placeholder="Username"
                             onChange={(e) => setUsername(e.target.value)}
                           />
                         </div>
                         <div className="mb-4">
                           <input
+                            required
                             type="password"
                             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             id="password"
+                            name="password"
                             placeholder="Password"
                             onChange={(e) => setPassword(e.target.value)}
                           />
@@ -102,9 +107,8 @@ export default function Login() {
                         <div className="text-center pt-1 mb-12 pb-1">
                           <button
                             disabled={loading}
-                            onClick={() => handleLogin()}
                             className="inline-block items-center px-6 py-2.5 bg-gradient-to-r from-orange-500 via-pink-700 to-indigo-700 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full mb-3"
-                            type="button"
+                            type="submit"
                             data-mdb-ripple="true"
                             data-mdb-ripple-color="light"
                           >

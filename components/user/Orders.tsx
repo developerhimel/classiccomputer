@@ -32,8 +32,6 @@ function Orders() {
       });
   }, [query.id]);
 
-  console.log(orders);
-
   useEffect(() => {
     const userId = localStorage.getItem("user");
     if (userId) {
@@ -130,9 +128,9 @@ function Orders() {
           </h1>
           {loading ? (
             <div className="">
-              <Skeleton className="my-1" />
-              <Skeleton className="my-1" />
-              <Skeleton className="my-1" />
+              <Skeleton active={loading} className="my-1" />
+              <Skeleton active={loading} className="my-1" />
+              <Skeleton active={loading} className="my-1" />
             </div>
           ) : (
             <div className="">

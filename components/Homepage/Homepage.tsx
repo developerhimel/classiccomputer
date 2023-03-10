@@ -5,11 +5,21 @@ import featuredItems from "../../json/featuredItems.json";
 import Link from "next/link";
 import { NumericFormat } from "react-number-format";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import GradientBb from "../reusable/svg/GradientBb";
 
 SwiperCore.use([Autoplay]);
 
 function Homepage(props: { banner: any; products: any; slider: any }) {
   const router = useRouter();
+  const [rvp, setRvp] = useState(undefined as any);
+
+  useEffect(() => {
+    const rvp = localStorage.getItem("rvp");
+    const rvpJson = JSON.parse(rvp as string);
+    setRvp(rvpJson);
+  }, []);
+
   return (
     <div className="container m-auto">
       {/* Slider Section Start */}
@@ -68,7 +78,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
       {/* Slider Section End */}
 
       {/* Featured Category */}
-      <div className="w-full mt-16 px-3 md:px-0">
+      <div className="w-full mt-16 px-3 md:px-0 relative">
         <div className="w-full">
           <h1 className="text-center text-xl font-semibold text-gray-800 dark:text-white">
             Featured Category
@@ -129,6 +139,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
             </div>
           ))}
         </div>
+        <GradientBb />
       </div>
 
       {/* Featured Products */}
@@ -146,7 +157,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
             {props.products.map((item: any, index: number) => (
               <div
                 key={index}
-                className="bg-white dark:bg-gray-700 group/main py-4 rounded-lg shadow-sm hover:shadow-md hover:shadow-sky-200"
+                className="bg-white dark:bg-gray-700 group/main py-4 rounded-lg shadow-sm hover:shadow-md dark:hover:shadow-sky-300 hover:shadow-sky-200 relative"
               >
                 <div className="border-b-[5px] border-b-gray-50 dark:border-b-gray-800">
                   <span
@@ -221,11 +232,96 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
                     )}
                   </div>
                 </div>
+                <GradientBb />
               </div>
             ))}
           </div>
         </div>
       </div>
+      {/* Recently Viewed Products */}
+      {rvp && (
+        <div className="w-full mt-16">
+          <div className="w-full">
+            <h1 className="text-center text-xl font-semibold text-gray-800 dark:text-white">
+              Recently Viewed
+            </h1>
+            <p className="text-center text-sm mt-1 text-gray-800 dark:text-white">
+              Check your recently viewed Products!
+            </p>
+          </div>
+          <div className="w-full mt-10">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 px-3 sm:px-0 gap-5">
+              {rvp.slice(0, 6).map((item: any, index: number) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-gray-700 group/main py-4 rounded-lg shadow-sm hover:shadow-md dark:hover:shadow-sky-300 hover:shadow-sky-200 relative"
+                >
+                  <div className="border-b-[5px] border-b-gray-50 dark:border-b-gray-800">
+                    <div className="p-3 relative w-full h-[230px] overflow-hidden my-2">
+                      {item.src && (
+                        <Link
+                          href={{
+                            pathname: `/${item.name
+                              .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                              .toLowerCase()}`,
+                            query: { id: item.id },
+                          }}
+                        >
+                          <Image
+                            loading="lazy"
+                            src={item.src}
+                            fill
+                            alt={"product image"}
+                            className="w-full group-hover/main:scale-105 ease-in-out duration-300 object-contain"
+                          />
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                  <div className="px-4 pt-4 flex flex-col justify-between">
+                    <Link
+                      href={{
+                        pathname: `/${item.name
+                          .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                          .toLowerCase()}`,
+                        query: { id: item.id },
+                      }}
+                      className="text-sm text-ellipsis line-clamp-2 hover:underline hover:text-pink-600 dark:text-gray-100"
+                    >
+                      {item.name}
+                    </Link>
+                    <div className="pt-2 flex flex-row flex-wrap justify-start items-end">
+                      <div className="flex flex-row justify-start text-sky-600 font-semibold">
+                        <NumericFormat
+                          displayType="text"
+                          className=""
+                          value={
+                            item.discountPrice ? item.discountPrice : item.price
+                          }
+                          thousandSeparator=","
+                        />
+                        <span className="ml-1">৳</span>
+                      </div>
+                      {item.discountPrice && (
+                        <div className="flex flex-row justify-start text-xs dark:text-gray-300 ml-3 line-through">
+                          <NumericFormat
+                            displayType="text"
+                            className=""
+                            value={item.price}
+                            thousandSeparator=","
+                          />
+                          <span className="ml-1">৳</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <GradientBb />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

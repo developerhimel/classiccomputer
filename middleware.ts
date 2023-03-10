@@ -3,26 +3,8 @@ import type { NextRequest } from "next/server";
 import { verifyAuth } from "./lib/auth";
 
 export async function middleware(request: NextRequest) {
-  const token = request.cookies.get("AdminUserJwt")?.value;
   const userToken = request.cookies.get("userJwt")?.value;
-
-  const verifiedToken =
-    token &&
-    (await verifyAuth(token).catch((error) => {
-      console.log(error);
-    }));
-
-  if (request.url.match("/admin")) {
-    if (request.url.includes("/admin/dashboard")) {
-      if (!verifiedToken) {
-        return NextResponse.redirect(new URL("/admin/login", request.url));
-      }
-    } else if (request.url.includes("/admin/login")) {
-      if (verifiedToken) {
-        return NextResponse.redirect(new URL("/admin/dashboard", request.url));
-      }
-    }
-  }
+  const token = request.cookies.get("AdminUserJwt")?.value;
 
   const verifiedUserToken =
     userToken &&
@@ -40,6 +22,24 @@ export async function middleware(request: NextRequest) {
   ) {
     if (verifiedUserToken) {
       return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
+
+  const verifiedToken =
+    token &&
+    (await verifyAuth(token).catch((error) => {
+      console.log(error);
+    }));
+
+  if (request.url.match("/admin")) {
+    if (request.url.includes("/admin/dashboard")) {
+      if (!verifiedToken) {
+        return NextResponse.redirect(new URL("/admin/login", request.url));
+      }
+    } else if (request.url.includes("/admin/login")) {
+      if (verifiedToken) {
+        return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+      }
     }
   }
 }
