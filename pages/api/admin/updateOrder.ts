@@ -15,19 +15,19 @@ export default async function handler(req: NextApiRequest, res: any) {
     if (action === "approve") {
       await collection.findOneAndUpdate(
         { _id: new ObjectId(id) },
-        { $set: { orderStatus: "processing" } }
+        { $set: { orderStatus: "processing", updatedAt: new Date() } }
       );
       res.json({ message: "success" });
     } else if (action === "cancel") {
       await collection.findOneAndUpdate(
         { _id: new ObjectId(id) },
-        { $set: { orderStatus: "cancelled" } }
+        { $set: { orderStatus: "cancelled", updatedAt: new Date() } }
       );
       res.json({ message: "success" });
     } else if (action === "complete") {
       await collection.findOneAndUpdate(
         { _id: new ObjectId(id) },
-        { $set: { orderStatus: "delivered" } }
+        { $set: { orderStatus: "delivered", updatedAt: new Date() } }
       );
       res.json({ message: "success" });
     }

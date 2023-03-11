@@ -116,6 +116,7 @@ export async function getServerSideProps() {
         id: item._id.toString(),
         _id: null,
         createdAt: item.createdAt.toString(),
+        updatedAt: null,
       })),
       slider: slider.map((item) => ({
         ...item,

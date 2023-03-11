@@ -21,6 +21,7 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import DnsIcon from "@mui/icons-material/Dns";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
+import { NumericFormat } from "react-number-format";
 
 function Products() {
   const router = useRouter();
@@ -249,6 +250,30 @@ function Products() {
                           {item.name}
                         </Link>
                       </div>
+                    </div>
+                    <div className="pt-2 flex flex-row flex-wrap justify-center items-end">
+                      <div className="flex flex-row justify-start text-sky-600 font-semibold">
+                        <NumericFormat
+                          displayType="text"
+                          className=""
+                          value={
+                            item.discountPrice ? item.discountPrice : item.price
+                          }
+                          thousandSeparator=","
+                        />
+                        <span className="ml-1">৳</span>
+                      </div>
+                      {item.discountPrice && (
+                        <div className="flex flex-row justify-start text-xs dark:text-gray-300 ml-3 line-through">
+                          <NumericFormat
+                            displayType="text"
+                            className=""
+                            value={item.price}
+                            thousandSeparator=","
+                          />
+                          <span className="ml-1">৳</span>
+                        </div>
+                      )}
                     </div>
                     <div className="w-full">
                       <div className="w-full mt-3 px-2">

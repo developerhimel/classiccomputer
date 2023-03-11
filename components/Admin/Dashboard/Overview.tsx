@@ -11,6 +11,7 @@ import { Skeleton } from "antd";
 import WeeklySales from "./Charts/WeeklySales";
 import BestSellingProducts from "./Charts/BestSellingProducts";
 import { useRouter } from "next/router";
+import moment from "moment";
 
 function Overview() {
   const router = useRouter();
@@ -31,6 +32,47 @@ function Overview() {
     (item: any) => item.orderStatus === "cancelled"
   );
 
+  const withoutCancelled = orders?.filter(
+    (item: any) => item.orderStatus !== "cancelled"
+  );
+
+  const totalAmount = withoutCancelled?.reduce(
+    (total: any, currentValue: any) =>
+      (total =
+        total + (currentValue === undefined ? 0 : currentValue?.subTotal)),
+    0
+  );
+
+  // 1 day earnings
+  const minus1days = moment().add(-1, "days").utc().format();
+
+  const withoutCancelled1days = withoutCancelled?.filter(
+    (item: any) => item.createdAt >= minus1days
+  );
+
+  const totalAmount1days = withoutCancelled1days?.reduce(
+    (total: any, currentValue: any) =>
+      (total =
+        total + (currentValue === undefined ? 0 : currentValue?.subTotal)),
+    0
+  );
+
+  // 1 day earnings
+  const minus30days = moment().add(-30, "days").utc().format();
+
+  const withoutCancelled30days = withoutCancelled?.filter(
+    (item: any) => item.createdAt >= minus30days
+  );
+
+  const totalAmount30days = withoutCancelled30days?.reduce(
+    (total: any, currentValue: any) =>
+      (total =
+        total + (currentValue === undefined ? 0 : currentValue?.subTotal)),
+    0
+  );
+
+  console.log(totalAmount30days);
+
   useEffect(() => {
     setLoading(true);
     fetch("/api/admin/getOrders")
@@ -48,41 +90,53 @@ function Overview() {
         <div className="bg-teal-700 font-semibold text-white flex flex-col justify-center items-center p-6 gap-2 rounded-md">
           <LayersIcon className="text-4xl" />
           <h2 className="font-normal">Todays Orders</h2>
-          <h2 className="text-2xl">
-            <NumericFormat
-              displayType="text"
-              className="pr-1"
-              value={15030}
-              thousandSeparator=","
-            />
-            <span>৳</span>
-          </h2>
+          {loading ? (
+            <Skeleton.Input className="h-5 my-1" active={loading} />
+          ) : (
+            <h2 className="text-2xl">
+              <NumericFormat
+                displayType="text"
+                className="pr-1"
+                value={totalAmount1days}
+                thousandSeparator=","
+              />
+              <span>৳</span>
+            </h2>
+          )}
         </div>
         <div className="bg-green-700 font-semibold text-white flex flex-col justify-center items-center p-6 gap-2 rounded-md">
           <ShoppingCartIcon className="text-4xl" />
           <h2 className="font-normal">This Month</h2>
-          <h2 className="text-2xl">
-            <NumericFormat
-              displayType="text"
-              className="pr-1"
-              value={230515}
-              thousandSeparator=","
-            />
-            <span>৳</span>
-          </h2>
+          {loading ? (
+            <Skeleton.Input className="h-5 my-1" active={loading} />
+          ) : (
+            <h2 className="text-2xl">
+              <NumericFormat
+                displayType="text"
+                className="pr-1"
+                value={totalAmount30days}
+                thousandSeparator=","
+              />
+              <span>৳</span>
+            </h2>
+          )}
         </div>
         <div className="bg-indigo-700 font-semibold text-white flex flex-col justify-center items-center p-6 gap-2 rounded-md">
           <PaymentsIcon className="text-4xl" />
           <h2 className="font-normal">Total Orders</h2>
-          <h2 className="text-2xl">
-            <NumericFormat
-              displayType="text"
-              className="pr-1"
-              value={3050315}
-              thousandSeparator=","
-            />
-            <span>৳</span>
-          </h2>
+          {loading ? (
+            <Skeleton.Input className="h-5 my-1" active={loading} />
+          ) : (
+            <h2 className="text-2xl">
+              <NumericFormat
+                displayType="text"
+                className="pr-1"
+                value={totalAmount}
+                thousandSeparator=","
+              />
+              <span>৳</span>
+            </h2>
+          )}
         </div>
       </div>
       <div className="grid grid-cols-4 gap-5 pt-3">

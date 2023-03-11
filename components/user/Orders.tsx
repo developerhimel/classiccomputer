@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import moment from "moment";
 import { NumericFormat } from "react-number-format";
+import { Button } from "@mui/material";
 
 function Orders() {
   const router = useRouter();
@@ -153,19 +154,84 @@ function Orders() {
                         )}
                       </h3>
                     </div>
-                    <div className="text-base">
-                      <i
-                        className={`fa-solid ${
-                          item.orderStatus === "processing"
-                            ? "fa-clock-two-thirty text-orange-500"
-                            : item.orderStatus === "cancelled"
-                            ? "fa-circle-xmark text-red-600"
-                            : null
-                        } mr-2`}
-                      ></i>
-                      <span className="capitalize dark:text-white">
-                        {item.orderStatus}
-                      </span>
+                    <div className="flex justify-between items-center gap-5">
+                      <div className="text-base flex justify-center items-center">
+                        <i
+                          className={`fa-solid ${
+                            item.orderStatus === "processing"
+                              ? "fa-clock-two-thirty text-teal-500"
+                              : item.orderStatus === "cancelled"
+                              ? "fa-circle-xmark text-red-600"
+                              : item.orderStatus === "delivered"
+                              ? "fa-circle-check text-green-600"
+                              : item.orderStatus === "pending"
+                              ? "fa-circle-check text-yellow-400"
+                              : null
+                          } mr-2`}
+                        ></i>
+                        <span
+                          className={`capitalize dark:text-white ${
+                            item.orderStatus === "processing"
+                              ? "text-teal-500"
+                              : item.orderStatus === "cancelled"
+                              ? "text-red-600"
+                              : item.orderStatus === "delivered"
+                              ? "text-green-600"
+                              : item.orderStatus === "pending"
+                              ? "text-yellow-400"
+                              : null
+                          }`}
+                        >
+                          {item.orderStatus}
+                        </span>
+                      </div>
+                      {item.orderStatus === "pending" ? (
+                        <Button
+                          onClick={async () => {
+                            const res = await fetch("/api/admin/updateOrder", {
+                              method: "POST",
+                              headers: {
+                                "Content-Type": "application/json",
+                              },
+                              body: JSON.stringify({
+                                id: item._id,
+                                action: "cancel",
+                              }),
+                            });
+                            const data = await res.json();
+                            console.log(data);
+                            if (data.message === "success") {
+                              router.reload();
+                            }
+                          }}
+                          className="text-xs w-full border-none bg-rose-500 text-white hover:bg-rose-600 py-2.5 capitalize font-semibold dark:bg-gray-600 dark:hover:bg-gray-800 dark:text-white"
+                        >
+                          Cancel
+                        </Button>
+                      ) : item.orderStatus === "processing" ? (
+                        <Button
+                          onClick={async () => {
+                            const res = await fetch("/api/admin/updateOrder", {
+                              method: "POST",
+                              headers: {
+                                "Content-Type": "application/json",
+                              },
+                              body: JSON.stringify({
+                                id: item._id,
+                                action: "cancel",
+                              }),
+                            });
+                            const data = await res.json();
+                            console.log(data);
+                            if (data.message === "success") {
+                              router.reload();
+                            }
+                          }}
+                          className="text-xs w-full border-none bg-rose-500 text-white hover:bg-rose-600 py-2.5 capitalize font-semibold dark:bg-gray-600 dark:hover:bg-gray-800 dark:text-white"
+                        >
+                          Cancel
+                        </Button>
+                      ) : null}
                     </div>
                   </div>
                   <div className="flex flex-row justify-between items-center">
