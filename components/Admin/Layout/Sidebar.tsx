@@ -14,16 +14,22 @@ import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-function SideButtons(props: { title: string; icon: any; path: string }) {
+function SideButtons(props: {
+  title: string;
+  icon: any;
+  path: string;
+  disabled: boolean;
+}) {
   const router = useRouter();
   return (
     <Button
+      disabled={props.disabled}
       onClick={() => router.push(props.path)}
       className={`w-full font-semibold capitalize text-left justify-start border-none mb-2 py-2 hover:bg-sky-50 dark:hover:bg-gray-800 ${
         router.pathname === props.path
           ? "text-sky-500 bg-sky-50 dark:bg-gray-800"
           : "text-gray-500 bg-white dark:bg-gray-700 dark:text-white"
-      }`}
+      } ${props.disabled ? "text-gray-300 dark:text-gray-500" : ""}`}
       variant="outlined"
       startIcon={props.icon}
     >
@@ -55,46 +61,55 @@ function Sidebar() {
             title="Dashboard"
             icon={<DashboardIcon />}
             path="/admin/dashboard"
+            disabled={false}
           />
           <SideButtons
             title="Products"
             icon={<ShoppingBagIcon />}
             path="/admin/products"
+            disabled={false}
           />
           <SideButtons
             title="Orders"
             icon={<ReceiptLongIcon />}
             path="/admin/orders"
+            disabled={false}
           />
           <SideButtons
             title="Customers"
             icon={<GroupIcon />}
-            path="/admin/productss"
+            path="/admin/customers"
+            disabled={false}
           />
-          <SideButtons
+          {/* <SideButtons
             title="Categories"
             icon={<FormatListBulletedIcon />}
             path="/admin/productss"
-          />
+            disabled={true}
+          /> */}
           <SideButtons
             title="Banners"
             icon={<ViewCarouselIcon />}
             path="/admin/productss"
+            disabled={true}
           />
           <SideButtons
             title="Sliders"
             icon={<WebStoriesIcon />}
             path="/admin/productss"
+            disabled={true}
           />
           <SideButtons
             title="Offers & Deals"
             icon={<LocalOfferIcon />}
             path="/admin/productss"
+            disabled={true}
           />
           <SideButtons
             title="Settings"
             icon={<SettingsIcon />}
             path="/admin/productss"
+            disabled={true}
           />
         </div>
       </div>
