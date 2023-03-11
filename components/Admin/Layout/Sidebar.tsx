@@ -62,6 +62,16 @@ function Sidebar() {
             path="/admin/products"
           />
           <SideButtons
+            title="Orders"
+            icon={<ReceiptLongIcon />}
+            path="/admin/orders"
+          />
+          <SideButtons
+            title="Customers"
+            icon={<GroupIcon />}
+            path="/admin/productss"
+          />
+          <SideButtons
             title="Categories"
             icon={<FormatListBulletedIcon />}
             path="/admin/productss"
@@ -74,16 +84,6 @@ function Sidebar() {
           <SideButtons
             title="Sliders"
             icon={<WebStoriesIcon />}
-            path="/admin/productss"
-          />
-          <SideButtons
-            title="Customers"
-            icon={<GroupIcon />}
-            path="/admin/productss"
-          />
-          <SideButtons
-            title="Orders"
-            icon={<ReceiptLongIcon />}
             path="/admin/productss"
           />
           <SideButtons

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Modal, Select } from "antd";
-import ImageUploader from "./ImageUploader";
+import ImageUploader from "../Dashboard/ImageUploader";
 import type { RcFile, UploadFile } from "antd/es/upload/interface";
 import brands from "../../../json/brands.json";
 import menu from "../../../json/menu.json";
@@ -203,7 +203,8 @@ function AddProducts() {
   return (
     <>
       {contextHolder}
-      <form onSubmit={handleAddProduct} className="grid grid-cols-2 gap-3">
+      <h1 className="text-xl my-5 border-b py-2 dark:border-b-gray-500">Add Product</h1>
+      <form onSubmit={handleAddProduct} className="grid grid-cols-2 gap-3 bg-white p-5 rounded-md border mb-32">
         <div className="border-r pr-3 pb-4">
           {/* Product title section */}
           <div className="flex justify-start pt-5">

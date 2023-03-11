@@ -1,14 +1,14 @@
+import React from "react";
 import { NextPage } from "next";
 import Head from "next/head";
-import React from "react";
-import Brands from "../../components/Admin/Brands/Brands";
+import Orders from "../../components/Admin/Orders/Orders";
 
-const BrandsPage: NextPage = (props: any) => {
+const OrdersPage: NextPage = (props: any) => {
   return (
     <>
       <Head>
         <title>
-          Brands || Classic Computer || Largest tech accessories shop in
+          Orders - Classic Computer || Largest tech accessories shop in
           Bangladesh
         </title>
         <meta
@@ -18,9 +18,11 @@ const BrandsPage: NextPage = (props: any) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <Brands />
+      <div>
+        <Orders />
+      </div>
     </>
   );
 };
 
-export default BrandsPage;
+export default OrdersPage;

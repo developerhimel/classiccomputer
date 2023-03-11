@@ -16,6 +16,7 @@ function Pcbuilder() {
   const [cpuCooler, setCpuCooler] = useState(undefined as any);
   const [motherBoard, setMotherBoard] = useState(undefined as any);
   const [ram, setRam] = useState(undefined as any);
+  const [ram2, setRam2] = useState(undefined as any);
   const [storage, setStorage] = useState(undefined as any);
   const [graphicsCard, setGraphicsCard] = useState(undefined as any);
   const [powersupply, setPowersupply] = useState(undefined as any);
@@ -33,6 +34,7 @@ function Pcbuilder() {
     cpuCooler,
     motherBoard,
     ram,
+    ram2,
     storage,
     graphicsCard,
     powersupply,
@@ -68,7 +70,7 @@ function Pcbuilder() {
     toPng(componentRef.current, { cacheBust: true, skipFonts: true })
       .then((dataUrl) => {
         const link = document.createElement("a");
-        link.download = "my-image-name.png";
+        link.download = "built-pc-classiccomputer.png";
         link.href = dataUrl;
         link.click();
       })
@@ -94,11 +96,14 @@ function Pcbuilder() {
           </div>
           <div className=" mt-10 rounded">
             <div className="w-full flex items-center bg-indigo-100 rounded-t font-semibold text-sm">
-              <div className="w-40 border-r-2 border-white p-2 mr-2">
+              <div className="w-48 border-r-2 border-white p-2 mr-2">
                 <h2>Component</h2>
               </div>
               <div className="w-full border-r-2 border-white p-2 mr-2">
                 <h2>Product Name</h2>
+              </div>
+              <div className="w-40 border-r-2 border-white p-2 mr-2">
+                <h2>Quantity</h2>
               </div>
               <div className="w-40">
                 <h2>Price</h2>
@@ -106,11 +111,14 @@ function Pcbuilder() {
             </div>
             {cpu && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Processor</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{cpu.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {cpu.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -127,11 +135,14 @@ function Pcbuilder() {
             )}
             {cpuCooler && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>CPU Cooler</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{cpuCooler.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {cpuCooler.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -148,11 +159,14 @@ function Pcbuilder() {
             )}
             {motherBoard && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Motherboard</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{motherBoard.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {motherBoard.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -169,11 +183,14 @@ function Pcbuilder() {
             )}
             {ram && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Ram</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{ram.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {ram.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -188,13 +205,40 @@ function Pcbuilder() {
                 </div>
               </div>
             )}
+            {ram2 && (
+              <div className="w-full flex items-center bg-gray-50 text-sm border-b">
+                <div className="w-48 border-r-2 p-2 mr-2">
+                  <h2>Ram-(Optional)</h2>
+                </div>
+                <div className="w-full border-r-2 p-2 mr-2">
+                  <h2>{ram2.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {ram2.discountPrice}</h2>
+                </div>
+                <div className="w-40">
+                  <h2>
+                    <NumericFormat
+                      displayType="text"
+                      className=""
+                      value={ram2.discountPrice}
+                      thousandSeparator=","
+                    />
+                    <span className="ml-1">৳</span>
+                  </h2>
+                </div>
+              </div>
+            )}
             {storage && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Storage</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{storage.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {storage.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -211,11 +255,14 @@ function Pcbuilder() {
             )}
             {graphicsCard && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Graphics Card</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{graphicsCard.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {graphicsCard.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -232,11 +279,14 @@ function Pcbuilder() {
             )}
             {powersupply && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Power Supply</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{powersupply.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {powersupply.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -253,11 +303,14 @@ function Pcbuilder() {
             )}
             {casing && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Casing</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{casing.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {casing.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -274,11 +327,14 @@ function Pcbuilder() {
             )}
             {monitor && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Monitor</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{monitor.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {monitor.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -295,11 +351,14 @@ function Pcbuilder() {
             )}
             {casingCooler && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Casing Cooler</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{casingCooler.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {casingCooler.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -316,11 +375,14 @@ function Pcbuilder() {
             )}
             {keyboard && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Keyboard</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{keyboard.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {keyboard.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -337,11 +399,14 @@ function Pcbuilder() {
             )}
             {mouse && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Mouse</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{mouse.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {mouse.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -358,11 +423,14 @@ function Pcbuilder() {
             )}
             {headphone && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Headphone</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{headphone.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {headphone.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -379,11 +447,14 @@ function Pcbuilder() {
             )}
             {ups && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>UPS</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{ups.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {ups.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -400,11 +471,14 @@ function Pcbuilder() {
             )}
             {antivirus && (
               <div className="w-full flex items-center bg-gray-50 text-sm border-b">
-                <div className="w-40 border-r-2 p-2 mr-2">
+                <div className="w-48 border-r-2 p-2 mr-2">
                   <h2>Antivirus</h2>
                 </div>
                 <div className="w-full border-r-2 p-2 mr-2">
                   <h2>{antivirus.name}</h2>
+                </div>
+                <div className="w-40 border-r-2 border-white p-2 mr-2">
+                  <h2>1 x {antivirus.discountPrice}</h2>
                 </div>
                 <div className="w-40">
                   <h2>
@@ -419,13 +493,13 @@ function Pcbuilder() {
                 </div>
               </div>
             )}
-            <div className="w-full flex items-center text-base font-semibold">
-              <div className="w-full" />
-              <div className="w-40 bg-gray-300 border-r-2 border-white rounded-bl">
-                <h2 className="text-end p-2 pr-3">Total</h2>
+            <div className="w-full flex items-center text-base font-semibold mt-1">
+              <div className="w-full border-r-2 border-white p-2 mr-2" />
+              <div className="w-40 border-r p-2 bg-gray-300 rounded-l">
+                <h2 className="text-right">Total</h2>
               </div>
-              <div className="w-40 bg-gray-300 p-2 rounded-br text-orange-600">
-                <h2 className="">
+              <div className="w-40 bg-gray-300 p-2 rounded-r text-orange-600">
+                <h2 className="text-right">
                   <NumericFormat
                     displayType="text"
                     className=""
@@ -542,6 +616,14 @@ function Pcbuilder() {
             title="Ram"
             setData={setRam}
             data={ram}
+          />
+          <Components
+            cg="Pc Components"
+            scg="Ram(Desktop)"
+            imgSrc={"/assets/Icon/Ram.png"}
+            title="Ram - (Optional)"
+            setData={setRam2}
+            data={ram2}
           />
           <Components
             cg="Pc Components"

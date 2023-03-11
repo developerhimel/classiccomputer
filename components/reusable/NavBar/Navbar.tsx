@@ -382,6 +382,7 @@ function Navbar() {
                         <DarkThemeToggle className="focus:outline-none hover:bg-gray-100 focus:ring-0 bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600" />
                       </Tooltip>
                     </Flowbite>
+                    <div className="min-w-[112px]">
                     <Link
                       href={"/pcbuilder"}
                       className="relative inline-flex items-center justify-center p-4 px-5 py-3 overflow-hidden font-normal text-indigo-600 transition duration-300 ease-out rounded-full shadow-xl group"
@@ -392,6 +393,7 @@ function Navbar() {
                         PC Builder
                       </span>
                     </Link>
+                    </div>
                   </div>
                 </div>
               </div>

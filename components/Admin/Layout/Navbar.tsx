@@ -3,7 +3,7 @@ import React from "react";
 
 function Navbar() {
   return (
-    <div className="bg-white w-full py-2 dark:bg-gray-700">
+    <div className="bg-white w-full bg-opacity-90 backdrop-blur-sm py-2 dark:bg-gray-700">
       <div className="max-w-7xl m-auto">
         <div className="flex justify-end items-center">
           <Flowbite className="">

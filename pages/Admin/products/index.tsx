@@ -1,7 +1,7 @@
 import React from "react";
 import { NextPage } from "next";
 import Head from "next/head";
-import Overview from "../../components/Admin/Dashboard/Overview";
+import Products from "../../../components/Admin/Products/Products";
 
 const ProductsPage: NextPage = (props: any) => {
   return (
@@ -18,7 +18,9 @@ const ProductsPage: NextPage = (props: any) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
-      <div>products</div>
+      <div>
+        <Products />
+      </div>
     </>
   );
 };

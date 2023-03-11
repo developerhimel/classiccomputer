@@ -134,75 +134,72 @@ function Orders() {
             </div>
           ) : (
             <div className="">
-              {orders?.map((item: any, index: number) => {
-                const date = new Date(item.createdAt);
-                return (
-                  <div
-                    key={index}
-                    className="relative my-3 bg-white dark:bg-gray-700 dark:border-gray-800 dark:shadow-gray-800 rounded-xl p-5 text-sm leading-6 transition shadow-[0_1px_3px_rgba(15,23,42,0.03),0_1px_2px_rgba(15,23,42,0.06)] ring-1 ring-slate-600/[0.04] dark:ring-slate-700"
-                  >
-                    <div className="w-full flex flex-row justify-between items-center border-b pb-2 dark:border-b-gray-500 mb-3">
-                      <div>
-                        <h2 className="py-1 text-base font-semibold dark:text-white">
-                          Order#{" "}
-                          <span className="text-sm font-normal text-orange-500">
-                            {item._id}
-                          </span>
-                        </h2>
-                        <h3 className="dark:text-white text-sm">
-                          {moment(item.createdAt).format(
-                            "DD/MM/YYYY   h:mm:ss A"
-                          )}
-                        </h3>
-                      </div>
-                      <div className="text-base">
-                        <i
-                          className={`fa-solid ${
-                            item.orderStatus === "processing"
-                              ? "fa-clock-two-thirty text-orange-500"
-                              : item.orderStatus === "cancelled"
-                              ? "fa-circle-xmark text-red-600"
-                              : null
-                          } mr-2`}
-                        ></i>
-                        <span className="capitalize dark:text-white">
-                          {item.orderStatus}
+              {orders?.map((item: any, index: number) => (
+                <div
+                  key={index}
+                  className="relative my-3 bg-white dark:bg-gray-700 dark:border-gray-800 dark:shadow-gray-800 rounded-xl p-5 text-sm leading-6 transition shadow-[0_1px_3px_rgba(15,23,42,0.03),0_1px_2px_rgba(15,23,42,0.06)] ring-1 ring-slate-600/[0.04] dark:ring-slate-700"
+                >
+                  <div className="w-full flex flex-row justify-between items-center border-b pb-2 dark:border-b-gray-500 mb-3">
+                    <div>
+                      <h2 className="py-1 text-base font-semibold dark:text-white">
+                        Order#{" "}
+                        <span className="text-sm font-normal text-orange-500">
+                          {item._id}
                         </span>
-                      </div>
+                      </h2>
+                      <h3 className="dark:text-white text-sm">
+                        {moment(item.createdAt).format(
+                          "DD/MM/YYYY   h:mm:ss A"
+                        )}
+                      </h3>
                     </div>
-                    <div className="flex flex-row justify-between items-center">
-                      <div className="flex items-center">
-                        <div className="relative w-16 h-16">
-                          <Image
-                            src={item?.products[0]?.src}
-                            fill
-                            alt={item?.products[0]?.name}
-                          />
-                        </div>
-                        <h2 className="mx-3 font-semibold dark:text-white">
-                          {item?.products[0]?.name}{" "}
-                          <span className="text-gray-600 dark:text-gray-300">
-                            - ({item?.products.length} more)
-                          </span>
-                        </h2>
-                      </div>
-                      <h2 className="font-semibold text-orange-500">
-                        <span className="text-gray-800 dark:text-white">
-                          Total:
-                        </span>
-                        <NumericFormat
-                          displayType="text"
-                          className="px-1"
-                          value={item.total}
-                          thousandSeparator=","
+                    <div className="text-base">
+                      <i
+                        className={`fa-solid ${
+                          item.orderStatus === "processing"
+                            ? "fa-clock-two-thirty text-orange-500"
+                            : item.orderStatus === "cancelled"
+                            ? "fa-circle-xmark text-red-600"
+                            : null
+                        } mr-2`}
+                      ></i>
+                      <span className="capitalize dark:text-white">
+                        {item.orderStatus}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-row justify-between items-center">
+                    <div className="flex items-center">
+                      <div className="relative w-16 h-16">
+                        <Image
+                          src={item?.products[0]?.src}
+                          fill
+                          alt={item?.products[0]?.name}
                         />
-                        ৳
+                      </div>
+                      <h2 className="mx-3 font-semibold dark:text-white">
+                        {item?.products[0]?.name}{" "}
+                        <span className="text-gray-600 dark:text-gray-300">
+                          - ({item?.products.length} more)
+                        </span>
                       </h2>
                     </div>
-                    <GradientBb />
+                    <h2 className="font-semibold text-orange-500">
+                      <span className="text-gray-800 dark:text-white">
+                        Total:
+                      </span>
+                      <NumericFormat
+                        displayType="text"
+                        className="px-1"
+                        value={item.total}
+                        thousandSeparator=","
+                      />
+                      ৳
+                    </h2>
                   </div>
-                );
-              })}
+                  <GradientBb />
+                </div>
+              ))}
             </div>
           )}
         </div>

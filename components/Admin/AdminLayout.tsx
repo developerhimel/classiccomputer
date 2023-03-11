@@ -11,7 +11,9 @@ function AdminLayout(props: { children: any }) {
         <div className="w-full h-full">
           <Navbar />
           <div className="w-full h-full overflow-auto bg-gray-50 dark:bg-gray-800">
-            {props.children}
+            <div className="container max-w-7xl m-auto dark:text-white">
+              {props.children}
+            </div>
           </div>
         </div>
       </div>

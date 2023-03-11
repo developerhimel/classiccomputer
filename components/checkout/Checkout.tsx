@@ -93,7 +93,7 @@ function Checkout() {
       deliveryMethod: deliveryMethod,
       products: cartItems,
       subTotal: inTotal,
-      orderStatus: "processing",
+      orderStatus: "pending",
       total:
         deliveryMethod === "Home Delivery" ? inTotal + deliveryCharge : inTotal,
     };
