@@ -1,6 +1,5 @@
 import Head from "next/head";
 import ccdetails from "../json/ccdetails.json";
-import { MongoClient } from "mongodb";
 import { NextPage } from "next";
 import Homepage from "../components/Homepage/Homepage";
 
@@ -23,11 +22,7 @@ const Home: NextPage = (props: any) => {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <div className="w-full mt-8">
-        <Homepage
-          banner={props.banner}
-          products={props.products}
-          slider={props.slider}
-        />
+        <Homepage />
         <div className="w-full py-16">
           <div className="container m-auto px-3 md:px-0">
             <div className="w-full pb-8">
@@ -81,53 +76,3 @@ const Home: NextPage = (props: any) => {
 };
 
 export default Home;
-
-export async function getServerSideProps() {
-  // fetch data from an API
-  const client = await MongoClient.connect(
-    process.env.NEXT_PUBLIC_MONGODB_URL as string
-  );
-
-  const db = client.db("cc");
-
-  const menuCollections = db.collection("menu");
-  const productsCollection = db.collection("products");
-
-  const menuItems = await menuCollections.find().toArray();
-  const products = await productsCollection
-    .find()
-    .limit(18)
-    .sort({ createdAt: -1 })
-    .toArray();
-  const slider = await db.collection("slider").find().toArray();
-  const banner = await db.collection("banner").find().toArray();
-
-  client.close();
-
-  return {
-    props: {
-      menu: menuItems.map((item) => ({
-        ...item,
-        id: item._id.toString(),
-        _id: null,
-      })),
-      products: products.map((item) => ({
-        ...item,
-        id: item._id.toString(),
-        _id: null,
-        createdAt: item.createdAt.toString(),
-        updatedAt: null,
-      })),
-      slider: slider.map((item) => ({
-        ...item,
-        id: item._id.toString(),
-        _id: null,
-      })),
-      banner: banner.map((item) => ({
-        ...item,
-        id: item._id.toString(),
-        _id: null,
-      })),
-    },
-  };
-}

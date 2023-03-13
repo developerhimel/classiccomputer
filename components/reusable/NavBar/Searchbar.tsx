@@ -9,7 +9,7 @@ function Searchbar() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [filtered, setFiltered] = useState([]);
+  const [filtered, setFiltered] = useState(undefined as any);
   const [searchText, setSearchText] = useState("");
   const cancelButtonRef = useRef(null);
 
@@ -139,13 +139,14 @@ function Searchbar() {
                     </div>
                     <div className="p-3 max-h-[600px] overflow-auto flex flex-col-reverse">
                       <div className="w-full h-full justify-center items-center flex">
-                        {filtered.length === 0 ? (
+                        {filtered?.length !== 0 && loading === false ? (
                           <div>
                             <h2 className="dark:text-white">
                               No products found!
                             </h2>
                           </div>
-                        ) : filtered.length > 6 ? (
+                        ) : null}
+                        {filtered?.length > 6 ? (
                           <div className="pt-2">
                             <button
                               onClick={() => {
@@ -166,7 +167,7 @@ function Searchbar() {
                           </div>
                         ) : null}
                       </div>
-                      {filtered.slice(0, 6).map((item: any, index: number) => (
+                      {filtered?.slice(0, 6).map((item: any, index: number) => (
                         <div
                           onClick={() => {
                             setOpen(false);

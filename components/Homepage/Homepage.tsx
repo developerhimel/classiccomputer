@@ -7,17 +7,31 @@ import { NumericFormat } from "react-number-format";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import GradientBb from "../reusable/svg/GradientBb";
+import MuiSkeleton from "../Admin/Products/MuiSkeleton";
 
 SwiperCore.use([Autoplay]);
 
-function Homepage(props: { banner: any; products: any; slider: any }) {
+function Homepage() {
   const router = useRouter();
   const [rvp, setRvp] = useState(undefined as any);
+  const [loading, setLoading] = useState(true);
+  const [featuredProducts, setFeaturedProducts] = useState(undefined as any);
+  const [sliders, setSliders] = useState(undefined as any);
+  const [banners, setBanners] = useState(undefined as any);
+
+  console.log(featuredProducts);
 
   useEffect(() => {
+    setLoading(true);
     const rvp = localStorage.getItem("rvp");
     const rvpJson = JSON.parse(rvp as string);
     setRvp(rvpJson);
+    fetch("/api/Home/getfeatured")
+      .then((res) => res.json())
+      .then((data) => {
+        setFeaturedProducts(data);
+        setLoading(false);
+      });
   }, []);
 
   return (
@@ -25,19 +39,22 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
       {/* Slider Section Start */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-1 md:gap-5">
         <div className="hidden md:grid grid-cols-1 gap-2">
-          {props?.banner?.slice(0, 2).map((item: any, index: number) => (
-            <div
-              key={index}
-              className="md:h-full w-full h-[160px] relative cursor-pointer overflow-hidden"
-            >
-              <Image
-                src={item.src}
-                alt={item.title}
-                fill
-                className="w-full object-cover ease-in-out duration-300 hover:scale-110"
-              />
-            </div>
-          ))}
+          <div className="md:h-full w-full h-[160px] relative cursor-pointer overflow-hidden">
+            <Image
+              src={"/assets/banner/banner1.jpg"}
+              alt={"Banner 1"}
+              fill
+              className="w-full object-cover ease-in-out duration-300 hover:scale-110"
+            />
+          </div>
+          <div className="md:h-full w-full h-[160px] relative cursor-pointer overflow-hidden">
+            <Image
+              src={"/assets/banner/banner2.jpg"}
+              alt={"Banner 1"}
+              fill
+              className="w-full object-cover ease-in-out duration-300 hover:scale-110"
+            />
+          </div>
         </div>
         <div className="md:col-span-2 relative hover:cursor-pointer cursor-default">
           <Swiper
@@ -52,27 +69,43 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
             direction="horizontal"
             draggable={true}
           >
-            {props?.slider?.map((item: any, index: number) => (
-              <SwiperSlide key={index}>
-                <img src={item.src} alt={item.title} />
-              </SwiperSlide>
-            ))}
+            <SwiperSlide>
+              <img src={"/assets/Slider/1.png"} alt={"Slider Image"} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={"/assets/Slider/2.jpg"} alt={"Slider Image"} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={"/assets/Slider/3.jpg"} alt={"Slider Image"} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={"/assets/Slider/4.png"} alt={"Slider Image"} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={"/assets/Slider/5.webp"} alt={"Slider Image"} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={"/assets/Slider/6.webp"} alt={"Slider Image"} />
+            </SwiperSlide>
           </Swiper>
         </div>
         <div className="hidden md:grid grid-cols-1 gap-2">
-          {props?.banner?.slice(2, 4).map((item: any, index: number) => (
-            <div
-              key={index}
-              className="md:h-full w-full h-[160px] relative cursor-pointer overflow-hidden"
-            >
-              <Image
-                src={item.src}
-                alt={item.title}
-                fill
-                className="w-full object-cover ease-in-out duration-300 hover:scale-110"
-              />
-            </div>
-          ))}
+          <div className="md:h-full w-full h-[160px] relative cursor-pointer overflow-hidden">
+            <Image
+              src={"/assets/banner/banner3.jpeg"}
+              alt={"Banner 1"}
+              fill
+              className="w-full object-cover ease-in-out duration-300 hover:scale-110"
+            />
+          </div>
+          <div className="md:h-full w-full h-[160px] relative cursor-pointer overflow-hidden">
+            <Image
+              src={"/assets/banner/banner4.jpg"}
+              alt={"Banner 1"}
+              fill
+              className="w-full object-cover ease-in-out duration-300 hover:scale-110"
+            />
+          </div>
         </div>
       </div>
       {/* Slider Section End */}
@@ -153,88 +186,115 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
           </p>
         </div>
         <div className="w-full mt-10">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 px-3 sm:px-0 gap-5">
-            {props.products.map((item: any, index: number) => (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-700 group/main py-4 rounded-lg shadow-sm hover:shadow-md dark:hover:shadow-sky-300 hover:shadow-sky-200 relative"
-              >
-                <div className="border-b-[5px] border-b-gray-50 dark:border-b-gray-800">
-                  <span
-                    className={`text-xs bg-pink-600 ${
-                      !item.discountPrice && "opacity-0"
-                    } pr-2 text-white p-1 rounded-r-full`}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 px-3 sm:px-0 gap-5 justify-center">
+            {loading ? (
+              <>
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+                <MuiSkeleton />
+              </>
+            ) : (
+              <>
+                {featuredProducts?.map((item: any, index: number) => (
+                  <div
+                    key={index}
+                    className="bg-white dark:bg-gray-700 group/main py-4 rounded-lg shadow-sm hover:shadow-md dark:hover:shadow-sky-300 hover:shadow-sky-200 relative"
                   >
-                    Save:
-                    <NumericFormat
-                      displayType="text"
-                      className="px-1"
-                      value={item.price - item.discountPrice}
-                      thousandSeparator=","
-                    />
-                    ৳
-                  </span>
-                  <div className="p-3 relative w-full h-[230px] overflow-hidden my-2">
-                    {item.src && (
+                    <div className="border-b-[5px] border-b-gray-50 dark:border-b-gray-800">
+                      <span
+                        className={`text-xs bg-pink-600 ${
+                          !item.discountPrice && "opacity-0"
+                        } pr-2 text-white p-1 rounded-r-full`}
+                      >
+                        Save:
+                        <NumericFormat
+                          displayType="text"
+                          className="px-1"
+                          value={item.price - item.discountPrice}
+                          thousandSeparator=","
+                        />
+                        ৳
+                      </span>
+                      <div className="p-3 relative w-full h-[230px] overflow-hidden my-2">
+                        {item.src && (
+                          <Link
+                            href={{
+                              pathname: `/${item.name
+                                .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
+                                .toLowerCase()}`,
+                              query: { id: item._id },
+                            }}
+                          >
+                            <Image
+                              loading="lazy"
+                              src={item.src}
+                              fill
+                              alt={"product image"}
+                              className="w-full group-hover/main:scale-105 ease-in-out duration-300 object-contain"
+                            />
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                    <div className="px-4 pt-4">
                       <Link
                         href={{
                           pathname: `/${item.name
                             .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
                             .toLowerCase()}`,
-                          query: { id: item.id },
+                          query: { id: item._id },
                         }}
+                        className="text-sm text-ellipsis line-clamp-3 hover:underline hover:text-pink-600 dark:text-gray-100"
                       >
-                        <Image
-                          loading="lazy"
-                          src={item.src}
-                          fill
-                          alt={"product image"}
-                          className="w-full group-hover/main:scale-105 ease-in-out duration-300 object-contain"
-                        />
+                        {item.name}
                       </Link>
-                    )}
-                  </div>
-                </div>
-                <div className="px-4 pt-4">
-                  <Link
-                    href={{
-                      pathname: `/${item.name
-                        .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
-                        .toLowerCase()}`,
-                      query: { id: item.id },
-                    }}
-                    className="text-sm text-ellipsis line-clamp-3 hover:underline hover:text-pink-600 dark:text-gray-100"
-                  >
-                    {item.name}
-                  </Link>
-                  <div className="pt-2 flex flex-row flex-wrap justify-start items-end">
-                    <div className="flex flex-row justify-start text-sky-600 font-semibold">
-                      <NumericFormat
-                        displayType="text"
-                        className=""
-                        value={
-                          item.discountPrice ? item.discountPrice : item.price
-                        }
-                        thousandSeparator=","
-                      />
-                      <span className="ml-1">৳</span>
-                    </div>
-                    {item.discountPrice && (
-                      <div className="flex flex-row justify-start text-xs dark:text-gray-300 ml-3 line-through">
-                        <NumericFormat
-                          displayType="text"
-                          className=""
-                          value={item.price}
-                          thousandSeparator=","
-                        />
-                        <span className="ml-1">৳</span>
+                      <div className="pt-2 flex flex-row flex-wrap justify-start items-end">
+                        <div className="flex flex-row justify-start text-sky-600 font-semibold">
+                          <NumericFormat
+                            displayType="text"
+                            className=""
+                            value={
+                              item.discountPrice
+                                ? item.discountPrice
+                                : item.price
+                            }
+                            thousandSeparator=","
+                          />
+                          <span className="ml-1">৳</span>
+                        </div>
+                        {item.discountPrice && (
+                          <div className="flex flex-row justify-start text-xs dark:text-gray-300 ml-3 line-through">
+                            <NumericFormat
+                              displayType="text"
+                              className=""
+                              value={item.price}
+                              thousandSeparator=","
+                            />
+                            <span className="ml-1">৳</span>
+                          </div>
+                        )}
                       </div>
-                    )}
+                    </div>
+                    <GradientBb />
                   </div>
-                </div>
-                <GradientBb />
-              </div>
-            ))}
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -264,7 +324,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
                             pathname: `/${item.name
                               .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
                               .toLowerCase()}`,
-                            query: { id: item.id },
+                            query: { id: item._id },
                           }}
                         >
                           <Image
@@ -284,7 +344,7 @@ function Homepage(props: { banner: any; products: any; slider: any }) {
                         pathname: `/${item.name
                           .replace(/[&\/\\#, +()$~%.'":*?<>{}]/g, "-")
                           .toLowerCase()}`,
-                        query: { id: item.id },
+                        query: { id: item._id },
                       }}
                       className="text-sm text-ellipsis line-clamp-2 hover:underline hover:text-pink-600 dark:text-gray-100"
                     >
